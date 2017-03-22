@@ -1,7 +1,7 @@
 // SASS variable overrides must be declared before loading up Active Admin's styles.
 //
 // To view the variables that Active Admin provides, take a look at
-// `app/assets/stylesheets/active_admin/mixins/_variables.scss` in the
+// `app/assets/stylesheets/active_admin/mixins/_variables.css.scss` in the
 // Active Admin source.
 //
 // For example, to change the sidebar width:
@@ -15,3 +15,119 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+body.active_admin form .activeadmin-wysihtml5 {
+  width: calc(80% - 22px) !important;
+  margin-right: 22px !important;
+}
+
+// increase font size of inputs
+form input[type=text], form input[type=password], form input[type=email], form input[type=number], form input[type=url], form input[type=tel], form textarea,
+form select {
+  font-size:1.1em !important;
+  margin-bottom: 5px !important;
+}
+
+// fix bootstrap styles overwriting active admin
+.label {
+  font-size: 100%;
+  color:#5e6469;
+  text-align:left;
+  padding-top: 1em;
+  padding-left: 0;
+  white-space: normal;
+  border-radius: none;
+  clear:both;
+}
+
+li.input > div.cke_reset {
+	float: right;
+}
+
+.formtastic .wysihtml5-sandbox,
+textarea.wysihtml5 {
+  width:80% !important;
+  float: right !important;
+}
+
+form input[type=text], 
+form input[type=password], 
+form input[type=email], 
+form input[type=number], 
+form input[type=url], 
+form input[type=tel], 
+form textarea {
+  width:80%; /* fix for safari 5 */
+}
+
+.formtastic .inputs li {
+  clear:right;
+}
+
+.formtastic .inputs li.boolean {
+  padding-top:0;
+  padding-bottom: 2em;
+}
+
+.ui-datepicker-header {
+  height: auto !important;
+}
+
+input[type="file"] {
+  display:inline;
+}
+
+li.file.input {
+  clear:both;
+}
+
+.formtastic .inputs .inputs ol {
+  width:100%;
+  padding:5px;
+}
+
+ol.choices-group {
+  position:relative;
+  z-index:5;
+}
+
+li.radio .choices legend label {
+  font-weight: bold;
+}
+
+li.radio {
+  padding-left: 10px;
+}
+
+// other styles
+
+.inputs .inputs .inputs {
+  box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+.no-legend {
+  width:80%;
+  float:right;
+}
+
+.no-legend .inline-hints {
+  margin-left: 0;
+}
+
+.no-legend legend {
+  display:none;
+}
+
+p.inline-hints {
+  padding-bottom: 0.5em;
+}
+
+fieldset > ol > li p.inline-hints {
+  margin-left: 0 !important;
+}
+
+textarea.editable-wysihtml5 {
+  height:770px;
+}
