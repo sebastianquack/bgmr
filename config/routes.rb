@@ -1,6 +1,20 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
+
+  scope "/:locale" do
+    resources :projects, :only => [:show]
+    resources :topics, :only => [:show]
+    resources :pages, :only => [:show] #, :path => '' # route everything to pages controller
+  end
+
+  get '/de' => redirect('/')
+  #get '/:locale' => "pages#show", :as => :local_root, locale: /[A-Za-z]{2}/
+
+  root 'welcome#index'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

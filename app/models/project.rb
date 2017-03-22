@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
 
-	translates :title, :description
+	translates :title, :description, :slug
 
 	has_many :project_areas
   	accepts_nested_attributes_for :project_areas, :allow_destroy => true
