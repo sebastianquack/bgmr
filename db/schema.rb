@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322123148) do
+ActiveRecord::Schema.define(version: 20170322124330) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -94,6 +94,25 @@ ActiveRecord::Schema.define(version: 20170322123148) do
     t.text     "description_en"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+  end
+
+  create_table "slide_links", force: :cascade do |t|
+    t.integer  "from_slide_id"
+    t.integer  "to_slide_id"
+    t.float    "pos_x"
+    t.float    "pos_y"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "slides", force: :cascade do |t|
+    t.boolean  "draft"
+    t.integer  "project_id"
+    t.integer  "order"
+    t.string   "caption_de"
+    t.string   "caption_en"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tags", force: :cascade do |t|
