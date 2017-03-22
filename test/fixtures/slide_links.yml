@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from_slide_id: 1
+  to_slide_id: 1
+  pos_x: 1.5
+  pos_y: 1.5
+
+two:
+  from_slide_id: 1
+  to_slide_id: 1
+  pos_x: 1.5
+  pos_y: 1.5

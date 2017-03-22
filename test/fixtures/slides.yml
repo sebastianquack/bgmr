@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  draft: false
+  project_id: 1
+  order: 1
+  caption_de: MyString
+  caption_en: MyString
+
+two:
+  draft: false
+  project_id: 1
+  order: 1
+  caption_de: MyString
+  caption_en: MyString
