@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322120804) do
+ActiveRecord::Schema.define(version: 20170322123148) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -71,6 +71,20 @@ ActiveRecord::Schema.define(version: 20170322120804) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "project_tags", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "project_topics", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string   "slug"
     t.boolean  "draft"
@@ -80,6 +94,20 @@ ActiveRecord::Schema.define(version: 20170322120804) do
     t.text     "description_en"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "title_de"
+    t.string   "title_en"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string   "title_de"
+    t.string   "title_en"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

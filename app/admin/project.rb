@@ -2,7 +2,7 @@ ActiveAdmin.register Project do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :title_de, :title_en, :description_de, :description_en, :slug, :draft, area_ids:[]
+permit_params :title_de, :title_en, :description_de, :description_en, :slug, :draft, area_ids:[], tag_ids:[], topic_ids:[]
 #
 # or
 #
@@ -24,6 +24,14 @@ form do |f|
 
   f.inputs "Arbeitsgebiete" do
     f.input :areas, :label => false, :as => :check_boxes
+  end
+
+  f.inputs "Tags" do
+    f.input :tags, :label => false, :as => :check_boxes
+  end
+
+  f.inputs "Themen" do
+    f.input :topics, :label => false, :as => :check_boxes
   end
   
   f.inputs "Spezial" do
