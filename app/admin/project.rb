@@ -4,7 +4,7 @@ ActiveAdmin.register Project do
 #
 
 permit_params :main_image, :title_de, :title_en, :description_de, :description_en, :slug_de, :slug_en, :draft, area_ids:[], tag_ids:[], topic_ids:[],
-    :slides_attributes => [:id, :caption_de, :caption_en, :image, :_destroy]
+    :slides_attributes => [:id, :caption_de, :caption_en, :image, :_destroy, :slide_links_attributes => [:id, :to_slide_id, :pos_x, :pos_y, :_destroy]]
 
 #
 # or
@@ -29,11 +29,17 @@ form :html => { :enctype => "multipart/form-data" } do |f|
     f.input :main_image, hint: f.object.main_image? ? image_tag(f.object.main_image.url(:thumb)) : content_tag(:span, "Upload JPG/PNG/GIF image")
   end    
 
-  f.inputs "Bilder" do
+  f.inputs "Slideshow" do
     f.has_many :slides, heading: false, :new_record => true, :allow_destroy => true do |f_s|
         f_s.input :image, :as => :file, :required => false, :hint => f_s.object.image? ? f_s.template.link_to(image_tag(f_s.object.image.url(:thumb)), f_s.object.image.url) : ""
         f_s.input :caption_de
         f_s.input :caption_en
+        f_s.input :order
+        f_s.has_many :slide_links, :new_record => true, :allow_destroy => true do |f_sl|
+          f_sl.input :to_slide, :collection => f.object.slides.collect {|slide| [slide.caption_de, slide.id] }
+          f_sl.input :pos_x
+          f_sl.input :pos_y
+        end
     end
   end
     
