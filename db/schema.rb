@@ -59,9 +59,10 @@ ActiveRecord::Schema.define(version: 20170325190428) do
     t.string   "title_en"
     t.text     "content_de"
     t.text     "content_en"
-    t.string   "slug"
+    t.string   "slug_en"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "slug_de"
   end
 
   create_table "project_areas", force: :cascade do |t|
@@ -86,7 +87,7 @@ ActiveRecord::Schema.define(version: 20170325190428) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string   "slug"
+    t.string   "slug_en"
     t.boolean  "draft"
     t.string   "title_de"
     t.string   "title_en"
@@ -98,6 +99,7 @@ ActiveRecord::Schema.define(version: 20170325190428) do
     t.string   "main_image_content_type"
     t.integer  "main_image_file_size"
     t.datetime "main_image_updated_at"
+    t.string   "slug_de"
   end
 
   create_table "slide_links", force: :cascade do |t|

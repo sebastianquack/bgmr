@@ -3,7 +3,8 @@ class Project < ActiveRecord::Base
  	has_attached_file :main_image, styles: { medium: "600x600>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   	validates_attachment_content_type :main_image, content_type: /\Aimage\/.*\z/
 
-	translates :title, :description
+	translates :title, :description, :slug
+
 
 	has_many :project_areas
 	accepts_nested_attributes_for :project_areas, :allow_destroy => true

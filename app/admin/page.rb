@@ -2,7 +2,7 @@ ActiveAdmin.register Page do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :title_de, :title_en, :content_de, :content_en, :slug, :draft
+permit_params :title_de, :title_en, :content_de, :content_en, :slug_de, :slug_en, :draft
 #
 # or
 #
@@ -22,8 +22,11 @@ form do |f|
     f.input :content_de, :input_html => { :class => 'ckeditor' }
     f.input :content_en, :input_html => { :class => 'ckeditor' }
   end
+  f.inputs "Slug" do
+    f.input :slug_de
+    f.input :slug_en 
+  end  
   f.inputs "Spezial" do
-  	f.input :slug
   	f.input :draft
   end
 
