@@ -50,3 +50,5 @@ gem 'devise'
 gem 'ckeditor_rails'
 gem 'traco'
 gem 'friendly_id', '~> 5.0.0'
+gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
+

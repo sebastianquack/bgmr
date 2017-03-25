@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322124330) do
+ActiveRecord::Schema.define(version: 20170325190428) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -92,8 +92,12 @@ ActiveRecord::Schema.define(version: 20170322124330) do
     t.string   "title_en"
     t.text     "description_de"
     t.text     "description_en"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "main_image_file_name"
+    t.string   "main_image_content_type"
+    t.integer  "main_image_file_size"
+    t.datetime "main_image_updated_at"
   end
 
   create_table "slide_links", force: :cascade do |t|
@@ -111,8 +115,12 @@ ActiveRecord::Schema.define(version: 20170322124330) do
     t.integer  "order"
     t.string   "caption_de"
     t.string   "caption_en"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "tags", force: :cascade do |t|

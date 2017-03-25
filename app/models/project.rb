@@ -1,5 +1,8 @@
 class Project < ActiveRecord::Base
 
+ 	has_attached_file :main_image, styles: { medium: "600x600>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  	validates_attachment_content_type :main_image, content_type: /\Aimage\/.*\z/
+
 	translates :title, :description
 
 	has_many :project_areas
