@@ -95,11 +95,11 @@ ActiveRecord::Schema.define(version: 20170325190428) do
     t.text     "description_en"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.string   "slug_de"
     t.string   "main_image_file_name"
     t.string   "main_image_content_type"
     t.integer  "main_image_file_size"
     t.datetime "main_image_updated_at"
-    t.string   "slug_de"
   end
 
   create_table "slide_links", force: :cascade do |t|
