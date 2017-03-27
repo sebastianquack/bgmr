@@ -19,9 +19,9 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
+de:
   hello: "Hello world"
-  projects: "Projects"
-  topics: "Topics"
-  about: "About Us"
-  contact: "Contact"
+  projects: "Projekte"
+  topics: "Themen"
+  about: "Über uns"
+  contact: "Kontakt"  

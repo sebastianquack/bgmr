@@ -1,2 +1,11 @@
-<h1>Projects#index</h1>
-<p>Find me in app/views/projects/index.html.erb</p>
+<h1><%= t "projects" %></h1>
+
+<ul>
+  <% @projects.each do |project| %>
+    <li>
+      <a href="<%= project_path(:id => project.slug) %>">
+        <%= project.title %>
+      </a>
+    </li>
+  <% end %>
+</ul>

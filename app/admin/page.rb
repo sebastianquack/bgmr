@@ -2,6 +2,13 @@ ActiveAdmin.register Page do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
+
+controller do
+  def find_resource
+    scoped_collection.friendly.find(params[:id])
+  end
+end
+
 permit_params :title_de, :title_en, :content_de, :content_en, :slug_de, :slug_en, :draft
 #
 # or

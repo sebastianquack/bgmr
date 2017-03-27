@@ -1,28 +1,22 @@
 Rails.application.routes.draw do
-  get 'pages/show'
-
-  get 'projects/show'
-
-  get 'projects/index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
+  get '', to: redirect('/de')
 
-  scope "/english" do
+  scope ":locale", locale: /en|de/ do
     resources :projects, :only => [:show, :index]
     #resources :topics, :only => [:show]
     resources :pages, :only => [:show] #, :path => '' # route everything to pages controller
+    #resources :welcome, :only => [:index]
+    root :to => 'welcome#index'
   end
 
-  resources :projects, :only => [:show, :index]
-  #resources :topics, :only => [:show]
-  resources :pages, :only => [:show] #, :path => '' # route everything to pages controller
 
-  get '/de' => redirect('/')
   #get '/:locale' => "pages#show", :as => :local_root, locale: /[A-Za-z]{2}/
 
-  root 'welcome#index'
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

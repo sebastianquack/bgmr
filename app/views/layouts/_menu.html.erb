@@ -1,0 +1,28 @@
+<div>
+  <a href="<%= root_url %>">
+    bgmr
+  </a>
+</div>
+
+<ul>
+  <li>
+    <%= t("topics") %>
+  </li>
+  <li>
+    <%= link_to t("projects"), projects_path %>
+  </li>
+</ul>
+
+<ul>
+  <li>
+    <%= t "about" %>
+  </li>
+  <li>
+    <%= t "contact" %>
+  </li>
+  <li>
+    <a href="<%= @url_en %>" title="English">en</a>
+    /
+    <a href="<%= @url_de %>" title="Deutsch">de</a>
+  </li>
+</ul>

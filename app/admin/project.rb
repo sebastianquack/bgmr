@@ -3,6 +3,12 @@ ActiveAdmin.register Project do
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
 
+controller do
+  def find_resource
+    scoped_collection.friendly.find(params[:id])
+  end
+end
+
 permit_params :main_image, :title_de, :title_en, :description_de, :description_en, :slug_de, :slug_en, :draft, area_ids:[], tag_ids:[], topic_ids:[],
     :slides_attributes => [:id, :caption_de, :caption_en, :image, :_destroy, :slide_links_attributes => [:id, :to_slide_id, :pos_x, :pos_y, :_destroy]]
 
