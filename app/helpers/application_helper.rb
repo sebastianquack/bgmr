@@ -12,11 +12,8 @@ module ApplicationHelper
       controller = params[:controller]
       model = controller.classify.constantize
       resource = model.friendly.find(params[:id])
-      logger.debug resource
-      logger.debug locale
       I18n.with_locale(locale) do
         out = url_for(params.merge(:locale => locale, :id => resource.slug))
-        logger.debug out
       end
     else
       out = url_for(params.merge(:locale => locale))
