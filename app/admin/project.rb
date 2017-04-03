@@ -22,6 +22,9 @@ permit_params :main_image, :title_de, :title_en, :description_de, :description_e
 # end
 
 form :html => { :enctype => "multipart/form-data" } do |f|
+
+  f.semantic_errors
+
   f.inputs "Title" do
     f.input :title_de
     f.input :title_en 

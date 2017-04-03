@@ -1,0 +1,11 @@
+<h1><%= t "topics" %></h1>
+
+<ul>
+  <% @topics.each do |topic| %>
+    <li>
+      <a href="<%= topic_path(:id => topic.slug) %>">
+        <%= topic.title %>
+      </a>
+    </li>
+  <% end %>
+</ul>

@@ -1,15 +1,22 @@
 Rails.application.routes.draw do
 
+  get 'topics/index'
+
+  get 'topics/show'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
   get '', to: redirect('/de')
 
   scope ":locale", locale: /en|de/ do
-    resources :projects, :only => [:show, :index]
-    #resources :topics, :only => [:show]
-    resources :pages, :only => [:show] #, :path => '' # route everything to pages controller
+    localized do
+      resources :projects, :only => [:show, :index]
+      resources :topics, :only => [:show, :index]
+    end
+    #resources :pages, :only => [:show] #, :path => '' # route everything to pages controller
     #resources :welcome, :only => [:index]
+    get '/:id', to: "pages#show", as: "page"
     root :to => 'welcome#index'
   end
 

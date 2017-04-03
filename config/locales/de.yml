@@ -25,3 +25,7 @@ de:
   topics: "Themen"
   about: "Über uns"
   contact: "Kontakt"  
+
+  routes:
+    projects: "projekte"
+    topics: "themen"
