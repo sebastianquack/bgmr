@@ -25,6 +25,7 @@ de:
   topics: "Themen"
   about: "Über uns"
   contact: "Kontakt"  
+  welcome: "Willkommen bei bgmr"
 
   routes:
     projects: "projekte"

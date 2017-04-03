@@ -79,6 +79,8 @@ ActiveRecord::Schema.define(version: 20170403165617) do
     t.string   "seed_id"
   end
 
+  add_index "pages", ["seed_id"], name: "index_pages_on_seed_id"
+
   create_table "project_areas", force: :cascade do |t|
     t.integer  "project_id"
     t.integer  "area_id"
