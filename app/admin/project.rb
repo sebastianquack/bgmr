@@ -39,12 +39,12 @@ form :html => { :enctype => "multipart/form-data" } do |f|
   end    
 
   f.inputs "Slideshow" do
-    f.has_many :slides, heading: false, :new_record => true, :allow_destroy => true do |f_s|
-        f_s.input :image, :as => :file, :required => false, :hint => f_s.object.image? ? f_s.template.link_to(image_tag(f_s.object.image.url(:thumb)), f_s.object.image.url) : ""
+    f.has_many :slides, heading: false, class: "slide", :new_record => true, :allow_destroy => true do |f_s|
+        f_s.input :image, :as => :file, :required => false, :hint => f_s.object.image? ? f_s.template.link_to(image_tag(f_s.object.image.url(:large)), f_s.object.image.url) : ""
         f_s.input :caption_de
         f_s.input :caption_en
         f_s.input :order
-        f_s.has_many :slide_links, :new_record => true, :allow_destroy => true do |f_sl|
+        f_s.has_many :slide_links, class: "slide_link", :new_record => true, :allow_destroy => true do |f_sl|
           f_sl.input :to_slide, :collection => f.object.slides.collect {|slide| [slide.caption_de, slide.id] }
           f_sl.input :pos_x
           f_sl.input :pos_y

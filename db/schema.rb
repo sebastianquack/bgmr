@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403165617) do
+ActiveRecord::Schema.define(version: 20170404064445) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -68,14 +68,14 @@ ActiveRecord::Schema.define(version: 20170403165617) do
 
   create_table "pages", force: :cascade do |t|
     t.boolean  "draft"
-    t.string   "title_de"
-    t.string   "title_en"
+    t.string   "title_de",   null: false
+    t.string   "title_en",   null: false
     t.text     "content_de"
     t.text     "content_en"
-    t.string   "slug_en"
+    t.string   "slug_en",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "slug_de"
+    t.string   "slug_de",    null: false
     t.string   "seed_id"
   end
 
@@ -103,15 +103,15 @@ ActiveRecord::Schema.define(version: 20170403165617) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string   "slug_en"
+    t.string   "slug_en",                 null: false
     t.boolean  "draft"
-    t.string   "title_de"
-    t.string   "title_en"
+    t.string   "title_de",                null: false
+    t.string   "title_en",                null: false
     t.text     "description_de"
     t.text     "description_en"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-    t.string   "slug_de"
+    t.string   "slug_de",                 null: false
     t.string   "main_image_file_name"
     t.string   "main_image_content_type"
     t.integer  "main_image_file_size"
@@ -149,12 +149,12 @@ ActiveRecord::Schema.define(version: 20170403165617) do
   end
 
   create_table "topics", force: :cascade do |t|
-    t.string   "title_de"
-    t.string   "title_en"
+    t.string   "title_de",   null: false
+    t.string   "title_en",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "slug_en"
-    t.string   "slug_de"
+    t.string   "slug_en",    null: false
+    t.string   "slug_de",    null: false
   end
 
 end

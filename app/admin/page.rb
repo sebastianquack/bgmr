@@ -3,12 +3,6 @@ ActiveAdmin.register Page do
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
 
-controller do
-  def find_resource
-    scoped_collection.friendly.find(params[:id])
-  end
-end
-
 permit_params :title_de, :title_en, :content_de, :content_en, :slug_de, :slug_en, :draft
 #
 # or
@@ -21,6 +15,7 @@ permit_params :title_de, :title_en, :content_de, :content_en, :slug_de, :slug_en
 
 
 form do |f|
+  f.semantic_errors *f.object.errors.keys
   f.inputs "Title" do
     f.input :title_de
     f.input :title_en 

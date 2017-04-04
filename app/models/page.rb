@@ -4,6 +4,11 @@ class Page < ActiveRecord::Base
 
 	translates :title, :content, :slug
 
+  validates :title, presence: true
+  validates :slug,  presence: true
+  
+  validates_format_of :slug, :with => /\A[a-z0-9_]+\z/i
+
   before_destroy :check_if_seed
 
   def check_if_seed

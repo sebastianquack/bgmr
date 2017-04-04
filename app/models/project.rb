@@ -8,7 +8,6 @@ class Project < ActiveRecord::Base
 
 	translates :title, :description, :slug
 
-
 	has_many :project_areas
 	accepts_nested_attributes_for :project_areas, :allow_destroy => true
 	has_many :areas, :through => :project_areas
@@ -23,5 +22,10 @@ class Project < ActiveRecord::Base
 
   has_many :slides
   accepts_nested_attributes_for :slides, :allow_destroy => true
+
+  validates :title, presence: true
+  validates :slug,  presence: true
+  
+  validates_format_of :slug, :with => /\A[a-z0-9_]+\z/i  
   
 end

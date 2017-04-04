@@ -4,12 +4,6 @@ ActiveAdmin.register Topic do
 #
 permit_params :title_de, :title_en, :slug_de, :slug_en
 
-controller do
-  def find_resource
-    scoped_collection.friendly.find(params[:id])
-  end
-end
-
 #
 # or
 #

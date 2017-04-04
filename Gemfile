@@ -46,7 +46,7 @@ group :development do
   gem 'spring'
 end
 
-gem 'activeadmin', github: 'activeadmin'
+gem 'activeadmin', '1.0.0.pre5'
 gem 'devise'
 gem 'ckeditor_rails'
 
