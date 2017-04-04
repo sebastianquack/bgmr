@@ -34,13 +34,13 @@ form :html => { :enctype => "multipart/form-data" } do |f|
     f.input :description_en, :input_html => { :class => 'ckeditor' }
   end
 
-  f.inputs "Titelbild" do         
-    f.input :main_image, hint: f.object.main_image? ? image_tag(f.object.main_image.url(:thumb)) : content_tag(:span, "Upload JPG/PNG/GIF image")
+  f.inputs "Titelbild", :class => "inputs main_image" do         
+    f.input :main_image, :input_html => { :class => "js-upload" }, hint: f.object.main_image? ? image_tag(f.object.main_image.url(:medium)) : content_tag(:span, "Upload JPG/PNG/GIF image")
   end    
 
   f.inputs "Slideshow" do
     f.has_many :slides, heading: false, class: "slide", :new_record => true, :allow_destroy => true do |f_s|
-        f_s.input :image, :as => :file, :required => false, :hint => f_s.object.image? ? f_s.template.link_to(image_tag(f_s.object.image.url(:large)), f_s.object.image.url) : ""
+        f_s.input :image, :input_html => { :class => "js-upload" }, :as => :file, :required => false, :hint => f_s.object.image? ? image_tag(f_s.object.image.url(:large)) : content_tag(:span, "Upload JPG/PNG/GIF image")
         f_s.input :caption_de
         f_s.input :caption_en
         f_s.input :order

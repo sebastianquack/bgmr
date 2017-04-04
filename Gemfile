@@ -55,4 +55,3 @@ gem 'friendly_id', '~> 5.0.0'
 gem 'route_translator'# translate routes 
 
 gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
-
