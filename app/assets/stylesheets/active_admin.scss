@@ -40,20 +40,150 @@ form fieldset > ol > li.boolean label {
   max-height: 400px;
   object-fit: contain;
 }
+/*
+$loophole_editor_lineheight: 2em;
+$loophole_editor_margin_left: 10px;
+
+form fieldset.slide .slide_image {
+  padding-top: 0.5*$loophole_editor_lineheight !important;
+  padding-left: $loophole_editor_margin_left !important;
+}
+
+form fieldset.slide .slide_image label,
+form fieldset.slide .slide_image input {
+  height: $loophole_editor_lineheight !important;
+}
+
+form fieldset.slide .slide_image .inline-hints,
+form fieldset.slide .slide_links {
+  font-size: 0.95em;
+  padding: 0 !important;
+  margin: 0.5*$loophole_editor_lineheight 0 0 20% !important;
+}
+*/
+form fieldset.slide .slide_links {
+  //margin-top: 2*$loophole_editor_lineheight !important;
+  position: absolute;
+  top:0;
+  left: 0;
+  //left:$loophole_editor_margin_left;
+  width:100%;
+  margin:0;
+  padding:0;
+  //display:none;
+
+  h3 {
+    display: none;
+  }
+
+  .slide_link {
+    position: absolute;
+  }
+
+  .has_many_add {
+    position: absolute;
+    top:0;
+    right:0;
+  }
+
+  li, li * {
+    position: absolute;
+    left:0;
+    top:0;
+    padding: 0;
+    margin: 0;
+  }
+
+  .hidden,
+  .to_slide label {
+    display: none;
+  }
+
+  select {
+    left: 20px;
+  }
+
+  .has_many_delete, .has_many_remove {
+    left: 20px;
+    top: 20px;
+
+    label {
+      left: 40px;
+    }
+  }
+
+  .inline-hints, .inline-hints * {
+    background-color: black;
+    border-radius: 50%;
+    border: solid 2px white;
+    width:10px;
+    height:10px;
+    line-height:10px;
+    color: transparent;
+    cursor: default;
+  }
+
+
+  .slide_link {
+    width: 14px;
+    height: 14px;
+    border-radius: 6px;
+
+    margin:0;
+    padding:0;
+
+    background-color: transparent;
+
+    &.delete_checked {
+      display: none;
+    }
+
+    select, .has_many_delete, .has_many_remove {
+      display:none;
+    }
+
+    &:hover {
+      background-color: rgba(255,255,255,0.9);
+
+      width: 50%;
+      height: 50px;
+
+      select, .has_many_delete, .has_many_remove {
+        display:block;
+      }      
+    }
+  }
+
+}
+
+
+.remove_checked {
+  background-color: red;
+}
 
 fieldset.slide {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+  position:relative;
 
   img {
     width:100%;
     height:auto;
-    max-height: 400px;
+    max-height:55vh;
     object-fit: contain;
   }
 
-  .slide_link {
+  .slide_links {
     //border: dashed 1px black;
     //padding: 5%;
   }
+/*
+  .slide_link {
+    position: absolute;
+    top:0;
+    left:0;
+    //border: dashed 1px black;
+    //padding: 5%;
+  }
+  */
 }
 

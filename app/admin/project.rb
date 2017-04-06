@@ -40,15 +40,16 @@ form :html => { :enctype => "multipart/form-data" } do |f|
 
   f.inputs "Slideshow" do
     f.has_many :slides, heading: false, class: "slide", :new_record => true, :allow_destroy => true do |f_s|
-        f_s.input :image, :input_html => { :class => "js-upload" }, :as => :file, :required => false, :hint => f_s.object.image? ? image_tag(f_s.object.image.url(:large)) : content_tag(:span, "Upload JPG/PNG/GIF image")
-        f_s.input :caption_de
-        f_s.input :caption_en
-        f_s.input :order
-        f_s.has_many :slide_links, class: "slide_link", :new_record => true, :allow_destroy => true do |f_sl|
-          f_sl.input :to_slide, :collection => f.object.slides.collect {|slide| [slide.caption_de, slide.id] }
-          f_sl.input :pos_x
-          f_sl.input :pos_y
-        end
+      f_s.input :image, :input_html => { :class => "js-upload" }, :wrapper_html => { :class => "slide_image" }, :as => :file, :required => false, 
+        :hint => f_s.object.image? ? image_tag(f_s.object.image.url(:large)) : image_tag("data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==")
+      f_s.has_many :slide_links, class: "slide_link", :new_record => true, :allow_destroy => true do |f_sl|
+        f_sl.input :to_slide, :collection => f.object.slides.collect {|slide| [slide.caption_de, slide.id] }, :hint => "•", :wrapper_html => { :class =>  "to_slide" }
+        f_sl.input :pos_x, :wrapper_html => { :class =>  "hidden" }, :input_html => { :class =>  "pos_x" }
+        f_sl.input :pos_y, :wrapper_html => { :class =>  "hidden" }, :input_html => { :class =>  "pos_y" }
+      end
+      f_s.input :caption_de
+      f_s.input :caption_en
+      f_s.input :order
     end
   end
     
