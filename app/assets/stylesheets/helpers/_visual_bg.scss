@@ -1,0 +1,17 @@
+/*
+  visual_bg mixin
+*/
+
+@function rc() {
+  @return rgb(random(256)-1, random(256)-1, random(256)-1);
+}
+
+$color_index:1 !global;
+
+@mixin visual_bg() {
+  @if $debug_show_visual_bg {
+    $colors: red, orange, yellow, green, blue, purple, crimson, deeppink, greenyellow, lightgreen, grey, darkred, chocolate, #982374, #188955, rc(), rc(), rc(), rc(), rc(), rc(), rc(), rc(), rc(), rc(), rc(), rc(), rc(), rc(), rc(), rc(), rc(), rc(), rc(), rc(), rc(), rc(), rc(), rc(), rc(), rc() ;
+    background-color: rgba(nth($colors, $color_index), 0.4);
+    $color_index: $color_index + 1 !global;
+  }
+}

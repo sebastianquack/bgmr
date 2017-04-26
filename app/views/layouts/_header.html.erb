@@ -1,0 +1,35 @@
+<nav id="page_header">
+
+  <div id="logo">
+    <a href="<%= root_url %>">
+      <%= image_tag "bgmr-logo.png" %>
+    </a>
+  </div>
+
+  <ul id="menu_dynamic">
+    <li>
+      <%= link_to t("topics"),  topics_path %>
+    </li>
+    <li>
+      <%= link_to t("projects"), projects_path %>
+    </li>
+  </ul>
+
+  <ul id="menu_static">
+    <li>
+      <%= link_to get_seed_page('about').title, page_path(get_seed_page('about')) %>
+    </li>
+    <li>
+      <%= link_to get_seed_page('contact').title, page_path(get_seed_page('contact')) %>
+    </li>
+  </ul>
+
+  <ul id="menu_language">
+    <li>
+      <a href="<%= translated_url_for_current_request(:en) %>" title="English">en</a>
+      /
+      <a href="<%= translated_url_for_current_request(:de) %>" title="Deutsch">de</a>
+    </li>
+  </ul>
+
+</nav>

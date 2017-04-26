@@ -1,10 +1,11 @@
-<h1><%= t "projects" %></h1>
+<!--h1><%= t "projects" %></h1-->
 
-<ul>
+<ul class="projects_list">
   <% @projects.each do |project| %>
-    <li>
+    <li class="projects_list_entry">
       <a href="<%= project_path(:id => project.slug) %>">
-        <%= project.title %>
+        <%= image_tag project.main_image.url(:medium) %>
+        <h3 class="project_title"><%= project.title %></h3>
       </a>
     </li>
   <% end %>

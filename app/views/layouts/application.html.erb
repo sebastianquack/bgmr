@@ -8,9 +8,15 @@
 </head>
 <body>
 
-  <%= render "layouts/menu" %>
+  <div id="frame">
 
-  <%= yield %>
+    <%= render "layouts/header" %>
+
+    <div id="content">
+      <%= yield %>
+    </div>
+
+  </div>
 
 </body>
 </html>

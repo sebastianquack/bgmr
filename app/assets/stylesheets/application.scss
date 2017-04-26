@@ -10,6 +10,24 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
+ * Sprockets directives removed - use scss @import instead
+ *
  */
+
+/* config */
+@import "config/dimensions";
+@import "config/debug";
+
+/* helpers */
+@import "helpers/bp";
+@import "helpers/visual_bg";
+
+/* vendor */
+@import "bourbon";
+@import "neat";
+@import "base/base";
+
+/* elements */
+@import "layout";
+@import "header";
+@import "projects";

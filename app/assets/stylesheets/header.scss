@@ -1,0 +1,92 @@
+#page_header {
+  @include grid-container;
+
+  margin-top: 2 * $d_gridheight;
+
+  height: 10 * $d_gridheight;
+
+  li {
+    display: inline;
+  }
+
+  // ALL EXCEPT LOGO
+
+  & > ul {
+    margin-top: 7 * $d_gridheight - $base-line-height;
+    @include baseline_adjust_base;
+    display:inline;
+  }
+  
+  // FIRST
+
+  #logo {
+    @include bp($b_24_and_up) { @include grid-column-mod(2,24) }
+    @include bp($b_20-24) { @include grid-column-mod(2,20) }
+    @include bp($b_16-20) { @include grid-column-mod(2,16) }
+    @include bp($b_12-16) { @include grid-column-mod(2,12) }
+    @include bp($b_8-12) { @include grid-column-mod(2,8) }
+    @include bp($b_8_and_lower) { @include grid-column-mod(2,8) }
+
+    text-align: center;
+    @include bp($b_8_and_lower) { text-align: left; }
+
+    img {
+      height: 8 * $d_gridheight;
+    }
+
+    @include visual_bg
+  }
+
+  // SECOND
+
+  #menu_dynamic {
+    @include bp($b_24_and_up) { @include grid-column-mod(9,24) }
+    @include bp($b_20-24) { @include grid-column-mod(7,20) }
+    @include bp($b_16-20) { @include grid-column-mod(5,16) }
+    @include bp($b_12-16) { @include grid-column-mod(3,12) }
+    @include bp($b_12_and_lower) { display: none; }
+
+    li:nth-child(n+1) {
+      margin-right: 1em;
+    }
+
+    @include visual_bg
+  }
+
+  // THIRD
+
+  #menu_static {
+    @include bp($b_24_and_up) { @include grid-column-mod(11,24) }
+    @include bp($b_20-24) { @include grid-column-mod(9,20) }
+    @include bp($b_16-20) { @include grid-column-mod(7,16) }
+    @include bp($b_12-16) { @include grid-column-mod(5,12) }
+    @include bp($b_12_and_lower) { display: none; }
+
+    text-align: right;
+
+    li:nth-child(n+1) {
+      margin-left: 1em;
+    }
+
+    @include visual_bg
+  }
+
+  // FOURTH
+
+  #menu_language {
+    @include bp($b_24_and_up) { @include grid-column-mod(2,24) }
+    @include bp($b_20-24) { @include grid-column-mod(2,20) }
+    @include bp($b_16-20) { @include grid-column-mod(2,16) }
+    @include bp($b_12-16) { @include grid-column-mod(2,12) }
+    @include bp($b_12_and_lower) { display: none; }
+
+    text-align: center;
+    position: relative;
+
+    text-transform: uppercase;
+
+    @include visual_bg
+  }
+
+  @include visual_bg;
+}
