@@ -187,3 +187,18 @@ fieldset.slide {
   */
 }
 
+/* index pages and filters */
+th.col {
+  text-transform: none;
+}
+
+.filter_form .label {
+ text-transform: none; 
+}
+
+input[readonly="readonly"],
+input[readonly] {
+  background-color: #F4F4F4;
+  border: 0px solid #F4F4F4 !important;  
+}
+

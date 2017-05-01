@@ -22,11 +22,46 @@
 en:
   hello: "Hello world"
   projects: "Projects"
+  areas: "Work Areas"
   topics: "Topics"
+  tags: "Keywords"
   about: "About Us"
   contact: "Contact"
   welcome: "Welcome to bgmr"
-
   routes:
     projects: "projects"
     topics: "topics"
+  deactivated: "deactivated"
+  asociated_projects: "Asociated projects"
+  slugs: "Links"
+  content: "Content"
+  special: "Special"
+  title: "Title"
+  description: "Description"
+  slideshow: "Slideshow"
+  image: "Image"
+  image_upload_info: "Upload image as JPG/PNG/GIF"
+  activerecord: 
+      models: 
+        project: 
+          one: "Project" 
+          other: "Projects"
+        tag:
+          one: "Keyword"
+          other: "Keywords"
+      attributes:
+        project:
+          title: "Title"
+          main_image: "Image"
+          slug: "Link"
+          draft: "Draft"
+          updated_at: "Updated at"
+          description: "Description"
+        page:
+          title: "Title"
+          slug: "Link"
+        topic:
+          title: "Title"
+          slug: "Link"
+        slide:
+          order: "Slide-Position"

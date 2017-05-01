@@ -6,4 +6,6 @@ class Tag < ActiveRecord::Base
   	accepts_nested_attributes_for :project_tags, :allow_destroy => true
   	has_many :projects, :through => :project_tags
 
+  	validates :title, presence: true
+
 end

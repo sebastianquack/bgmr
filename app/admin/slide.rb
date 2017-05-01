@@ -12,4 +12,7 @@ ActiveAdmin.register Slide do
 #   permitted
 # end
 
+  menu false
+
+
 end

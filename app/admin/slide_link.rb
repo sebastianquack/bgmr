@@ -12,4 +12,6 @@ ActiveAdmin.register SlideLink do
 #   permitted
 # end
 
+  menu false
+
 end
