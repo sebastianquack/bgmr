@@ -19,11 +19,13 @@
 
     img {
       display: block;
-      width: 100%;
+      width: calc( 100% - #{ $d_gutterwidth_abs } );
       height: 28 * $d_gridheight;
       object-fit: contain;
       object-position: center bottom;
       margin-bottom: 2 * $d_gridheight;
+      padding-left: 0.5 * $d_gutterwidth_abs;
+      padding-right: 0.5 * $d_gutterwidth_abs;
     }
 
     .project_title {
@@ -34,4 +36,155 @@
 
     @include visual_bg;
   }
+}
+
+#project {
+
+  .project__info, .slide {
+    padding-left: 1 * $d_gutterwidth_abs;
+    margin-right: 1 * $d_gutterwidth_abs;
+  }
+
+  .slick-slider {
+    button {
+      display: none !important;
+    }
+  }
+
+  .slides, .slide {
+    @include bp($b_8_and_lower) { height: auto; } // todo crop to fit horizontal grid
+    @include bp($b_8-12)        { height: 96 * $d_gridheight; }
+    @include bp($b_12-16)       { height: 96 * $d_gridheight; }
+    @include bp($b_16-20)       { height: 96 * $d_gridheight; }
+    @include bp($b_20-24)       { height: 96 * $d_gridheight; }
+    @include bp($b_24_and_up)   { height: 134 * $d_gridheight; }    
+
+    overflow:hidden;
+  }
+
+  .slides {
+    margin-bottom: 4 * $d_gridheight;
+  }
+
+  .slide {
+
+    position:relative;
+
+    outline: none;    
+
+    .slide__image {
+      height:inherit;
+      img {
+        display: block;
+        width:100%;
+        height:inherit;
+
+        object-fit: contain;
+        @include visual_bg;
+      }
+    }
+
+    .slide__loopholes {
+      position: absolute;
+      top:0;
+      left:0;
+      height:inherit;
+      width: 100%;
+
+      @include visual_bg;
+    }
+
+    .slide__loophole {
+      position:absolute;
+      top:0;
+      left:0;
+
+      height:$d_loophole_outer_radius;
+      width:$d_loophole_outer_radius;
+
+      transform: translateX(-50%) translateY(-50%); // center it on the coordinates
+
+      border: solid $d_loophole_radius_width $ca_loophole_line;
+      border-radius: 50%;
+
+      a {
+        border: solid $d_loophole_radius_width $ca_loophole_line;
+        border-radius: 50%;
+        width:$d_loophole_inner_radius;
+        height:$d_loophole_inner_radius;
+        display: block;
+        text-align: center;
+        position:relative;
+        left: ($d_loophole_outer_radius - $d_loophole_inner_radius)/2 - $d_loophole_radius_width;
+        top: ($d_loophole_outer_radius - $d_loophole_inner_radius)/2 - $d_loophole_radius_width;
+
+        cursor:pointer;
+        
+        color: $ca_loophole_line;
+        
+        outline: none;
+
+        &:hover {
+          background-color: $ca_loophole_line;
+          color: $ca_loophole_inverted;
+        }
+        
+        span {
+          position: relative;
+          top: ($d_loophole_inner_radius - $base-font-size - $d_loophole_radius_width)/2;
+        }
+      }
+
+      //@include prefixer('background-image', "radial-gradient(30px 30px 45deg, circle cover, yellow 0%, orange 100%, red 95%)", webkit moz spec);
+
+      //height:inherit;
+      //width:100%;
+    }
+  }
+
+  .slide__caption {
+    line-height: $d_caption_loophole_radius;
+    .slide__caption__order {
+      display: inline-block;
+      width: $d_caption_loophole_radius;
+      height: $d_caption_loophole_radius;
+      border: solid $d_caption_loophole_radius_width $ca_loophole_inverted;
+      border-radius: 50%;
+      text-align: center;
+      margin-left: 0.3em; // default word spacing is 0.25em
+    }
+
+    .slide & {
+      display: none; // only outside of slide
+    }
+
+    @include visual_bg;
+  }
+
+  .project__info {
+
+    .project__title, .project__caption {
+      height: 6 * $d_gridheight;
+      line-height: $d_caption_loophole_radius;
+      @include ellipsis;
+    }
+
+    .project__title {
+      float:left;
+      width: 50%;
+      @include visual_bg;
+    }
+
+    .project__caption {
+      float:right;
+      width: 50%;
+      text-align: right;
+    }
+
+    .project__description {
+      clear: both;
+    }
+
+  }
+
 }

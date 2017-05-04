@@ -7,5 +7,7 @@ class Slide < ActiveRecord::Base
 
 	has_many :slide_links, :foreign_key => :from_slide_id
   	accepts_nested_attributes_for :slide_links, :allow_destroy => true
+
+  default_scope { order(order: :asc) }
   	
 end

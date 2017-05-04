@@ -52,7 +52,13 @@ show do
         image_tag project.main_image(:thumb)
       end
       row :title_de
-      row :description_de
+      row :title_en      
+      row :description_de do |project|
+        span project.description_de.html_safe
+      end
+      row :description_en do |project|
+        span project.description_en.html_safe
+      end
       row :slug_de do |project|
         if project.draft 
           span t(:deactivated), :class => "empty"
@@ -60,8 +66,6 @@ show do
           link_to "/" + project.slug_de, project, :locale => "de"
         end
       end
-      row :title_en
-      row :description_en
       row :slug_en do |project|
         if project.draft 
           span t(:deactivated), :class => "empty"
@@ -79,7 +83,9 @@ show do
         project.tags.map { |a| (link_to a.title, admin_tag_path(a)) }.join(', ').html_safe
       end
       row t(:slideshow) do |project|
-        project.slides.map { |s| image_tag s.image(:thumb) }.join('').html_safe
+        span :class => "show_slideshow_images" do
+          project.slides.map { |s| image_tag s.image(:thumb) }.join('').html_safe
+        end
       end
       row :draft
 
@@ -107,7 +113,7 @@ form :html => { :enctype => "multipart/form-data" } do |f|
   end    
 
   logger.debug "slideshow form"
-  f.inputs t(:slideshow) do
+  f.inputs t(:slideshow), :class=>"inputs slides_inputs" do
     #logger.debug f.object.inspect
     f.has_many :slides, heading: false, class: "slide", :new_record => true, :allow_destroy => true do |f_s|
       #logger.debug f_s.object.inspect
@@ -116,7 +122,7 @@ form :html => { :enctype => "multipart/form-data" } do |f|
       unless f_s.object.new_record? #allow slide link management only after save
         f_s.has_many :slide_links, class: "slide_link", :new_record => true, :allow_destroy => true do |f_sl|
           #logger.debug f_sl.object.inspect
-          f_sl.input :to_slide, :collection => f.object.slides.collect {|slide| [slide.order, slide.id] }, :hint => "•", :wrapper_html => { :class =>  "to_slide" }
+          f_sl.input :to_slide, :include_blank => false, :collection => f.object.slides.collect {|slide| [slide.order, slide.id] }, :hint => "•", :wrapper_html => { :class =>  "to_slide" }
           f_sl.input :pos_x, :wrapper_html => { :class =>  "hidden" }, :input_html => { :class =>  "pos_x" }
           f_sl.input :pos_y, :wrapper_html => { :class =>  "hidden" }, :input_html => { :class =>  "pos_y" }
         end
@@ -124,14 +130,15 @@ form :html => { :enctype => "multipart/form-data" } do |f|
       f_s.input :caption_de
       f_s.input :caption_en
       
-      f_s.input :order, :input_html => { :class =>  "order_input", readonly: true } #, :as => :hidden
+      f_s.input :order,  :wrapper_html => { :class =>  "order" }, :input_html => { :class =>  "order_input", readonly: true } #, :as => :hidden
       # hack to add custom html elements in form
       f_s.template.concat(Arbre::Context.new do
                                     li do
                                       button I18n.t(:move_up), :class => "slide-move-button up" 
                                       button I18n.t(:move_down), :class => "slide-move-button down"
                                     end
-                                  end.to_s)      
+                                  end.to_s)  
+
     end
   end
     

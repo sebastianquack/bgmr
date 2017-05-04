@@ -5,6 +5,6 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.friendly.find(params[:id])
-    @title = @project.title
+    @number_of_slides = @project.slides.length
   end
 end

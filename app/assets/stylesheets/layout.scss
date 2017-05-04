@@ -4,21 +4,21 @@ $columns_count: 24;
   @return $gridcount * $d_gridwidth_abs + ( $gridcount + $additional_gutters ) * $d_gutterwidth_abs;
 }
 
-$b_4_and_lower:  '(max-width: #{ col_width_abs(4,2) })';
-$b_6_and_lower:  '(max-width: #{ col_width_abs(6,2) })';
-$b_8_and_lower:  '(max-width: #{ col_width_abs(8,2) })';
-$b_12_and_lower: '(max-width: #{ col_width_abs(12,2) })';
-$b_16_and_lower: '(max-width: #{ col_width_abs(16,2) })';
-$b_20_and_lower: '(max-width: #{ col_width_abs(20,2) })';
+$b_4_and_lower:  '(max-width: #{ col_width_abs(4,1) })';
+$b_6_and_lower:  '(max-width: #{ col_width_abs(6,1) })';
+$b_8_and_lower:  '(max-width: #{ col_width_abs(8,1) })';
+$b_12_and_lower: '(max-width: #{ col_width_abs(12,1) })';
+$b_16_and_lower: '(max-width: #{ col_width_abs(16,1) })';
+$b_20_and_lower: '(max-width: #{ col_width_abs(20,1) })';
 
-$b_4-8:  '(min-width: #{ col_width_abs(4,2) }) and (max-width: #{ col_width_abs(8,2) })';
-$b_8-12:  '(min-width: #{ col_width_abs(8,2) }) and (max-width: #{ col_width_abs(12,2) })';
-$b_12-16:  '(min-width: #{ col_width_abs(12,2) }) and (max-width: #{ col_width_abs(16,2) })';
-$b_16-20:  '(min-width: #{ col_width_abs(16,2) }) and (max-width: #{ col_width_abs(20,2) })';
-$b_20-24:  '(min-width: #{ col_width_abs(20,2) }) and (max-width: #{ col_width_abs(24,2) })';
+$b_4-8:  '(min-width: #{ col_width_abs(4,1) }) and (max-width: #{ col_width_abs(8,1) })';
+$b_8-12:  '(min-width: #{ col_width_abs(8,1) }) and (max-width: #{ col_width_abs(12,1) })';
+$b_12-16:  '(min-width: #{ col_width_abs(12,1) }) and (max-width: #{ col_width_abs(16,1) })';
+$b_16-20:  '(min-width: #{ col_width_abs(16,1) }) and (max-width: #{ col_width_abs(20,1) })';
+$b_20-24:  '(min-width: #{ col_width_abs(20,1) }) and (max-width: #{ col_width_abs(24,1) })';
 
-$b_24_and_up: '(min-width: #{ col_width_abs(24,2) })';
-$b_12_and_up: '(min-width: #{ col_width_abs(12,2) })';
+$b_24_and_up: '(min-width: #{ col_width_abs(24,1) })';
+$b_12_and_up: '(min-width: #{ col_width_abs(12,1) })';
 
 @mixin grid-column-mod($layout_col,$context_col) { 
   @include grid-column($layout_col*$columns_count/$context_col);
@@ -35,7 +35,7 @@ body {
 
   @if ($debug_show_grid) {
     background-size: #{ $d_gridwidth_abs + $d_gutterwidth_abs } $d_gridheight;
-    background-image: linear-gradient(to right, #ddd 1px, transparent 1px), linear-gradient(to bottom, #ddd 1px, transparent 1px);
+    background-image: linear-gradient(to right, #ddd 1px, transparent 1px), linear-gradient(to bottom, #ddd 1px, transparent 1px), linear-gradient(to left, rgba(0,0,0,0.1) $d_gutterwidth_abs, transparent 1px);
     background-position: $d_gutterwidth_abs 0;
   }
 }

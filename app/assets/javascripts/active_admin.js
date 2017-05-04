@@ -1,6 +1,7 @@
 #= require active_admin/base
 #= require ckeditor-jquery
 #= require jquery-fileupload/basic
+#= require common_functions
 
 $(document).on("ready",function() {
   $('.js-upload').on('change', function(){ previewImage(this) });
@@ -48,16 +49,22 @@ function activateSlideLink(elem) {
   var orig_x = $(target_x).val()
   var orig_y = $(target_y).val()
 
-  $(elem).css('left', orig_x+"px")
-  $(elem).css('top', orig_y+"px")
+  $(elem).css('left', orig_x+"%")
+  $(elem).css('top', orig_y+"%")
 
   $(elem).draggable()
   $(elem).on('dragstop', function(event){
     var val_x = $(this).position().left
     var val_y = $(this).position().top
+    var parent_width = $(this).parent().width()
+    var parent_height = $(this).parent().height()
+    var val_x_percentage = 100*val_x/parent_width
+    var val_y_percentage = 100*val_y/parent_height
 
-    $(target_x).val(val_x)
-    $(target_y).val(val_y)
+    $(this).css('left',val_x_percentage+"%")
+    $(this).css('top',val_y_percentage+"%")
+    $(target_x).val(val_x_percentage)
+    $(target_y).val(val_y_percentage)
 
     console.log("dragstop", elem, target_x, orig_x, val_x)
   })
@@ -80,30 +87,6 @@ function previewImage(input) {
   } else {
     preview.setAttribute('src', 'placeholder.png');
   }
-}
-
-function positionSlidelinks(img) {
-  var slide_links = $(img).closest('.slide').find('.slide_links');
-
-  var img_actual_width = img.naturalWidth/img.naturalHeight * img.height;
-
-  var x_object_fit = (img.width - img_actual_width)/2 // assumes object-fit: contain
-  var x_parent  = parseInt($(img).parent().css('marginLeft'), 10) + parseInt($(img).parent().css('paddingLeft'), 10);
-  var x_parent2  = parseInt($(img).parent().parent().css('marginLeft'), 10) + parseInt($(img).parent().parent().css('paddingLeft'), 10);
-  var x = x_object_fit + x_parent + x_parent2
-
-  var width = img_actual_width;
-
-  var y_parent = parseInt($(img).parent().css('marginTop'), 10) + parseInt($(img).parent().css('paddingTop'), 10);
-  var y_parent2 = $(img).parent().position().top;
-  var y = y_parent + y_parent2
-
-  var height = img.height;
-
-  $(slide_links).css('left',x+'px');
-  $(slide_links).css('top',y+'px');
-  $(slide_links).css('width',width+'px');
-  $(slide_links).css('height',height+'px');
 }
 
 $(document).on('has_many_remove:after', '.has_many_container', function(e, fieldset, container) {

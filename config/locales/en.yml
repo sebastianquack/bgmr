@@ -28,9 +28,12 @@ en:
   about: "About Us"
   contact: "Contact"
   welcome: "Welcome to bgmr"
+  out_of: "of"
+
   routes:
     projects: "projects"
     topics: "topics"
+
   deactivated: "deactivated"
   asociated_projects: "Asociated projects"
   slugs: "Links"

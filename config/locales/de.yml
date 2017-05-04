@@ -28,9 +28,13 @@ de:
   about: "Über uns"
   contact: "Kontakt"  
   welcome: "Willkommen bei bgmr"
+  out_of: "von"
+
   routes:
     projects: "projekte"
     topics: "themen"
+
+
   deactivated: "Deaktiviert"
   asociated_projects: "Asoziierte Projekte"
   slugs: "Links"
@@ -41,8 +45,8 @@ de:
   slideshow: "Slideshow"
   image: "Bild"
   image_upload_info: "Bild als JPG/PNG/GIF hochladen"
-  move_up: "nach oben"
-  move_down: "nach unten"
+  move_up: "nach oben ↑"
+  move_down: "nach unten ↓"
   activerecord: 
       models: 
         project: 

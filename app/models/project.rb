@@ -20,12 +20,23 @@ class Project < ActiveRecord::Base
 	accepts_nested_attributes_for :project_topics, :allow_destroy => true
 	has_many :topics, :through => :project_topics
 
-  	has_many :slides, -> { order(order: :asc) }
-  	accepts_nested_attributes_for :slides, :allow_destroy => true
+  has_many :slides, -> { order(order: :asc) }
+  accepts_nested_attributes_for :slides, :allow_destroy => true
 
   validates :title, presence: true
   validates :slug,  presence: true
   
   validates_format_of :slug, :with => /\A[a-z0-9_]+\z/i  
+
+  after_save :fix_order
+
+  def fix_order
+    self.slides.all.order(:order).each_with_index do |slide, index|
+      if (index+1 != slide.order)
+        slide.order = index+1
+        slide.save
+      end
+    end
+  end
   
 end

@@ -1,0 +1,2 @@
+@include font-face(fontmedium, 'font-medium-webfont', normal, normal, $asset-pipeline: true, $file-formats: woff2 woff);
+@include font-face(fontregular, 'font-regular-webfont', normal, normal, $asset-pipeline: true, $file-formats: woff2 woff);

@@ -14,18 +14,23 @@
  *
  */
 
+/* vendor */
+@import "bourbon";
+@import "neat";
+@import 'slick';
+
 /* config */
 @import "config/dimensions";
 @import "config/debug";
+@import "config/colors";
+@import "config/fonts";
+
+/* bourbon base */
+@import "base/base";
 
 /* helpers */
 @import "helpers/bp";
 @import "helpers/visual_bg";
-
-/* vendor */
-@import "bourbon";
-@import "neat";
-@import "base/base";
 
 /* elements */
 @import "layout";
