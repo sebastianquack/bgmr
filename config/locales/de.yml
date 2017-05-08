@@ -22,7 +22,7 @@
 de:
   hello: "Hello world"
   projects: "Projekte"
-  areas: "Arbeitsgebiete"
+  areas: "Arbeitsfelder"
   topics: "Themen"
   tags: "Schlagworte"
   about: "Über uns"
@@ -56,8 +56,8 @@ de:
           one: "Seite"
           other: "Seiten"
         area:
-          one: "Arbeitsgebiet"
-          other: "Arbeitsgebiete"
+          one: "Arbeitsfeld"
+          other: "Arbeitsfelder"
         topic:
           one: "Thema"
           other: "Themen"
@@ -95,6 +95,7 @@ de:
         topic:
           title: "Titel"
           slug: "Link"
+          color: "Farbe"
         slide:
           image: "Bild"
           caption: "Bildunterschrift"

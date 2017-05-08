@@ -1,32 +1,50 @@
 <article id="project">
 
-  <div class="slides">
+  <div class="slide_container">
 
-    <% @project.slides.each do |slide| %>
-      <div class="slide">
-        <div class="slide__image">
-          <%= image_tag slide.image.url(:large) %>
-        </div>
-        <div class="slide__loopholes slide_links">
-          <% slide.slide_links.each do |loop| %>
-            <div class="slide__loophole slide_link" style="left:<%= loop.pos_x %>%; top:<%= loop.pos_y %>%">
-              <a data-target-order="<%= loop.to_slide.order %>">
-                <span>
-                  <%= loop.to_slide.order %>
-                </span>
-              </a>
-            </div>
-          <% end %>
-        </div>
-        <div class="slide__caption">
-          <span class="slide__caption__text"><%= slide.caption %></span>
-          <span class="slide__caption__order"><%= slide.order %></span>
-          <%= t('out_of') %>
-          <span class="slide__caption__max"><%= @number_of_slides %></span>
-        </div>
-      </div>
-    <% end %>
+    <ul class="project__tags">
+      <% @project.tags.each do |tag| %>
+        <li class="tag">
+          <%= tag.title %>
+        </li>
+      <% end %>
+    </ul>
 
+    <ul class="project__topics">
+      <% @project.topics.each do |topic| %>
+        <li class="topic" style="background-color:<%= topic.color %>; color:<%= topic.color %>" data-title="<%= topic.title %>">
+        </li>
+      <% end %>
+    </ul>
+
+    <div class="slides">
+
+      <% @project.slides.each do |slide| %>
+        <div class="slide">
+          <div class="slide__image">
+            <%= image_tag slide.image.url(:large) %>
+          </div>
+          <div class="slide__loopholes slide_links">
+            <% slide.slide_links.each do |loop| %>
+              <div class="slide__loophole slide_link" style="left:<%= loop.pos_x %>%; top:<%= loop.pos_y %>%">
+                <a data-target-order="<%= loop.to_slide.order %>">
+                  <span>
+                    <%= loop.to_slide.order %>
+                  </span>
+                </a>
+              </div>
+            <% end %>
+          </div>
+          <div class="slide__caption">
+            <span class="slide__caption__text"><%= slide.caption %></span>
+            <span class="slide__caption__order"><%= slide.order %></span>
+            <%= t('out_of') %>
+            <span class="slide__caption__max"><%= @number_of_slides %></span>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
   </div>
 
   <div class="project__info">

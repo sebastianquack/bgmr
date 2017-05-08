@@ -40,6 +40,10 @@
 
 #project {
 
+  .project__title {
+    font-weight: bold;
+  }
+
   .project__info, .slide {
     padding-left: 1 * $d_gutterwidth_abs;
     margin-right: 1 * $d_gutterwidth_abs;
@@ -107,6 +111,8 @@
       border: solid $d_loophole_radius_width $ca_loophole_line;
       border-radius: 50%;
 
+      box-shadow: 0px 0px #{$d_loophole_outer_radius - $d_loophole_inner_radius} 0px rgba(99,99,99,0.2), inset 0px 0px #{$d_loophole_outer_radius - $d_loophole_inner_radius} 0px rgba(99,99,99,0.2);
+
       a {
         border: solid $d_loophole_radius_width $ca_loophole_line;
         border-radius: 50%;
@@ -124,9 +130,10 @@
         
         outline: none;
 
+        box-shadow: 0px 0px $d_loophole_inner_radius 0px rgba(99,99,99,0.2), inset 0px 0px $d_loophole_inner_radius 0px rgba(99,99,99,0.2);
+
         &:hover {
-          background-color: $ca_loophole_line;
-          color: $ca_loophole_inverted;
+          background-color: $ca_loophole_inverted;
         }
         
         span {
@@ -187,4 +194,81 @@
 
   }
 
+}
+
+.slide_container {
+  position: relative;
+}
+
+.project__tags {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  z-index:10;
+  margin-top: 3 * $d_gridheight;
+}
+
+.tag {
+  display: inline-block;
+  padding-left: 0.6em;
+  padding-right: 0.6em;
+  height: 3 * $d_gridheight;
+  background-color: white;
+  font-size:10px;
+  font-weight: bold;
+  border: solid 1px $tag-border-color;
+  &:not(:last-child) {
+    margin-right: 0.8em;
+  }
+}
+
+.project__topics {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  z-index:10;
+  bottom: 3 * $d_gridheight;
+}
+
+$d_project_topic_dot_radius: 26px;
+$d_project_topic_triangle_size: 8px;
+
+.topic {
+  background-color:grey; color:grey; // adjust both to set color
+  width: $d_project_topic_dot_radius;
+  height: $d_project_topic_dot_radius;
+  border-radius: 50%;
+  display: inline-block;
+  font-size:10px;
+  font-weight: bold;
+  &:not(:last-child) {
+    margin-right: 0.3 * $d_gutterwidth_abs;
+  }  
+}
+
+.topic:hover {
+  &:before { // speech bubble style body
+    color: black;
+    content: attr(data-title);
+    position: absolute;
+    top: -$d_project_topic_triangle_size - $d_gridheight - 3 * $d_gridheight;
+    text-align: center;
+    transform: translateX(-50%);
+    background-color: inherit;
+    padding-left: 0.6em;
+    padding-right: 0.6em;
+    height: 3 * $d_gridheight;  
+  }
+
+  &:after { // speech bubbly style triangle
+    content: "";
+    position: absolute;
+    top: -$d_project_topic_triangle_size - $d_gridheight;
+    border-width: $d_project_topic_triangle_size $d_project_topic_triangle_size 0;
+    border-style: solid;
+    border-color: currentColor transparent;
+    display: block;
+    width: 0;
+    transform: translateX(33%);
+  }
 }
