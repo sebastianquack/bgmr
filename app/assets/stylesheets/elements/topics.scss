@@ -1,0 +1,64 @@
+// Place all the styles related to the topics controller here.
+
+$d_topics_topic_dot_radius: 120px;
+$d_topics_topic_dot_padding: 10px;
+
+.topics_canvas {
+  height: 80 * $d_gridheight;
+
+  position:relative;
+
+
+  .topic_container {
+    position: absolute;
+    width: $d_topics_topic_dot_radius;
+    height: $d_topics_topic_dot_radius;
+    transform: translateX(-50%) translateY(-50%);
+
+    //transition: all 0.4s;
+
+    mix-blend-mode: multiply;
+  }
+
+  .topic {
+    width: $d_topics_topic_dot_radius - 2 * $d_topics_topic_dot_padding;
+    height: $d_topics_topic_dot_radius - 2 * $d_topics_topic_dot_padding;
+    border-radius: 50%;
+    background-color: grey;
+    color:white;
+    display: block;
+    line-height: 1.1;
+    text-align: center;
+    font-size: 12px;
+    padding:$d_topics_topic_dot_padding;
+    display: table-cell;
+    vertical-align: middle;
+    @include must-break;
+
+    transition: transform 0.2s;
+    transition-timing-function: ease-out;
+    transform: scale(0);
+
+    mix-blend-mode: multiply;
+    opacity: 0.8;
+
+    &:hover {
+      opacity: 1;
+    }
+
+  }
+
+  .topic_container.positioned .topic {
+    transform: scale(1);
+  }
+
+
+  // @for $i from 1 through 40 {
+  //   .topic_container:nth-child(#{$i}) .topic {
+  //     transition: transform 0.2s #{ $i * 0.03 }s;
+  //   }
+  // }
+  
+
+  @include visual_bg;
+}

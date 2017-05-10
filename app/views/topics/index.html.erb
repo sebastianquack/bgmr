@@ -1,9 +1,7 @@
-<h1><%= t "topics" %></h1>
-
-<ul>
+<ul id="topics" class="topics_canvas">
   <% @topics.each do |topic| %>
-    <li>
-      <a href="<%= topic_path(:id => topic.slug) %>">
+    <li class="topic_container">
+      <a class="topic" lang="<%= I18n.locale %>" href="<%= topic_path(:id => topic.slug) %>" style="background-color:<%= topic.color %>">
         <%= topic.title %>
       </a>
     </li>

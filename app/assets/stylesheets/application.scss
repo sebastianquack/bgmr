@@ -29,10 +29,10 @@
 @import "base/base";
 
 /* helpers */
-@import "helpers/bp";
-@import "helpers/visual_bg";
+@import "helpers/*";
 
 /* elements */
-@import "layout";
-@import "header";
-@import "projects";
+@import "elements/layout";
+@import "elements/header";
+@import "elements/projects";
+@import "elements/topics";

@@ -68,6 +68,20 @@
 
   .slides {
     margin-bottom: 4 * $d_gridheight;
+
+    &.loophole-transition {
+      .slide__image{
+        transform: scaleX(0);
+        opacity:0.1;
+      }
+      .slide__loopholes {
+        opacity:0;
+      }      
+    }    
+    .slide__image, .slide__loopholes {
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
   }
 
   .slide {
@@ -206,6 +220,7 @@
   width: 100%;
   z-index:10;
   margin-top: 3 * $d_gridheight;
+  pointer-events: none;
 }
 
 .tag {
@@ -228,47 +243,51 @@
   width: 100%;
   z-index:10;
   bottom: 3 * $d_gridheight;
+  pointer-events: none;
 }
 
 $d_project_topic_dot_radius: 26px;
 $d_project_topic_triangle_size: 8px;
 
-.topic {
-  background-color:grey; color:grey; // adjust both to set color
-  width: $d_project_topic_dot_radius;
-  height: $d_project_topic_dot_radius;
-  border-radius: 50%;
-  display: inline-block;
-  font-size:10px;
-  font-weight: bold;
-  &:not(:last-child) {
-    margin-right: 0.3 * $d_gutterwidth_abs;
-  }  
-}
-
-.topic:hover {
-  &:before { // speech bubble style body
-    color: black;
-    content: attr(data-title);
-    position: absolute;
-    top: -$d_project_topic_triangle_size - $d_gridheight - 3 * $d_gridheight;
-    text-align: center;
-    transform: translateX(-50%);
-    background-color: inherit;
-    padding-left: 0.6em;
-    padding-right: 0.6em;
-    height: 3 * $d_gridheight;  
+.project__topics {
+  .topic {
+    background-color:grey; color:grey; // adjust both to set color
+    width: $d_project_topic_dot_radius;
+    height: $d_project_topic_dot_radius;
+    border-radius: 50%;
+    display: inline-block;
+    font-size:10px;
+    font-weight: bold;
+    &:not(:last-child) {
+      margin-right: 0.3 * $d_gutterwidth_abs;
+    }  
+    pointer-events: all;
   }
 
-  &:after { // speech bubbly style triangle
-    content: "";
-    position: absolute;
-    top: -$d_project_topic_triangle_size - $d_gridheight;
-    border-width: $d_project_topic_triangle_size $d_project_topic_triangle_size 0;
-    border-style: solid;
-    border-color: currentColor transparent;
-    display: block;
-    width: 0;
-    transform: translateX(33%);
+  .topic:hover {
+    &:before { // speech bubble style body
+      color: black;
+      content: attr(data-title);
+      position: absolute;
+      top: -$d_project_topic_triangle_size - $d_gridheight - 3 * $d_gridheight;
+      text-align: center;
+      transform: translateX(-50%);
+      background-color: inherit;
+      padding-left: 0.6em;
+      padding-right: 0.6em;
+      height: 3 * $d_gridheight;  
+    }
+
+    &:after { // speech bubbly style triangle
+      content: "";
+      position: absolute;
+      top: -$d_project_topic_triangle_size - $d_gridheight;
+      border-width: $d_project_topic_triangle_size $d_project_topic_triangle_size 0;
+      border-style: solid;
+      border-color: currentColor transparent;
+      display: block;
+      width: 0;
+      transform: translateX(33%);
+    }
   }
 }

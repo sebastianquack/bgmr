@@ -95,9 +95,26 @@ $(document).on('turbolinks:load', function(){
   $('#project .slide_link a').click(function(event){
     event.preventDefault()
     event.stopPropagation()
-    var target = parseInt($(this).attr('data-target-order')) - 1
-    var $slides = $('.slides')
-    //console.log(this, target)
-    $slides.slick('slickGoTo',target)
+    let $slides = $('.slides')
+    let targetIndex = parseInt($(this).attr('data-target-order')) - 1
+    let currentIndex = $slides.slick('slickCurrentSlide')
+
+    // do animation
+    let previousSpeed = $slides.slick('slickGetOption','speed')
+    $slides.slick('slickSetOption','speed',0)
+    // 1
+    //$($slides.find(".slide").get(currentIndex)).addClass('loophole-transition')
+    //$($slides.find(".slide").get(targetIndex)).addClass('loophole-transition')
+    $slides.addClass('loophole-transition')
+    console.log(currentIndex, targetIndex, $($slides.get(currentIndex)))
+    // 2
+    setTimeout(function(){
+      $slides.slick('slickGoTo',targetIndex)
+      $slides.removeClass('loophole-transition')
+    },200)
+    // 3
+    setTimeout(function(){
+      $slides.slick('slickSetOption','speed',previousSpeed)
+    },400)    
   })
 })

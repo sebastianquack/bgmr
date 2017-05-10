@@ -17,6 +17,8 @@
 
 //= require jquery.slick
 
+//= require helpers
+
 //= require common_functions
 //= require pages
 //= require projects
