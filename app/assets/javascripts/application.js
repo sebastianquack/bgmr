@@ -11,43 +11,23 @@
 // about supported directives.
 //
 
+// vendor gem
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
 
+// vendor npm
 //= require slick-carousel/slick/slick.js
+//= require jquery.panzoom/dist/jquery.panzoom.js
 
+// helpers
 //= require helpers
 
+// common
 //= require common_functions
+
+// elements
 //= require pages
 //= require projects
 //= require topics
 //= require welcome
-
-function auto_set_height(elem) {
-  var $elem = $(elem)
-  var actualHeight = $elem.height();
-  var scrollHeight = elem.scrollHeight;
-  console.log(actualHeight, scrollHeight)
-  if (actualHeight < 0.5 * scrollHeight) {
-    $elem.css('height', scrollHeight)  
-    $elem.one('transitionend', function(){
-      $elem.css('height', 'auto')
-    })
-  }
-  else {
-    $elem.css('height', actualHeight)  
-  }
-    
-}
-
-function toggle_expandable(elem, options) {
-  console.log(elem)
-  var rootElem = $(elem).closest(options.root).get(0)
-  var autoHeightElem = $(rootElem).find(options.autoHeight).get(0)
-  auto_set_height(autoHeightElem);
-  setTimeout(function(){
-    $(rootElem).toggleClass('open');
-  },1)
-}

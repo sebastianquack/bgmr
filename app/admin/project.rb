@@ -127,6 +127,7 @@ form :html => { :enctype => "multipart/form-data" } do |f|
           f_sl.input :pos_y, :wrapper_html => { :class =>  "hidden" }, :input_html => { :class =>  "pos_y" }
         end
       end
+      f_s.input :zoomable
       f_s.input :caption_de
       f_s.input :caption_en
       
