@@ -60,6 +60,7 @@ gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'neat' # thoughtbot scss grid
 gem 'bourbon' # thoughtbot scss helpers
 gem 'bitters' # thoughtbot scss styles
-gem "jquery-fileupload-rails"
 
-gem "jquery-slick-rails" # slick slider carousel
+#gem "jquery-fileupload-rails"
+
+#gem "jquery-slick-rails" # slick slider carousel

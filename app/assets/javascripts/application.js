@@ -15,7 +15,7 @@
 //= require jquery_ujs
 //= require turbolinks
 
-//= require jquery.slick
+//= require slick-carousel/slick/slick.js
 
 //= require helpers
 

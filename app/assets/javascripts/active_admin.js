@@ -1,6 +1,6 @@
 #= require active_admin/base
 #= require ckeditor-jquery
-#= require jquery-fileupload/basic
+#= require blueimp-file-upload/js/jquery.fileupload.js
 #= require common_functions
 
 $(document).on("ready",function() {

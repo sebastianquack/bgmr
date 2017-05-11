@@ -18,3 +18,4 @@
 
 # Ignore paperclip attachments
 /public/system
+/node_modules
