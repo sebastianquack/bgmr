@@ -29,6 +29,7 @@ en:
   contact: "Contact"
   welcome: "Welcome to bgmr"
   out_of: "of"
+  hide_text: "Hide Text"
 
   routes:
     projects: "projects"

@@ -8,7 +8,7 @@
 $(document).on('turbolinks:load', function(){
   $('#project .slides').on('init reInit afterChange',function(event){
     var slide = $(this).find(".slick-current")
-    var source = $(slide).find('.slide__caption').clone()
+    var source = $(slide).find('.slide__caption').html()
     var dest = $('.project__info .slide__caption')
     //console.log(source, dest)
     $(dest).html(source);    
@@ -106,7 +106,6 @@ $(document).on('turbolinks:load', function(){
     //$($slides.find(".slide").get(currentIndex)).addClass('loophole-transition')
     //$($slides.find(".slide").get(targetIndex)).addClass('loophole-transition')
     $slides.addClass('loophole-transition')
-    console.log(currentIndex, targetIndex, $($slides.get(currentIndex)))
     // 2
     setTimeout(function(){
       $slides.slick('slickGoTo',targetIndex)
@@ -118,3 +117,9 @@ $(document).on('turbolinks:load', function(){
     },400)    
   })
 })
+
+// manage description open/close
+
+$(document).on('turbolinks:before-cache', function(){
+  $('#project .project__info').removeClass("open")
+}) 

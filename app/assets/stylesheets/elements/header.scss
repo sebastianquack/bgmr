@@ -1,9 +1,9 @@
 #page_header {
   @include grid-container;
 
-  margin-top: 2 * $d_gridheight;
+  margin-top: $d_header_margin_top;
 
-  height: 12 * $d_gridheight;
+  height: $d_header_height;
 
   li {
     display: inline;

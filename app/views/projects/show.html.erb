@@ -37,9 +37,11 @@
           </div>
           <div class="slide__caption">
             <span class="slide__caption__text"><%= slide.caption %></span>
-            <span class="slide__caption__order"><%= slide.order %></span>
-            <%= t('out_of') %>
-            <span class="slide__caption__max"><%= @number_of_slides %></span>
+            <span class="slide__caption__position">
+              <span class="slide__caption__order"><%= slide.order %></span>
+              <%= t('out_of') %>
+              <span class="slide__caption__max"><%= @number_of_slides %></span>
+            </span>
           </div>
         </div>
       <% end %>
@@ -48,10 +50,17 @@
   </div>
 
   <div class="project__info">
-    <h1 class="project__title"><%= @project.title %></h1>
-    <aside class="project__caption slide__caption"></aside>
-    <div data-turbolinks-permanent class="project__description">
-      <%= @project.description.html_safe if @project.description %>
+    <div class="project__info__content">
+      <div class="project__headline" onclick="toggle_expandable(this, {root:'.project__info', autoHeight:'.project__description'})">
+        <div class="project__headline_1">
+          <h1 class="project__title"><%= @project.title %></h1>
+          <span class="project__title__controls"><%= t('hide_text')%></span>
+        </div>
+        <aside class="project__caption slide__caption project__headline_2"></aside>
+      </div>
+      <div data-turbolinks-permanent class="project__description">
+        <%= @project.description.html_safe if @project.description %>
+      </div>
     </div>
   </div>
 

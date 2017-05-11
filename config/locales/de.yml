@@ -29,6 +29,7 @@ de:
   contact: "Kontakt"  
   welcome: "Willkommen bei bgmr"
   out_of: "von"
+  hide_text: "Text verbergen"
 
   routes:
     projects: "projekte"

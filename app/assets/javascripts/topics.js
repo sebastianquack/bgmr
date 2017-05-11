@@ -42,7 +42,7 @@ function placeTopics() {
 
   var number_of_elements = elements.length;
   var elem_radius = $(elements).get(0).offsetWidth;
-  var overlap_radius = elem_radius * 0.8;
+  var overlap_radius = elem_radius * 0.62;
 
   var positions = getRandomPositions(container_width, container_height, elem_radius, overlap_radius, number_of_elements)
 

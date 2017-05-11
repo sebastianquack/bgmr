@@ -13,8 +13,8 @@ $baseline_adjust: -2px; // make it fit to the grid inside the baseline
 
 // Other Sizes
 $base-border-radius: 3px;
-$base-spacing: $base-line-height * 2;
-$small-spacing: $base-spacing / 2;
+$base-spacing: 0;//$base-line-height * 2;
+$small-spacing: 0;//$base-spacing / 2;
 $base-z-index: 0;
 
 // Colors
