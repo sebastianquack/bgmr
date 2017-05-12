@@ -46,7 +46,7 @@
 
   .slide {
     padding-left: 1 * $d_gutterwidth_abs;
-    margin-right: 1 * $d_gutterwidth_abs;
+    padding-right: 1 * $d_gutterwidth_abs;
   }
 
   .slick-slider {
@@ -78,10 +78,15 @@
         opacity:0;
       }      
     }    
+
     .slide__image, .slide__loopholes {
       transition: transform 0.2s, opacity 0.2s;
     }
 
+  }
+
+  .pan_container {
+    outline: none;
   }
 
   .slide {
@@ -120,7 +125,8 @@
       height:$d_loophole_outer_radius;
       width:$d_loophole_outer_radius;
 
-      transform: translateX(-50%) translateY(-50%); // center it on the coordinates
+      transform: translateX(-50%) translateY(-50%) scale(1); // center it on the coordinates. scale may get modified by js
+      transform-origin: center;
 
       border: solid $d_loophole_radius_width $ca_loophole_line;
       border-radius: 50%;
@@ -194,7 +200,7 @@
     margin-bottom: 1 * $d_gridheight;
 
     position:relative;
-    z-index: 11;
+    z-index: 15;
 
     width:100%;
 
@@ -302,84 +308,107 @@
 
 }
 
-.slide_container {
-  position: relative;
-}
+#project {
 
-.project__tags {
-  position: absolute;
-  text-align: center;
-  width: 100%;
-  z-index:10;
-  margin-top: 3 * $d_gridheight;
-  pointer-events: none;
-}
-
-.tag {
-  display: inline-block;
-  padding-left: 0.6em;
-  padding-right: 0.6em;
-  height: 3 * $d_gridheight;
-  background-color: white;
-  font-size:10px;
-  font-weight: bold;
-  border: solid 1px $tag-border-color;
-  &:not(:last-child) {
-    margin-right: 0.8em;
+  .slide_container {
+    position: relative;
   }
-}
 
-.project__topics {
-  position: absolute;
-  text-align: center;
-  width: 100%;
-  z-index:10;
-  bottom: 3 * $d_gridheight;
-  pointer-events: none;
-}
+  .zoomable_control {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    z-index: 12;
+    margin-left: $d_gutterwidth_abs;
+    bottom: 3 * $d_gridheight;
+    opacity:1;
+  }
 
-$d_project_topic_dot_radius: 26px;
-$d_project_topic_triangle_size: 8px;
+  .slides:not(.zoomable) ~ .zoomable_control {
+    opacity:0;
+    pointer-events: none;
+  }
 
-.project__topics {
-  .topic {
-    background-color:grey; color:grey; // adjust both to set color
-    width: $d_project_topic_dot_radius;
-    height: $d_project_topic_dot_radius;
-    border-radius: 50%;
+  .slides.zoomable ~ .zoomable_control {
+    transition: opacity 0.2s;
+  }
+
+  .project__tags {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index:10;
+    margin-top: 3 * $d_gridheight;
+    pointer-events: none;
+  }
+
+  .tag {
     display: inline-block;
+    padding-left: 0.6em;
+    padding-right: 0.6em;
+    height: 3 * $d_gridheight;
+    background-color: white;
     font-size:10px;
     font-weight: bold;
+    border: solid 1px $tag-border-color;
     &:not(:last-child) {
-      margin-right: 0.3 * $d_gutterwidth_abs;
-    }  
-    pointer-events: all;
+      margin-right: 0.8em;
+    }
   }
 
-  .topic:hover {
-    &:before { // speech bubble style body
-      color: black;
-      content: attr(data-title);
-      position: absolute;
-      top: -$d_project_topic_triangle_size - $d_gridheight - 3 * $d_gridheight;
-      text-align: center;
-      transform: translateX(-50%);
-      background-color: inherit;
-      padding-left: 0.6em;
-      padding-right: 0.6em;
-      height: 3 * $d_gridheight;  
+  .project__topics {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index:10;
+    bottom: 3 * $d_gridheight;
+    pointer-events: none;
+  }
+
+  $d_project_topic_dot_radius: 26px;
+  $d_project_topic_triangle_size: 8px;
+
+  .project__topics {
+    .topic {
+      background-color:grey; color:grey; // adjust both to set color
+      width: $d_project_topic_dot_radius;
+      height: $d_project_topic_dot_radius;
+      border-radius: 50%;
+      display: inline-block;
+      font-size:10px;
+      font-weight: bold;
+      &:not(:last-child) {
+        margin-right: 0.3 * $d_gutterwidth_abs;
+      }  
+      pointer-events: all;
     }
 
-    &:after { // speech bubbly style triangle
-      content: "";
-      position: absolute;
-      top: -$d_project_topic_triangle_size - $d_gridheight;
-      border-width: $d_project_topic_triangle_size $d_project_topic_triangle_size 0;
-      border-style: solid;
-      border-color: currentColor transparent;
-      display: block;
-      width: 0;
-      transform: translateX(33%);
+    .topic:hover {
+      &:before { // speech bubble style body
+        color: black;
+        content: attr(data-title);
+        position: absolute;
+        top: -$d_project_topic_triangle_size - $d_gridheight - 3 * $d_gridheight;
+        text-align: center;
+        transform: translateX(-50%);
+        background-color: inherit;
+        padding-left: 0.6em;
+        padding-right: 0.6em;
+        height: 3 * $d_gridheight;  
+      }
+
+      &:after { // speech bubbly style triangle
+        content: "";
+        position: absolute;
+        top: -$d_project_topic_triangle_size - $d_gridheight;
+        border-width: $d_project_topic_triangle_size $d_project_topic_triangle_size 0;
+        border-style: solid;
+        border-color: currentColor transparent;
+        display: block;
+        width: 0;
+        transform: translateX(33%);
+      }
     }
   }
 }

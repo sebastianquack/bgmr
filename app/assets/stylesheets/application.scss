@@ -14,17 +14,20 @@
  *
  */
 
-/* vendor */
+/* vendor 1 */
 @import "bourbon";
 @import "neat";
-@import 'slick-carousel/slick/slick.scss';
-@import 'input-range-scss/inputrange';
 
 /* config */
 @import "config/dimensions";
 @import "config/debug";
 @import "config/colors";
 @import "config/fonts";
+@import "config/inputrange";
+
+/* vendor 2 */
+@import 'slick-carousel/slick/slick.scss';
+@import 'input-range-scss/inputrange';
 
 /* bourbon base */
 @import "base/base";

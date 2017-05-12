@@ -46,3 +46,15 @@ function toggle_expandable(elem, options) {
     $(rootElem).toggleClass('open');
   },1)
 }
+
+//// scale a transform matrix
+
+function setTransformScale (elem, newScale) {
+  var matrix = $(elem).css('transform')
+  var values = matrix.match(/-?[\d\.]+/g); // get the 6 parameters
+  values[0] = newScale;
+  values[3] = newScale;
+  var newMatrix = 'matrix('+values.join(', ')+')';
+  //var newValue = value.replace(/scale\([0-9|\.]*\)/, 'scale(' + newScale + ')');
+  $(elem).css('transform', newMatrix)
+}

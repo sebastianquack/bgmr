@@ -10,7 +10,7 @@ controller do
 end
 
 permit_params :main_image, :title_de, :title_en, :description_de, :description_en, :slug_de, :slug_en, :draft, area_ids:[], tag_ids:[], topic_ids:[],
-    :slides_attributes => [:id, :order, :caption_de, :caption_en, :image, :_destroy, :slide_links_attributes => [:id, :to_slide_id, :pos_x, :pos_y, :_destroy]]
+    :slides_attributes => [:id, :order, :caption_de, :caption_en, :image, :zoomable, :_destroy, :slide_links_attributes => [:id, :to_slide_id, :pos_x, :pos_y, :_destroy]]
 
 #
 # or
