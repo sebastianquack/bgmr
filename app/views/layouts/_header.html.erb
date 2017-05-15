@@ -8,36 +8,45 @@
 
   <ul id="menu_dynamic">
     <li>
-      <%= link_to t("topics"),  topics_path, data: { 'turbolinks-action': "restore" } %>
+      <%= link_to_unless_current t("topics"),  topics_path, data: { 'turbolinks-action': "restore" } %>
     </li>
     <li>
-      <%= link_to t("projects"), projects_path %>
+      <%= link_to_unless_current t("projects"), projects_path %>
     </li>
   </ul>
 
   <ul id="menu_static">
     <li>
-      <%= link_to get_seed_page('about').title, page_path(get_seed_page('about')) %>
+      <%= link_to_unless_current get_seed_page('about').title, page_path(get_seed_page('about')) %>
     </li>
     <li>
-      <%= link_to get_seed_page('news').title, page_path(get_seed_page('news')) %>
+      <%= link_to_unless_current get_seed_page('news').title, page_path(get_seed_page('news')) %>
     </li>
     <li>
-      <%= link_to get_seed_page('publications').title, page_path(get_seed_page('publications')) %>
+      <%= link_to_unless_current get_seed_page('publications').title, page_path(get_seed_page('publications')) %>
     </li>
     <li>
-      <%= link_to get_seed_page('imprint').title, page_path(get_seed_page('imprint')) %>
+      <%= link_to_unless_current get_seed_page('imprint').title, page_path(get_seed_page('imprint')) %>
     </li>
     <li>
-      <%= link_to 'Log in' %>
+      <%= link_to 'Log in', 'https://owncloud.org/' %>
     </li>    
   </ul>
 
   <ul id="menu_language">
     <li>
-      <a href="<%= translated_url_for_current_request(:en) %>" title="English">en</a>
-      /
-      <a href="<%= translated_url_for_current_request(:de) %>" title="Deutsch">de</a>
+      <% if current_locale :en %>
+        <abbr title="English">en</abbr>
+      <% else %>
+        <a href="<%= translated_url_for_current_request(:en) %>" title="English" rel="alternate" hreflang="en"><abbr title="English">en</abbr></a>
+      <% end %>
+    </li>
+    <li>
+      <% if current_locale :de %>
+        <abbr title="Deutsch">de</abbr>
+      <% else %>
+        <a href="<%= translated_url_for_current_request(:de) %>" title="Deutsch" rel="alternate" hreflang="de"><abbr title="Deutsch">de</abbr></a>
+      <% end %>
     </li>
   </ul>
 

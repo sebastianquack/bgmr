@@ -9,7 +9,22 @@
     display: inline;
   }
 
-  // ALL EXCEPT LOGO
+  li {
+    color: $ca_menu_active;
+  }
+
+  #menu_language {
+    li:not(:last-child)::after {
+      content: "/";
+      color: $ca_text_color;
+    }
+    abbr {
+      border: none;
+      text-decoration: none;
+    }
+  }
+
+  // LAYOUT: ALL EXCEPT LOGO
 
   & > ul {
     margin-top: 7 * $d_gridheight - $base-line-height;

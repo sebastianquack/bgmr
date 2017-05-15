@@ -62,7 +62,6 @@ areas.each_with_index do |title,index|
   Area.create!(id: id, title_de: title, title_en: title+" (en)") if Area.where(id: id).empty?
 end
 
-
 # just do when requested, but always overwrite existing ones
 
 logger = Logger.new(STDOUT)
@@ -71,14 +70,15 @@ if ENV["fakeprojects"]
   index = 0
   
   while index < 80 do
-    name = Faker::Book.title
-    desc = Faker::Lorem.paragraph(2, false, 4)
     slug = "dummy" + index.to_s
 
     destroyed = Project.where(slug_de: slug).destroy_all
     logger.info destroyed.to_a.length.to_s + " removed" if destroyed.to_a.length > 0
     
     if ENV["fakeprojects"]!="remove"
+      name = Faker::Book.title
+      desc = Faker::Lorem.paragraph(2, false, 8)
+
       random_tags = Tag.find(Tag.ids.sample(rand(6)))
       random_topics = Topic.find(Topic.ids.sample(rand(2)+1))
       random_areas = Area.find(Area.ids.sample(rand(6)))

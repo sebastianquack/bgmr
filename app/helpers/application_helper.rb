@@ -21,5 +21,9 @@ module ApplicationHelper
     out
   end
 
+  def current_locale(locale)
+    I18n.locale == locale
+  end
+
 
 end
