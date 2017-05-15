@@ -19,35 +19,47 @@
 
     <div class="slides">
 
-      <% @project.slides.each do |slide| %>
+      <% if @project.slides.any? %>
 
-        <div class="pan_container">
-          <div class="slide <%= "zoomable" if slide.zoomable %>">
-            <div class="slide__image">
-              <%= image_tag slide.image.url(:large) %>
-            </div>
-            <div class="slide__loopholes slide_links">
-              <% slide.slide_links.each do |loop| %>
-                <div class="slide__loophole slide_link" style="left:<%= loop.pos_x %>%; top:<%= loop.pos_y %>%">
-                  <a data-target-order="<%= loop.to_slide.order if loop.to_slide %>">
-                    <span>
-                      <%= loop.to_slide.order if loop.to_slide %>
-                    </span>
-                  </a>
-                </div>
-              <% end %>
-            </div>
+        <% @project.slides.each do |slide| %>
 
-            <div class="slide__caption">
-              <span class="slide__caption__text"><%= slide.caption %></span>
-              <span class="slide__caption__position">
-                <span class="slide__caption__order"><%= slide.order %></span>
-                <%= t('out_of') %>
-                <span class="slide__caption__max"><%= @number_of_slides %></span>
-              </span>
+          <div class="pan_container">
+            <div class="slide <%= "zoomable" if slide.zoomable %>">
+              <div class="slide__image">
+                <%= image_tag slide.image.url(:large) %>
+              </div>
+              <div class="slide__loopholes slide_links">
+                <% slide.slide_links.each do |loop| %>
+                  <div class="slide__loophole slide_link" style="left:<%= loop.pos_x %>%; top:<%= loop.pos_y %>%">
+                    <a data-target-order="<%= loop.to_slide.order if loop.to_slide %>">
+                      <span>
+                        <%= loop.to_slide.order if loop.to_slide %>
+                      </span>
+                    </a>
+                  </div>
+                <% end %>
+              </div>
+
+              <div class="slide__caption">
+                <span class="slide__caption__text"><%= slide.caption %></span>
+                <span class="slide__caption__position">
+                  <span class="slide__caption__order"><%= slide.order %></span>
+                  <%= t('out_of') %>
+                  <span class="slide__caption__max"><%= @number_of_slides %></span>
+                </span>
+              </div>
             </div>
+               
           </div>
-             
+
+        <% end %>
+
+      <% else %>
+        
+        <div class="slide">
+          <div class="slide__image">
+            <%= image_tag @project.main_image.url(:medium) %>
+          </div>
         </div>
 
       <% end %>

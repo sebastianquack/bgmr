@@ -20,6 +20,10 @@ $(document).on('has_many_add:after', '.has_many_container', function(e, fieldset
   $(container).find('.slide_image img').on('load', function(){ positionSlidelinks(this) })
   $(container).find('.slide_link:not(.ui-draggable)').each(function(i,elem) {activateSlideLink(elem)});
 
+  if ($(fieldset).hasClass('slide_link')) {
+    $(fieldset).addClass("new").css('left','50%').css('top','50%')
+  }
+
   // initialize slide order value
   var slides = $("fieldset.slide");
   $(slides[slides.length-1]).find(".order_input").val(slides.length);

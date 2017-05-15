@@ -58,7 +58,11 @@ $(document).on('turbolinks:load', function(){
 
   currentCursorDirection = false // reset
 
-  $("#project .slides").mousemove(function(event){
+  var slides = $("#project .slides")
+
+  if (slides.find('.slide').length <= 1) return;
+
+  slides.mousemove(function(event){
     //console.log(event.pageX, window.innerWidth)
     if (event.pageX > window.innerWidth/2) { // if pointer is in the right half of the window
       var cursorDirection = 'right'

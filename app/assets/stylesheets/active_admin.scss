@@ -130,6 +130,13 @@ form fieldset.slide .slide_links {
     cursor: move;
   }
 
+  .slide_link.new .inline-hints {
+    animation: blinker 1s linear 2;
+  }
+
+  @keyframes blinker {  
+    50% { border-color:red; }
+  }
 
   .slide_link {
     width: 14px;
