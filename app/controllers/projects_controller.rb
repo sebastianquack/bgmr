@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = Project.all()
+    @tags = Tag.all
+    @areas = Area.all
+    @projects = Project.all.includes(:areas, :tags)
   end
 
   def show

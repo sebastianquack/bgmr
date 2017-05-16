@@ -1,0 +1,13 @@
+.tag {
+  display: inline-block;
+  padding-left: 0.6em;
+  padding-right: 0.6em;
+  height: 3 * $d_gridheight;
+  background-color: white;
+  font-size:10px;
+  font-weight: bold;
+  border: solid 1px $tag-border-color;
+  &:not(:last-child) {
+    margin-right: 0.8em;
+  }
+}

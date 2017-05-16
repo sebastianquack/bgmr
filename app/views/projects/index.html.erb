@@ -1,12 +1,44 @@
-<!--h1><%= t "projects" %></h1-->
+<div id="projects">
 
-<ul class="projects_list">
-  <% @projects.each do |project| %>
-    <li class="projects_list_entry">
-      <a href="<%= project_path(:id => project.slug) %>">
-        <%= image_tag project.main_image.url(:medium) %>
-        <h3 class="project_title"><%= project.title %></h3>
-      </a>
-    </li>
-  <% end %>
-</ul>
+  <form id="project_selection">
+
+    <ul id="project_selection__areas">
+      <li>
+        <input id="area-nope" type="radio" name="area" value="" checked="checked">
+        <label for="area-nope" class="area">Arbeitsfeld: Alle</label>
+      </li>
+      <% @areas.each do |area| %>
+        <li>
+          <input id="area-<%= area.id %>" type="radio" name="area" value="<%= area.id %>">
+          <label for="area-<%= area.id %>" class="area">Arbeitsfeld: <%= area.title %></label>
+        </li>
+      <% end %>
+    </ul>
+
+    <div id="project_selection__search">
+      <input type="text" placeholder="<%= strip_tags(t("search")) %>">
+    </div>
+
+    <ul id="project_selection__tags">
+      <% @tags.each do |tag| %>
+        <input id="tag-<%= tag.id %>" type="checkbox" value="<%= tag.id %>">
+        <label for="tag-<%= tag.id %>" class="tag">
+          <%= tag.title %>
+        </label>
+      <% end %>
+    </ul>
+
+  </form>
+
+  <ul class="projects_list">
+    <% @projects.each do |project| %>
+      <li class="projects_list_entry project" data-tags="<%= project.tags.map(&:id).join " " %>" data-areas="<%= project.areas.map(&:id).join " " %>" title="<%= project.title %>">
+        <a href="<%= project_path(:id => project.slug) %>">
+          <%= image_tag project.main_image.url(:medium) %>
+          <h3 class="project_title"><%= project.title %></h3>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+
+</div>

@@ -28,6 +28,7 @@
 
 // elements
 //= require pages
-//= require projects
+//= require projects-index
+//= require projects-show
 //= require topics
 //= require welcome

@@ -1,0 +1,137 @@
+@keyframes dropdown-selected {  
+  50% { background-color: white; }
+}
+
+#project_selection {
+  #project_selection__areas {
+
+    width:50%;
+    float:left;
+    position: relative;
+
+    input {
+      display: none;
+    }
+
+    &, label {
+      overflow: hidden;
+      z-index:14;
+      background-color: white;
+      transition: height 0.2s;
+    }
+
+    &, input:checked + label {
+      transition: height 0.5s 0.5s;
+    }
+
+    li {
+      line-height: 6 * $d_gridheight;
+    }
+
+    &, &.active label {
+      height: 6 * $d_gridheight;
+      overflow: visible;
+    }
+
+    &:not(.active) input:not(:checked) + label {
+      height: 0;
+    }
+
+    label:hover, &:not(.active) input:checked:not(#area-nope) + label {
+      background-color: black;
+      color:white;
+    }
+
+    input:checked:not(#area-nope) + label {
+      animation: dropdown-selected 0.2s linear 1;
+    }
+
+    &:not(.active):after {
+      content: "▼";
+      color:white;
+      pointer-events: none;
+      mix-blend-mode:difference;
+      position: absolute;
+      right: $d_gutterwidth_abs;
+      bottom: 25%;
+    }
+
+  }
+}
+
+#project_selection {
+  #project_selection__search {
+
+    width:50%;
+    float:left;
+
+  }
+}
+
+#project_selection {
+  #project_selection__tags {
+
+    /*
+    &.active .tag:not(.active) {
+      color: rgba(0,0,0,0.6);
+      opacity: 0.8;
+    }*/
+
+    clear: both;
+
+    input {
+      display:none;
+    }
+
+    .tag {
+      cursor:default;
+      user-select: none;
+    }
+
+    input:not(:checked) + label:hover {
+      background-color: $tag-border-color;
+    }
+
+    input:checked + label {
+      background-color: black;
+      color:white;
+    }
+
+  }
+}
+
+.projects_list {
+  @include grid-container;
+  .projects_list_entry {
+
+    margin-top: 1 * $d_gridheight;
+    text-align: center;
+
+    @include grid-column(4);
+    @include bp($b_4-8) { @include grid-column($columns_count/1); }
+    @include bp($b_8-12) { @include grid-column($columns_count/2); }
+    @include bp($b_12-16) { @include grid-column($columns_count/3); }
+    @include bp($b_16-20) { @include grid-column($columns_count/4); }
+    @include bp($b_20-24) { @include grid-column($columns_count/5); }
+    @include bp($b_24_and_up) { @include grid-column($columns_count/6); }
+
+    img {
+      display: block;
+      width: calc( 100% - #{ $d_gutterwidth_abs } );
+      height: 28 * $d_gridheight;
+      object-fit: contain;
+      object-position: center bottom;
+      margin-bottom: 2 * $d_gridheight;
+      padding-left: 0.5 * $d_gutterwidth_abs;
+      padding-right: 0.5 * $d_gutterwidth_abs;
+    }
+
+    .project_title {
+      height: 2 * $base-line-height;
+
+      @include visual_bg;      
+    }
+
+    @include visual_bg;
+  }
+}

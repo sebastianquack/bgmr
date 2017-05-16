@@ -30,6 +30,7 @@ en:
   welcome: "Welcome to bgmr"
   out_of: "of"
   hide_text: "Hide Text"
+  search: "Search"
 
   routes:
     projects: "projects"
