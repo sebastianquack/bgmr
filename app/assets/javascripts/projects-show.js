@@ -50,7 +50,7 @@ function positionZoomableControl(img, left){
 
 // manage mouseclick controls for slideshow
 
-let currentCursorDirection = false
+var currentCursorDirection = false
 
 $(document).on('turbolinks:load', function(){
 
@@ -102,12 +102,12 @@ $(document).on('turbolinks:load', function(){
   $('#project .slide_link a').click(function(event){
     event.preventDefault()
     event.stopPropagation()
-    let $slides = $('.slides')
-    let targetIndex = parseInt($(this).attr('data-target-order')) - 1
-    let currentIndex = $slides.slick('slickCurrentSlide')
+    var $slides = $('.slides')
+    var targetIndex = parseInt($(this).attr('data-target-order')) - 1
+    var currentIndex = $slides.slick('slickCurrentSlide')
 
     // do animation
-    let previousSpeed = $slides.slick('slickGetOption','speed')
+    var previousSpeed = $slides.slick('slickGetOption','speed')
     $slides.slick('slickSetOption','speed',0)
     // 1
     //$($slides.find(".slide").get(currentIndex)).addClass('loophole-transition')
@@ -162,8 +162,8 @@ $(document).on('turbolinks:load', function(){
       duration: 200,
       transition: true,
       //maxScale: elem.naturalWidth / elem.clientWidth
-      onZoom: (e,d) => {
-        let newScale = 1/d.scale
+      onZoom: function(e,d) {
+        var newScale = 1/d.scale
         $(e.target).find(".slide__loophole").each(function (i,loophole) {
           setTransformScale(loophole, newScale)
         })
@@ -174,11 +174,11 @@ $(document).on('turbolinks:load', function(){
           enterZoomMode()
         }
       },
-      onPan: (e,d) => {
+      onPan: function(e,d) {
         lastPanned = Date.now()
         //console.log(d)
       },
-      onReset: (e,d) => {
+      onReset: function(e,d) {
         $(e.target).find(".slide__loophole").each(function (i,loophole) {
           setTransformScale(loophole, 1)
         })
