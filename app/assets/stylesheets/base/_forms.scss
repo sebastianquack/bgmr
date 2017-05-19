@@ -39,12 +39,12 @@ select[multiple] {
   width: 100%;
 
   &:hover {
-    border-color: shade($base-border-color, 20%);
+    //border-color: shade($base-border-color, 20%);
   }
 
   &:focus {
-    border-color: $action-color;
-    box-shadow: $form-box-shadow-focus;
+    //border-color: $action-color;
+    //box-shadow: $form-box-shadow-focus;
     outline: none;
   }
 
@@ -53,7 +53,7 @@ select[multiple] {
     cursor: not-allowed;
 
     &:hover {
-      border: $base-border;
+      //border: $base-border;
     }
   }
 }

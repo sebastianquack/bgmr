@@ -3,14 +3,42 @@
 }
 
 #project_selection {
+  margin: 0 $d_gutterwidth_abs #{6 * $d_gridheight} $d_gutterwidth_abs;
+  * {
+    font-weight: normal;
+  }
+}
+
+#project_selection {
   #project_selection__areas {
 
-    width:50%;
+    width:calc(50% - #{0.5 * $d_gutterwidth_abs});
+    margin-right: 0.5 * $d_gutterwidth_abs;
     float:left;
     position: relative;
 
+    border: solid 1px $tag-border-color;
+    box-sizing: border-box;
+
+    &.active {
+      label {
+        border: solid 1px black;
+        border-width: 0 1px 0 1px;
+      }
+      > :first-child label {
+        border-top-width: 1px;
+      }
+      > :last-child label {
+        border-bottom-width: 1px;
+      }      
+    }
+
     input {
       display: none;
+    }
+
+    label {
+      padding-left: 0.6em;
     }
 
     &, label {
@@ -25,11 +53,11 @@
     }
 
     li {
-      line-height: 6 * $d_gridheight;
+      line-height: 5 * $d_gridheight;
     }
 
     &, &.active label {
-      height: 6 * $d_gridheight;
+      height: 5 * $d_gridheight;
       overflow: visible;
     }
 
@@ -37,13 +65,27 @@
       height: 0;
     }
 
+    .prefix {
+      visibility:hidden;
+    }
+
     label:hover, &:not(.active) input:checked:not(#area-nope) + label {
       background-color: black;
       color:white;
     }
 
+    label:hover, &:not(.active) input:checked + label {
+      .prefix {
+        visibility: visible;
+      }
+    }
+
     input:checked:not(#area-nope) + label {
       animation: dropdown-selected 0.2s linear 1;
+    }
+
+    &:not(.active) input:checked + label {
+      line-height: 5 * $d_gridheight - 2px;
     }
 
     &:not(.active):after {
@@ -53,7 +95,8 @@
       mix-blend-mode:difference;
       position: absolute;
       right: $d_gutterwidth_abs;
-      bottom: 25%;
+      bottom: 15%;
+      transform: scaleX(0.9) scaleY(0.5);
     }
 
   }
@@ -62,9 +105,19 @@
 #project_selection {
   #project_selection__search {
 
-    width:50%;
+    width:calc(50% - #{0.5 * $d_gutterwidth_abs});
+    margin-left: 0.5 * $d_gutterwidth_abs;
     float:left;
 
+    input {
+      height: 5 * $d_gridheight;
+      padding-left: 0.6em;
+      border-radius: 0;
+      background-color: $tag-border-color;
+      border:none;
+      &:focus { outline: none; }
+      @include placeholder-color(#bbb);
+    }
   }
 }
 
@@ -86,6 +139,7 @@
     .tag {
       cursor:default;
       user-select: none;
+      margin-top: 2 * $d_gridheight;
     }
 
     input:not(:checked) + label:hover {
@@ -104,7 +158,7 @@
   @include grid-container;
   .projects_list_entry {
 
-    margin-top: 1 * $d_gridheight;
+    margin-top: 2 * $d_gridheight;
     text-align: center;
 
     @include grid-column(4);
@@ -128,6 +182,7 @@
 
     .project_title {
       height: 2 * $base-line-height;
+      overflow: hidden;
 
       @include visual_bg;      
     }

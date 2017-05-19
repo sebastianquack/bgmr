@@ -5,18 +5,18 @@
     <ul id="project_selection__areas">
       <li>
         <input id="area-nope" type="radio" name="area" value="" checked="checked">
-        <label for="area-nope" class="area">Arbeitsfeld: Alle</label>
+        <label for="area-nope" class="area"><span class="prefix"><%= t('area') %>: </span><%= t('all_areas') %></label>
       </li>
       <% @areas.each do |area| %>
         <li>
           <input id="area-<%= area.id %>" type="radio" name="area" value="<%= area.id %>">
-          <label for="area-<%= area.id %>" class="area">Arbeitsfeld: <%= area.title %></label>
+          <label for="area-<%= area.id %>" class="area"><span class="prefix"><%= t('area') %>: </span><%= area.title %></label>
         </li>
       <% end %>
     </ul>
 
     <div id="project_selection__search">
-      <input type="text" placeholder="<%= strip_tags(t("search")) %>">
+      <input type="search" placeholder="<%= strip_tags(t("search")) %>">
     </div>
 
     <ul id="project_selection__tags">

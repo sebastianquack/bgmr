@@ -22,7 +22,9 @@
 en:
   hello: "Hello world"
   projects: "Projects"
+  area: "Work Area"
   areas: "Work Areas"
+  all_areas: "All"
   topics: "Topics"
   tags: "Keywords"
   about: "About Us"

@@ -22,7 +22,9 @@
 de:
   hello: "Hello world"
   projects: "Projekte"
+  area: "Arbeitsfeld"
   areas: "Arbeitsfelder"
+  all_areas: "Alle"
   topics: "Themen"
   tags: "Schlagworte"
   about: "Über uns"

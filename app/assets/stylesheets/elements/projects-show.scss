@@ -193,7 +193,9 @@
         top: - 3 * $d_gridheight;
         position: relative;
 
-        cursor: pointer;
+        &.expandable {
+          cursor: pointer;
+        }
 
         > * > * {
           display: block;

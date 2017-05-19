@@ -1,3 +1,5 @@
+area_handler = false
+
 $(document).on('turbolinks:load', function(){
 
   // tags
@@ -6,27 +8,26 @@ $(document).on('turbolinks:load', function(){
   
   // area
 
-  $(document).on('click',function(event){
-
-    $container = $('#project_selection__areas')
-    $target = $(event.target)
-    var active = $container.hasClass("active")
-    console.log(event.target, active, event.target.tagName)
-
-    if (active) {
-      console.log("close")
-      $container.removeClass("active")      
-    }
-    else if ( event.target.tagName == "LABEL" && $target.hasClass('area') )  {
-      console.log("activate")
-      $container.addClass("active") 
-      event.preventDefault();
-      event.stopPropagation()
-      event.stopImmediatePropagation()
-      return false;
-    }
-
-  })
+  if (area_handler === false) {
+    area_handler = $(document).on('click',function(event){ // attached to document - take care not to do twice
+  
+      $container = $('#project_selection__areas')
+      $target = $(event.target)
+      var active = $container.hasClass("active")
+  
+      if (active) {
+        $container.removeClass("active")      
+      }
+      else if ( event.target.tagName == "LABEL" && $target.hasClass('area') )  {
+        $container.addClass("active") 
+        event.preventDefault();
+        event.stopPropagation()
+        event.stopImmediatePropagation()
+        return false;
+      }
+  
+    })
+  }
 
   $('#project_selection__areas').change(updateProjectsFilter)
 
@@ -35,6 +36,21 @@ $(document).on('turbolinks:load', function(){
   $('#project_selection__search').on('keyup',updateProjectsFilter)
 
 })
+
+
+$(document).on('turbolinks:render', function(){
+  // reset form on normal visits. let intact on restoration (browser back button) visits
+
+  if (document.documentElement.hasAttribute("data-turbolinks-preview")) {
+    // Turbolinks is displaying a preview
+    var project_selection = $('#project_selection')
+    if (project_selection.length > 0) {
+      project_selection.get(0).reset()
+      updateProjectsFilter()
+    }
+  }
+}) 
+
 
 function updateProjectsFilter() {
 

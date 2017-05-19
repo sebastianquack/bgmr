@@ -3,6 +3,8 @@
   padding-left: 0.6em;
   padding-right: 0.6em;
   height: 3 * $d_gridheight;
+  line-height: 3 * $d_gridheight - 2px;
+  box-sizing: border-box;
   background-color: white;
   font-size:10px;
   font-weight: bold;
