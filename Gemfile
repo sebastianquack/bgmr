@@ -41,7 +41,6 @@ gem 'unicorn'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'faker' # create fake data
 end
 
 group :development do
@@ -62,6 +61,7 @@ gem 'route_translator'# translate routes
 
 gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
 
+gem 'faker' # create fake data
 
 gem 'neat' # thoughtbot scss grid
 gem 'bourbon' # thoughtbot scss helpers

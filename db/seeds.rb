@@ -62,7 +62,8 @@ areas.each_with_index do |title,index|
   Area.create!(id: id, title_de: title, title_en: title+" (en)") if Area.where(id: id).empty?
 end
 
-# just do when requested, but always overwrite existing ones
+# populate db with example projects, run with "rake db:seed fakeprojects=true", always overwrite existing ones
+# remove with "rake db:seed fakeprojects=remove"
 
 logger = Logger.new(STDOUT)
 
