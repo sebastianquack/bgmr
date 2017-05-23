@@ -14,4 +14,6 @@ class Topic < ActiveRecord::Base
   
   validates_format_of :slug, :with => /\A[a-z0-9_]+\z/i
 
+  default_scope { order(Area.current_locale_column(:title)) }
+
 end

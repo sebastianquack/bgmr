@@ -28,7 +28,10 @@ function positionSlidelinks(img) {
   var x_parent2  = parseInt($(img).parent().parent().css('marginLeft'), 10) + parseInt($(img).parent().parent().css('paddingLeft'), 10);
   var x = x_object_fit + x_parent + x_parent2
 
-  //console.log("offset "+x_parent+ " "+x_parent2)
+  console.log("offset "+x_parent+ " "+x_parent2, $(img).parent().parent())
+
+  //var parents = parentUntilPositioned(img)
+  //console.log(parents)
 
   var width = img_actual_width;
 
@@ -60,4 +63,17 @@ function positionSlidelinks(img) {
   //console.log(obj)
 
   return obj
+}
+
+function parentUntilPositioned(elem) {
+  var parents = []
+  var parent;
+  var position;
+  do {
+    parent = $(elem).parent()
+    position = $(parent).css('position')
+    parents.push(parent)
+    console.log(parent.tagName, position)
+  }
+  while ( parent != undefined && ['absolute','relative','fixed'].indexOf(position) < 0 )
 }

@@ -73,11 +73,11 @@ show do
           link_to "/" + project.slug_en, project, :locale => "en"
         end
       end
-      row t(:areas) do |project| 
-        project.areas.map { |a| (link_to a.title, admin_area_path(a)) }.join(', ').html_safe
-      end
       row t(:topics) do |project| 
         project.topics.map { |a| (link_to a.title, admin_topic_path(a)) }.join(', ').html_safe
+      end
+      row t(:areas) do |project| 
+        project.areas.map { |a| (link_to a.title, admin_area_path(a)) }.join(', ').html_safe
       end
       row t(:tags) do |project| 
         project.tags.map { |a| (link_to a.title, admin_tag_path(a)) }.join(', ').html_safe
@@ -127,7 +127,7 @@ form :html => { :enctype => "multipart/form-data" } do |f|
           f_sl.input :pos_y, :wrapper_html => { :class =>  "hidden" }, :input_html => { :class =>  "pos_y" }
         end
       end
-      f_s.input :zoomable
+      f_s.input :zoomable, :wrapper_html => { class: 'indent'}
       f_s.input :caption_de
       f_s.input :caption_en
       
@@ -142,6 +142,10 @@ form :html => { :enctype => "multipart/form-data" } do |f|
 
     end
   end
+
+  f.inputs t(:topics) do
+    f.input :topics, :label => false, :as => :check_boxes
+  end
     
   f.inputs t(:areas) do
     f.input :areas, :label => false, :as => :check_boxes
@@ -149,10 +153,6 @@ form :html => { :enctype => "multipart/form-data" } do |f|
 
   f.inputs t(:tags) do
     f.input :tags, :label => false, :as => :check_boxes
-  end
-
-  f.inputs t(:topics) do
-    f.input :topics, :label => false, :as => :check_boxes
   end
 
   f.inputs t(:slugs) do
