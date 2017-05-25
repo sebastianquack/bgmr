@@ -26,6 +26,9 @@
 // common
 //= require common_functions
 
+// config
+//= require breakpoints
+
 // elements
 //= require pages
 //= require projects-index

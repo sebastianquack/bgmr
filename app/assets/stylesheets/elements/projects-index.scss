@@ -17,6 +17,12 @@
     float:left;
     position: relative;
 
+    @include bp($b_8_and_lower) { 
+      width:100%; 
+      margin-right: 0;
+      margin-top: 2 * $d_gridheight;
+    } 
+
     border: solid 1px $tag-border-color;
     box-sizing: border-box;
 
@@ -109,6 +115,12 @@
     margin-left: 0.5 * $d_gutterwidth_abs;
     float:left;
 
+    @include bp($b_8_and_lower) { 
+      width:100%; 
+      margin-left: 0;
+      margin-top: 2 * $d_gridheight;
+    } 
+
     input {
       height: 5 * $d_gridheight;
       padding-left: 0.6em;
@@ -123,6 +135,10 @@
 
 #project_selection {
   #project_selection__tags {
+
+    @include bp($b_8_and_lower) { 
+      display: none;
+    } 
 
     /*
     &.active .tag:not(.active) {
@@ -160,6 +176,10 @@
 
     margin-top: 2 * $d_gridheight;
     text-align: center;
+
+    @include bp($b_8_and_lower) { 
+      margin-top: 10 * $d_gridheight;
+    } 
 
     @include grid-column(4);
     @include bp($b_4-8) { @include grid-column($columns_count/1); }

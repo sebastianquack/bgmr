@@ -143,7 +143,6 @@ $(document).on('turbolinks:before-cache', function(){
   $('#project .project__info').removeClass("open")
 }) 
 
-
 // zoooooooooom
 
 zoomMode = false
@@ -167,7 +166,7 @@ $(document).on('turbolinks:load', function(){
         $(e.target).find(".slide__loophole").each(function (i,loophole) {
           setTransformScale(loophole, newScale)
         })
-        console.log(d.scale)
+        //console.log(d.scale)
         if (d.scale <= 1) {
           leaveZoomMode()
         } else {
@@ -224,7 +223,7 @@ function enterZoomMode() {
   var slides = $('.slides')
   $(slides).addClass('zoomed')
   $(slides).slick('slickSetOption','swipe',false)
-  console.log($(slides), "zoomMode on")
+  //console.log($(slides), "zoomMode on")
 }
 
 function leaveZoomMode() {
@@ -235,17 +234,32 @@ function leaveZoomMode() {
   $(slides).removeClass('zoomed')
   zoomMode = false
   $(slides).slick('slickSetOption','swipe',true)
-  console.log("zoomMode off")
+  //console.log("zoomMode off")
 }
 
 // init slick slider (after other calls, so init events can get heard)
 
+slickOptions = {
+  arrows: false,
+  speed: 240,
+  cssEase: 'ease-out',
+  responsive: [
+    {
+      breakpoint: breakpoint_8,
+      settings: 'unslick' //{ adaptiveHeight: true } //'unslick'
+    }   
+  ]
+}
+
 $(document).on('turbolinks:load', function(){
-  $('#project .slides').slick({
-    arrows: false,
-    speed: 240,
-    cssEase: 'ease-out'
+
+  $('#project .slides').slick(slickOptions)
+
+  $(window).resize(function(event,d){
+    if (window.innerWidth > breakpoint_8 && $('#project .slides').slick('getSlick').unslicked)
+      $('#project .slides').slick(slickOptions)    
   })
+
 })
 
 $(document).on('turbolinks:before-cache', function(){

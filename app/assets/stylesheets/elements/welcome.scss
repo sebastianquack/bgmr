@@ -1,3 +1,22 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#welcome {
+  margin-left: $d_gutterwidth_abs;
+  margin-right: $d_gutterwidth_abs;
+  margin-bottom: $d_gutterwidth_abs;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    object-position: left center;
+
+    @include bp($b_8_and_lower) { height: 96 * $d_gridheight; } // todo crop to fit horizontal grid
+    @include bp($b_8-12)        { height: 96 * $d_gridheight; }
+    @include bp($b_12-16)       { height: 96 * $d_gridheight; }
+    @include bp($b_16-20)       { height: 96 * $d_gridheight; }
+    @include bp($b_20-24)       { height: 96 * $d_gridheight; }
+    @include bp($b_24_and_up)   { height: 134 * $d_gridheight; }      
+  }
+}

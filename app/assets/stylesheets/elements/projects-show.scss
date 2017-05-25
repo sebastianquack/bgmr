@@ -68,6 +68,7 @@
         height:inherit;
 
         object-fit: contain;
+        object-position: center;
         @include visual_bg;
       }
     }
@@ -78,6 +79,8 @@
       left:0;
       height:inherit;
       width: 100%;
+
+      @include bp($b_8_and_lower) { display: none; }
 
       @include visual_bg;
     }
@@ -156,12 +159,27 @@
 }
 
 #project {
+
+  > .project__title {
+
+    @include bp($b_8_and_up) { 
+      display:none;
+    }
+
+    margin-right: $d_gutterwidth_abs;
+    margin-left: $d_gutterwidth_abs;
+    margin-bottom: 3 * $d_gridheight;
+
+  }
+
   .project__info {
 
     $d_project_info_header_height: 8 * $d_gridheight;
 
-    height: $d_project_info_header_height;
-    padding-top: 4 * $d_gridheight;
+    @include bp($b_8_and_up) { 
+      height: $d_project_info_header_height;
+      padding-top: 4 * $d_gridheight;
+    }
     margin-bottom: 1 * $d_gridheight;
 
     position:relative;
@@ -171,9 +189,11 @@
 
     .project__info__content {
 
-      position: absolute;
-      bottom:0;
-      padding-top: inherit;
+      @include bp($b_8_and_up) {
+        position: absolute;
+        bottom:0;
+        padding-top: inherit;
+      }
 
       background-color: white;
       @include visual_bg;
@@ -189,6 +209,10 @@
 
       .project__headline {
 
+        @include bp($b_8_and_lower) { 
+          display:none;
+        }
+
         padding-bottom: 3 * $d_gridheight;
         top: - 3 * $d_gridheight;
         position: relative;
@@ -199,9 +223,11 @@
 
         > * > * {
           display: block;
-          height: $d_project_info_header_height;
-          line-height: $d_project_info_header_height;
-          margin:0;
+          @include bp($b_8_and_up) { 
+            height: $d_project_info_header_height;
+            line-height: $d_project_info_header_height;
+            margin:0;
+          }
         }
 
         .project__headline_1, .project__headline_2 {
@@ -213,27 +239,32 @@
 
         .project__headline_1 {
           padding-right: 0.5 * $d_gutterwidth_abs;
+
+          @include bp($b_8_and_lower) { width: 100%; }
         }
 
         .project__headline_2 {
           padding-left: 0.5 * $d_gutterwidth_abs;
           justify-content: flex-end;
+
+          @include bp($b_8_and_lower) { display: none; }
         }
 
-        .project__title__controls, .slide__caption__position {
-          white-space: nowrap;
-        }
+        @include bp($b_8_and_up) { 
+          .project__title__controls, .slide__caption__position {
+            white-space: nowrap;
+          }
 
-        .project__title {
-          @include ellipsis;
-        }
+          .project__title {
+            @include ellipsis;
+          }
 
-        .slide__caption__text {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
+          .slide__caption__text {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
         }
-
       }
 
       .project__description {
@@ -266,12 +297,31 @@
         display: none;
       }
       .project__description {
-        height:0 !important;
+        @include bp($b_8_and_up) {
+          height:0 !important;
+        }
       }
     }
 
 
   }
+
+  @include bp($b_8_and_lower) {
+    .slides{
+      margin-bottom: 0;
+      cursor: default !important;
+    }
+    .slide {
+      margin-bottom: 3 * $d_gridheight;
+      .slide__caption__position {
+        display: none;
+      }
+      .slide__caption {
+        margin-top: 2 * $d_gridheight;
+      }
+    }
+  }
+
 
 }
 
@@ -290,6 +340,8 @@
     margin-left: $d_gutterwidth_abs;
     bottom: 3 * $d_gridheight;
     opacity:1;
+
+    @include bp($b_8_and_lower) { display: none; }
   }
 
   .slides:not(.zoomable) ~ .zoomable_control {
@@ -308,6 +360,8 @@
     z-index:10;
     margin-top: 3 * $d_gridheight;
     pointer-events: none;
+
+    @include bp($b_8_and_lower) { display: none; }
   }
 
   .project__topics {
@@ -317,6 +371,8 @@
     z-index:10;
     bottom: 3 * $d_gridheight;
     pointer-events: none;
+
+    @include bp($b_8_and_lower) { display: none; }
   }
 
   $d_project_topic_dot_radius: 26px;

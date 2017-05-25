@@ -28,7 +28,7 @@ function positionSlidelinks(img) {
   var x_parent2  = parseInt($(img).parent().parent().css('marginLeft'), 10) + parseInt($(img).parent().parent().css('paddingLeft'), 10);
   var x = x_object_fit + x_parent + x_parent2
 
-  console.log("offset "+x_parent+ " "+x_parent2, $(img).parent().parent())
+  //console.log("offset "+x_parent+ " "+x_parent2, $(img).parent().parent())
 
   //var parents = parentUntilPositioned(img)
   //console.log(parents)
