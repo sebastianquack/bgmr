@@ -10,7 +10,10 @@
       <% @areas.each do |area| %>
         <li>
           <input id="area-<%= area.id %>" type="radio" name="area" value="<%= area.id %>">
-          <label for="area-<%= area.id %>" class="area"><span class="prefix"><%= t('area') %>: </span><%= area.title %></label>
+          <label for="area-<%= area.id %>" class="area">
+            <span class="prefix"><%= t('area') %>: </span>
+            <%= area.title %>
+          </label>
         </li>
       <% end %>
     </ul>

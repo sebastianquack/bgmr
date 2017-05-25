@@ -44,7 +44,12 @@
     }
 
     label {
+      display: flex;
       padding-left: 0.6em;
+      @include prefixer(user-select, none, webkit moz ms spec);
+      span {
+        display: block;
+      }
     }
 
     &, label {
@@ -55,7 +60,7 @@
     }
 
     &, input:checked + label {
-      transition: height 0.5s 0.5s;
+      transition: height 0.2s;
     }
 
     li {
@@ -63,7 +68,7 @@
     }
 
     &, &.active label {
-      height: 5 * $d_gridheight;
+      min-height: 5 * $d_gridheight;
       overflow: visible;
     }
 
@@ -72,7 +77,11 @@
     }
 
     .prefix {
-      visibility:hidden;
+      white-space: nowrap;
+      padding-right: 0.5em;
+      @include bp($b_8_and_up) { 
+        visibility:hidden;
+      }
     }
 
     label:hover, &:not(.active) input:checked:not(#area-nope) + label {
@@ -129,6 +138,7 @@
       border:none;
       &:focus { outline: none; }
       @include placeholder-color(#bbb);
+      -webkit-appearance: none;
     }
   }
 }

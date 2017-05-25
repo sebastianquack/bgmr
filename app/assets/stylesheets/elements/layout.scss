@@ -11,7 +11,7 @@ $b_12_and_lower: '(max-width: #{ col_width_abs(12,1,-1) })';
 $b_16_and_lower: '(max-width: #{ col_width_abs(16,1,-1) })';
 $b_20_and_lower: '(max-width: #{ col_width_abs(20,1,-1) })';
 
-@debug 'javascript: breakpoint_8 = #{ col_width_abs(8,1) / 1px } // included in the lower range (<=) ';
+@debug 'javascript: breakpoint_8 = #{ col_width_abs(8,1) / 1px }';
 
 $b_4-8:    '(min-width: #{ col_width_abs(4, 1) }) and (max-width: #{ col_width_abs(8, 1,-1) })';
 $b_8-12:   '(min-width: #{ col_width_abs(8, 1) }) and (max-width: #{ col_width_abs(12,1,-1) })';

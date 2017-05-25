@@ -4,5 +4,9 @@
     "input-range-scss": "^1.4.1",
     "jquery.panzoom": "^3.2.2",
     "slick-carousel": "^1.6.0"
+  },
+  "repository" :
+  { "type" : "git"
+  , "url" : "https://github.com/sebastianquack/bgmr.git"
   }
 }

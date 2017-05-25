@@ -9,14 +9,17 @@ $(document).on('turbolinks:load', function(){
   // area
 
   if (area_handler === false) {
-    area_handler = $(document).on('click',function(event){ // attached to document - take care not to do twice
-  
+    area_handler = $(document).on('click touchend',function(event){ // attached to document - take care not to do twice
+
       $container = $('#project_selection__areas')
       $target = $(event.target)
       var active = $container.hasClass("active")
   
       if (active) {
-        $container.removeClass("active")      
+        setTimeout(function(){
+          $container.removeClass("active")        // for touch delay
+        }, 550)
+        
       }
       else if ( event.target.tagName == "LABEL" && $target.hasClass('area') )  {
         $container.addClass("active") 
