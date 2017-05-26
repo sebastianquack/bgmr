@@ -9,7 +9,12 @@ $(document).on('turbolinks:load', function(){
   // area
 
   if (area_handler === false) {
+
+    var moved = false;
+
     area_handler = $(document).on('click touchend',function(event){ // attached to document - take care not to do twice
+
+      if (moved === true) { moved = false; return; }
 
       $container = $('#project_selection__areas')
       $target = $(event.target)
@@ -29,6 +34,9 @@ $(document).on('turbolinks:load', function(){
         return false;
       }
   
+    })
+    .on("touchmove", function(){
+      moved = true;
     })
   }
 
@@ -78,11 +86,20 @@ function updateProjectsFilter() {
   // combine selectors
   var allSelectors = tagsSelector + areaSelector + searchSelector
 
-  var showSelector = '.project'+allSelectors
+  console.log(allSelectors)
 
-  console.log(showSelector)
+  var showElems = $('.project'+allSelectors)
+  var hideElems = $('.project:not('+allSelectors+')')
+
+  console.log("show " + showElems.length + ", hide " + hideElems.length)
 
   // filter
-  $('.project').hide()  
-  $(showSelector).show()
+  if (allSelectors == "") {
+    $(showElems).toggleClass("hidden", false)
+  }
+  else {
+    $(hideElems).toggleClass("hidden", true)
+    $(showElems).toggleClass("hidden", false)
+  }
+
 }

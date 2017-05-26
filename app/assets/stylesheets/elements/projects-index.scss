@@ -17,6 +17,14 @@
     float:left;
     position: relative;
 
+    transition: max-height 0s 0.3s;
+    max-height: 10 * $d_gridheight;
+    &.active {
+      max-height: 5 * $d_gridheight;
+      transition: max-height 0s 0s;
+    }
+
+
     @include bp($b_8_and_lower) { 
       width:100%; 
       margin-right: 0;
@@ -50,17 +58,17 @@
       span {
         display: block;
       }
+      transition: background-color 0.1s, max-height 0.3s;
     }
 
     &, label {
       overflow: hidden;
       z-index:14;
       background-color: white;
-      transition: height 0.2s;
     }
 
     &, input:checked + label {
-      transition: height 0.2s;
+
     }
 
     li {
@@ -68,12 +76,16 @@
     }
 
     &, &.active label {
-      min-height: 5 * $d_gridheight;
+      //min-height: 5 * $d_gridheight;
       overflow: visible;
     }
 
+    &.active label {
+      max-height: 10 * $d_gridheight;
+    }
+
     &:not(.active) input:not(:checked) + label {
-      height: 0;
+      max-height: 0;
     }
 
     .prefix {
@@ -218,5 +230,11 @@
     }
 
     @include visual_bg;
+  }
+}
+
+.projects_list .project {
+  &.hidden {
+    display: none;
   }
 }

@@ -1,6 +1,6 @@
 <div id="projects">
 
-  <form id="project_selection">
+  <form id="project_selection" action="/en/projects" method="post" data-remote="true">
 
     <ul id="project_selection__areas">
       <li>
@@ -19,7 +19,7 @@
     </ul>
 
     <div id="project_selection__search">
-      <input type="search" placeholder="<%= strip_tags(t("search")) %>">
+      <input name="search" type="search" placeholder="<%= strip_tags(t("search")) %>" onkeyup="//$('#project_selection').submit()">
     </div>
 
     <ul id="project_selection__tags">
