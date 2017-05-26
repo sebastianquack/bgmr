@@ -4,7 +4,7 @@
 
 #project_selection {
   margin: 0 $d_gutterwidth_abs #{6 * $d_gridheight} $d_gutterwidth_abs;
-  * {
+  #project_selection__areas *, #project_selection__search * {
     font-weight: normal;
   }
 }
