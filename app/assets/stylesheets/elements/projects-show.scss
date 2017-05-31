@@ -5,6 +5,10 @@
 
 #project {
 
+  @include bp($b_8_and_up) {
+    height: calc( 100vh - #{ $d_header_margin_top + $d_header_height + 3*$d_gridheight } ) !important; // overwrite calc-enabled browsers
+  }
+
   .project__title {
     font-weight: bold;
   }
@@ -26,7 +30,11 @@
     @include bp($b_12-16)       { height: 96 * $d_gridheight; }
     @include bp($b_16-20)       { height: 96 * $d_gridheight; }
     @include bp($b_20-24)       { height: 96 * $d_gridheight; }
-    @include bp($b_24_and_up)   { height: 134 * $d_gridheight; }    
+    @include bp($b_24_and_up)   { height: 134 * $d_gridheight; }
+
+    @include bp($b_8_and_up) {
+      height: calc( 100vh - #{ $d_header_margin_top + $d_header_height + 3*$d_gridheight + $d_project_info_header_height } ) !important; // overwrite calc-enabled browsers
+    }
 
     overflow:hidden;
   }
@@ -174,11 +182,11 @@
 
   .project__info {
 
-    $d_project_info_header_height: 8 * $d_gridheight;
-
     @include bp($b_8_and_up) { 
       height: $d_project_info_header_height;
-      padding-top: 4 * $d_gridheight;
+      padding-top: $d_project_info_header_margin_top;
+      position: absolute;
+      bottom: 0;
     }
     margin-bottom: 1 * $d_gridheight;
 
@@ -196,6 +204,7 @@
       }
 
       background-color: white;
+      
       @include visual_bg;
 
       width: calc( 100% - #{ 2*$d_gutterwidth_abs } );

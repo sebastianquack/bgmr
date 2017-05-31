@@ -12,7 +12,7 @@ $d_topics_topic_dot_padding: 10px;
   @include bp($b_24_and_up)   { height: 134 * $d_gridheight; }   
 
   &#topics { // increase specitivity
-    height: calc( 100vh - #{ $d_header_margin_top + $d_header_height + 2*$d_gridheight } ); // overwrite calc-enabled browsers
+    height: calc( 100vh - #{ $d_header_margin_top + $d_header_height + 3*$d_gridheight } ); // overwrite calc-enabled browsers
   }
   position:relative;
 

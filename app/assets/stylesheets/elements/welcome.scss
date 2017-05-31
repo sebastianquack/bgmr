@@ -18,5 +18,7 @@
     @include bp($b_16-20)       { height: 96 * $d_gridheight; }
     @include bp($b_20-24)       { height: 96 * $d_gridheight; }
     @include bp($b_24_and_up)   { height: 134 * $d_gridheight; }      
+
+    height: calc( 100vh - #{ $d_header_margin_top + $d_header_height + 3*$d_gridheight } ) !important; // overwrite calc-enabled browsers
   }
 }
