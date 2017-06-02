@@ -1,0 +1,10 @@
+  <ul class="projects_list">
+    <% projects.each do |project| %>
+      <li class="projects_list_entry project" data-tags="<%= project.tags.map(&:id).join " " %>" data-areas="<%= project.areas.map(&:id).join " " %>" title="<%= project.title %>">
+        <a href="<%= project_path(:id => project.slug) %>">
+          <%= image_tag project.main_image.url(:medium) %>
+          <h3 class="project_title"><%= project.title %></h3>
+        </a>
+      </li>
+    <% end %>
+  </ul>
