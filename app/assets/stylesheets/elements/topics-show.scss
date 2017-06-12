@@ -26,4 +26,24 @@
     padding:$d_topics_topic_dot_padding;
     @include must-break;    
   }
+
+  .topic__description {
+    max-width: col_width_abs(12,1);
+    padding: 0 $d_gutterwidth_abs;
+    @include bp($b_8_and_up) { column-count: 2; }
+    text-align: left;
+    margin:auto;
+  }
+
+  .topic__image {
+    display: block;
+    width: calc( 100% - #{ 2*$d_gutterwidth_abs } );
+    max-width: col_width_abs(12,1);
+    padding: 0 $d_gutterwidth_abs;
+    margin:auto;
+  }
+
+  .topic__headline, .topic__description, .topic__image {
+    margin-bottom: 7 * $d_gridheight;
+  }
 }

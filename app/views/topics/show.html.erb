@@ -6,9 +6,9 @@
     </span>
   </h1>
 
-  <%= @topic.description.html_safe if @topic.description %>
+  <%= content_tag :p, @topic.description.html_safe, class: "topic__description" if @topic.description %>
 
-  <%= image_tag @topic.image(:medium) %>
+  <%= image_tag @topic.image(:medium), class: "topic__image" if @topic.image.exists? %>
 
   <%= render partial: "projects/projects_list", locals: { projects: @projects } %>
 
