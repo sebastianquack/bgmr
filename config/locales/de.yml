@@ -29,6 +29,7 @@ de:
   tags: "Schlagworte"
   about: "Über uns"
   contact: "Kontakt"  
+  about_headline: "bgmr Landschaftsarchitekten"
   welcome: "Willkommen bei bgmr"
   out_of: "von"
   hide_text: "Text verbergen"
@@ -76,7 +77,10 @@ de:
           other: "Slides"
         slide_link:
           one: "Slide-Link"
-          other: Slide-Links"
+          other: "Slide-Links"
+        staff:
+          one: "Person"
+          other: "Personen"          
       attributes:
         project:
           title: "Titel"

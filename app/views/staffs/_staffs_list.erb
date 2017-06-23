@@ -1,0 +1,9 @@
+  <ul class="staffs_list">
+    <% staffs.each do |staff| %>
+      <li class="staffs_list_entry staff" title="<%= staff.name %>">
+        <%= image_tag staff.primary_image.url(:medium) %>
+        <%= image_tag staff.secondary_image.url(:medium) %>
+        <h3 class="staff_name"><%= staff.name %></h3>
+      </li>
+    <% end %>
+  </ul>

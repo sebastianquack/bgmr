@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'topics/index'
-
-  get 'topics/show'
-
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -13,6 +9,7 @@ Rails.application.routes.draw do
     localized do
       resources :projects, :only => [:show, :index]
       resources :topics, :only => [:show, :index]
+      resources :staff, :only => [:show]
     end
     #resources :pages, :only => [:show] #, :path => '' # route everything to pages controller
     #resources :welcome, :only => [:index]
