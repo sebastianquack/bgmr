@@ -1,0 +1,20 @@
+.image_swapper {
+  position: relative;
+
+  > *:last-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &:hover {
+    > *:fist-child {
+      display:none;
+    }
+  }
+  &:not(:hover) {
+    > *:last-child {
+      display:none;
+    }
+  }  
+}

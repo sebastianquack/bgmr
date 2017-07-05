@@ -4,8 +4,12 @@ ActiveAdmin.register Staff do
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
 
+config.sort_order = 'position_asc'
+config.paginate   = false
+
 menu :priority => 10
 permit_params :draft, :name, :text_de, :text_en, :contact, :primary_image, :secondary_image
+reorderable
 
 #
 # or
@@ -15,6 +19,18 @@ permit_params :draft, :name, :text_de, :text_en, :contact, :primary_image, :seco
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+
+  index as: :reorderable_table do
+    column :draft
+    column :name
+    column :image do |staff|
+      ol class: "image_swapper" do
+        li image_tag staff.primary_image(:thumb)
+        li image_tag staff.secondary_image(:thumb)
+      end
+    end
+    actions
+  end
 
   show do
       attributes_table do

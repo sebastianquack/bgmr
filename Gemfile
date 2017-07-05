@@ -61,6 +61,9 @@ gem 'route_translator'# translate routes
 
 gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
 
+gem 'acts_as_list'
+gem 'activeadmin_reorderable'
+
 gem 'faker' # create fake data
 
 gem 'neat' # thoughtbot scss grid

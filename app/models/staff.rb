@@ -1,5 +1,9 @@
 class Staff < ActiveRecord::Base
 
+    acts_as_list
+
+    default_scope { order(position: :asc) }
+
     has_attached_file :primary_image, styles: { medium: "600x600>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
     has_attached_file :secondary_image, styles: { medium: "600x600>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
 

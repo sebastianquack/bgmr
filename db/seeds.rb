@@ -14,6 +14,9 @@ Page.create!(seed_id: 'imprint', title_de: "Impressum", title_en: "Imprint", slu
 Page.create!(seed_id: 'news', title_de: "Neuigkeiten", title_en: "News", slug_de: "neuigkeiten", slug_en: "news")    if Page.where(seed_id: 'news').empty?
 Page.create!(seed_id: 'publications', title_de: "Publikationen", title_en: "Publications", slug_de: "publikationen", slug_en: "publications")    if Page.where(seed_id: 'publications').empty?
 
+# add initial entry
+Staff.create!(name: "bgmr", position: 1) if Staff.all.empty?
+
 # just do once, remember with seed_id
 Topic.create!(seed_id: '1', color: '#C200FB', title_de: "Schöne Orte", title_en: "Nice Places", slug_de: "schoene_orte", slug_en: "nice_places")    if Topic.where(seed_id: '1').empty?
 Topic.create!(seed_id: '2', color: '#C200FB', title_de: "Multicodierung", title_en: "Multicodierung", slug_de: "multicodierung", slug_en: "multicodierung")    if Topic.where(seed_id: '2').empty?
@@ -26,7 +29,7 @@ Topic.create!(seed_id: '8', color: '#2DBB83', title_de: "Klimaangepasste Stadt",
 Topic.create!(seed_id: '9', color: '#2DBB83', title_de: "Grau-grüne Infrastruktur", title_en: "Grey-Green-Infrastructure", slug_de: "graugruene_infrastruktur", slug_en: "grey_green_infrastructure")    if Topic.where(seed_id: '9').empty?
 Topic.create!(seed_id: '10', color: '#2DBB83', title_de: "Bildungslandschaften", title_en: "Educational Landscapes", slug_de: "bildungslandschaften", slug_en: "educational_landscapes")    if Topic.where(seed_id: '10').empty?
 
-# just do once, but remember with special id range
+# just do once, but remember by dedicated id range
 
 tags = [
   'Region',
