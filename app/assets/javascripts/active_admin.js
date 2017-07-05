@@ -107,21 +107,30 @@ function initSlideMoveEvent(event) {
   // buttons to change slide order
   
     event.preventDefault();
+
+    // get slide that was clicked on
+    var thisSlide = $(event.target).parent().parent().parent();
+
+    // get position that it is currently in
     var slides = $("fieldset.slide");
-    var myPosition = slides.index($(event.target).parent().parent().parent());
+    var myPosition = slides.index(thisSlide);
     console.log(myPosition);
 
-    var myOrderInput = $("#project_slides_attributes_"+myPosition+"_order");
+    // get index currently displayed
+    var myOrderInput = thisSlide.find(".order_input");    
     var myOrderInputValue = myOrderInput.val();
+    console.log(myOrderInputValue);
         
     if($(event.target).hasClass("up")) {
       if(myPosition == 0) {
         console.log("this is top");
         alert("Slide ist bereits an erster Stelle.");
       } else {
-        // change order field with previous slide
-        var previousOrderInput = $("#project_slides_attributes_"+(myPosition-1)+"_order");
+        // exchange order field with previous slide
+        var prevSlide = slides[myPosition - 1];
+        var previousOrderInput = $(prevSlide).find(".order_input");
         var previousOrderInputValue = previousOrderInput.val();
+        
         previousOrderInput.val(myOrderInputValue);
         myOrderInput.val(previousOrderInputValue);
 
@@ -137,8 +146,11 @@ function initSlideMoveEvent(event) {
         alert("Slide ist bereits an letzter Stelle.");
       } else {
         // exchange order field with next slide
-        var nextOrderInput = $("#project_slides_attributes_"+(myPosition+1)+"_order");
+        var nextSlide = slides[myPosition + 1];
+        console.log(nextSlide);
+        var nextOrderInput = $(nextSlide).find(".order_input");
         var nextOrderInputValue = nextOrderInput.val();
+        
         nextOrderInput.val(myOrderInputValue);
         myOrderInput.val(nextOrderInputValue);
 
