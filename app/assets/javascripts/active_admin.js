@@ -110,6 +110,8 @@ function initSlideMoveEvent(event) {
 
     // get slide that was clicked on
     var thisSlide = $(event.target).parent().parent().parent();
+    var slideId = $(event.target).parent().data("slide_id");
+    console.log(slideId);
 
     // get position that it is currently in
     var slides = $("fieldset.slide");
@@ -128,6 +130,8 @@ function initSlideMoveEvent(event) {
       } else {
         // exchange order field with previous slide
         var prevSlide = slides[myPosition - 1];
+        var prevSlideId = $($(prevSlide).find(".slide-move-buttons")[0]).data("slide_id");
+        console.log(prevSlideId);
         var previousOrderInput = $(prevSlide).find(".order_input");
         var previousOrderInputValue = previousOrderInput.val();
         
@@ -137,7 +141,7 @@ function initSlideMoveEvent(event) {
         // move elemet up in DOM
         $(slides[myPosition]).insertBefore(slides[myPosition-1]);
 
-        updateSlideLinksAfterMove(myOrderInputValue, previousOrderInputValue);
+        updateSlideLinksAfterMove(slideId, prevSlideId);
       }
     }
     if($(event.target).hasClass("down")) {
@@ -147,7 +151,8 @@ function initSlideMoveEvent(event) {
       } else {
         // exchange order field with next slide
         var nextSlide = slides[myPosition + 1];
-        console.log(nextSlide);
+        var nextSlideId = $($(nextSlide).find(".slide-move-buttons")[0]).data("slide_id");
+        console.log(nextSlideId);
         var nextOrderInput = $(nextSlide).find(".order_input");
         var nextOrderInputValue = nextOrderInput.val();
         
@@ -157,23 +162,53 @@ function initSlideMoveEvent(event) {
         // move elemet down in DOM
         $(slides[myPosition+1]).insertBefore(slides[myPosition]);
 
-        updateSlideLinksAfterMove(myOrderInputValue, nextOrderInputValue);
+        updateSlideLinksAfterMove(slideId, nextSlideId);
       }
     }
   
 }
 
-function updateSlideLinksAfterMove(value1, value2) {  
-  var slides = $("fieldset.slide");
+function updateSlideLinksAfterMove(slideId1, slideId2) {  
+  
+  // go over all slidelink menus
   var slideLinkSelects = $("fieldset .slide_link select");
   slideLinkSelects.each(function(index, select) {
+    
+    // go over all items in this slidelink menu and find the to options to swap
+    var option1 = null;
+    var index1 = null;
+    var option2 = null;
+    var index2 = null;
     $(select).find("option").each(function(index, option) {
-      if(option.innerHTML == value1) {
-        $(option).html(value2);
+      if($(option).val() == slideId1) {
+        option1 = $(option);
+        index1 = index;
       }
-      else if(option.innerHTML == value2) {
-        $(option).html(value1);
+      if($(option).val() == slideId2) {
+        option2 = $(option);
+        index2 = index;
       }
     });
+
+    // swap selection
+    if($(option1).is(':selected')) {
+      $(select).val(slideId2)
+    } else {
+      if($(option2).is(':selected')) {
+        $(select).val(slideId1)
+      }
+    }
+
+    // swap values
+    val1 = option1.val();
+    option1.val(option2.val());
+    option2.val(val1);
+
+    // swap html
+    html1 = option1.html();
+    html2 = option2.html();
+    option1.html((index1 + 1) + " " + html2.substr(html2.indexOf(" ") + 1));
+    option2.html((index2 + 1) + " " + html1.substr(html1.indexOf(" ") + 1));
+      
   });
 }

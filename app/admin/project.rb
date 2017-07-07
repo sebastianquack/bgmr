@@ -117,12 +117,12 @@ form :html => { :enctype => "multipart/form-data" } do |f|
     #logger.debug f.object.inspect
     f.has_many :slides, heading: false, class: "slide", :new_record => true, :allow_destroy => true do |f_s|
       #logger.debug f_s.object.inspect
-      f_s.input :image, :input_html => { :class => "js-upload" }, :wrapper_html => { :class => "slide_image" }, :as => :file, :required => false, 
+      f_s.input :image, :input_html => { :class => "js-upload"}, :wrapper_html => { :class => "slide_image" }, :as => :file, :required => false, 
         :hint => f_s.object.image? ? image_tag(f_s.object.image.url(:large)) : image_tag("data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==")
       unless f_s.object.new_record? #allow slide link management only after save
         f_s.has_many :slide_links, class: "slide_link", :new_record => true, :allow_destroy => true do |f_sl|
           #logger.debug f_sl.object.inspect
-          f_sl.input :to_slide, :include_blank => false, :collection => f.object.slides.collect {|slide| [slide.order, slide.id] }, :hint => "•", :wrapper_html => { :class =>  "to_slide" }
+          f_sl.input :to_slide, :include_blank => false, :collection => f.object.slides.collect {|slide| [slide.order.to_s + " " + slide.caption_de[0..10] + (slide.caption_de.length > 9 ? "..." : ""), slide.id] }, :hint => "•", :wrapper_html => { :class =>  "to_slide" }
           f_sl.input :pos_x, :wrapper_html => { :class =>  "hidden" }, :input_html => { :class =>  "pos_x" }
           f_sl.input :pos_y, :wrapper_html => { :class =>  "hidden" }, :input_html => { :class =>  "pos_y" }
         end
@@ -134,7 +134,7 @@ form :html => { :enctype => "multipart/form-data" } do |f|
       f_s.input :order,  :wrapper_html => { :class =>  "order" }, :input_html => { :class =>  "order_input", readonly: true } #, :as => :hidden
       # hack to add custom html elements in form
       f_s.template.concat(Arbre::Context.new do
-                                    li do
+                                    li :class => "slide-move-buttons", "data-slide_id" => f_s.object.id do
                                       button I18n.t(:move_up), :class => "slide-move-button up" 
                                       button I18n.t(:move_down), :class => "slide-move-button down"
                                     end
