@@ -1,7 +1,10 @@
 // Place all the styles related to the topics controller here.
 
-$d_topics_topic_dot_radius: 120px;
+$d_topics_topic_dot_base_radius: 40px;
 $d_topics_topic_dot_padding: 10px;
+
+@debug 'javascript: d_topics_topic_dot_base_radius = #{ strip-units($d_topics_topic_dot_base_radius) }';
+@debug 'javascript: d_topics_topic_dot_padding = #{ strip-units($d_topics_topic_dot_padding) }';
 
 .topics_canvas {
   @include bp($b_8_and_lower) { height: 96 * $d_gridheight; }
@@ -20,8 +23,8 @@ $d_topics_topic_dot_padding: 10px;
 
   .topic_container {
     position: absolute;
-    width: $d_topics_topic_dot_radius;
-    height: $d_topics_topic_dot_radius;
+    width: 2*$d_topics_topic_dot_base_radius; // modified at topics.js
+    height: 2*$d_topics_topic_dot_base_radius; // modified at topics.js
     transform: translateX(-50%) translateY(-50%);
 
     //transition: all 0.4s;
@@ -29,8 +32,8 @@ $d_topics_topic_dot_padding: 10px;
   }
 
   .topic {
-    width: $d_topics_topic_dot_radius - 2 * $d_topics_topic_dot_padding;
-    height: $d_topics_topic_dot_radius - 2 * $d_topics_topic_dot_padding;
+    width: 2*$d_topics_topic_dot_base_radius - 2 * $d_topics_topic_dot_padding; // modified at topics.js
+    height: 2*$d_topics_topic_dot_base_radius - 2 * $d_topics_topic_dot_padding; // modified at topics.js
     border-radius: 50%;
     background-color: grey;
     color:white;

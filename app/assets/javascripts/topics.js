@@ -1,5 +1,8 @@
 // Place all the behaviors and hooks related to the matching controller here.
 
+d_topics_topic_dot_base_radius = 40;
+d_topics_topic_dot_padding = 10;
+
 // event bindings
 
 $(document).on('turbolinks:load', function(){
@@ -48,8 +51,16 @@ function placeTopics() {
     $(e).css('top',positions[i].y + "px")
     //TODO: set size for element
     //$(e).css('width', getRadius($(e).outerWidth(), $(e).data("projects")));
+    setTopicRadiusCSS(e, positions[i].radius);
     $(e).addClass('positioned')
   }
+}
+
+function setTopicRadiusCSS(e, radius) {
+  $(e).css('width', 2*radius+'px');
+  $(e).css('height', 2*radius+'px');
+  $(e).find('.topic').css('width', (2*radius-2*d_topics_topic_dot_padding)+'px');
+  $(e).find('.topic').css('height', (2*radius-2*d_topics_topic_dot_padding)+'px');
 }
 
 // calculates the radius from the css width and the number of projects for this topic
@@ -70,20 +81,21 @@ function getRadius(width, projects) {
 // generates a random position for an element
 function getRandomPosition(element, container_width, container_height) {
 
-  var elem_radius = getRadius($(element).outerWidth(), $(element).data("projects"));
+  var elem_radius = getRadius(d_topics_topic_dot_base_radius, $(element).data("projects"));
   
-  var min_x = 0.5 * elem_radius
-  var max_x = container_width - 0.5 * elem_radius;
-  var min_y = 0.5 * elem_radius
-  var max_y = container_height - 0.5 * elem_radius;  
+  var min_x = elem_radius
+  var max_x = container_width - elem_radius;
+  var min_y = elem_radius
+  var max_y = container_height - elem_radius;  
   return {
     x: Math.round(Math.random() * (max_x-min_x) + min_x ),
-    y: Math.round(Math.random() * (max_y-min_y) + min_y )
+    y: Math.round(Math.random() * (max_y-min_y) + min_y ),
+    radius: elem_radius,
   }
 }
 
 // checks if a position overlaps too much with existing already positioned elements
-function checkPosition(element, newPos, positions, elements) {
+function checkPosition(newPos, positions) {
 
   if (positions.length == 0) {
     return true;
@@ -91,11 +103,13 @@ function checkPosition(element, newPos, positions, elements) {
   for (var i = positions.length-1; i >= 0; i--) {
     var other_x = positions[i].x
     var other_y = positions[i].y
+    var other_radius = positions[i].radius;
     var dist = Math.hypot(other_x - newPos.x, other_y - newPos.y)
-    //console.log(j, "dist: " + dist)
 
-    //get min distance for each element with radius
-    var min_distance = getRadius($(elements[i]).outerWidth(), $(elements[i]).data("projects")) * 0.62;
+    //get min distance for each element 
+    var min_distance = newPos.radius + other_radius - 2*d_topics_topic_dot_padding;
+
+    //console.log("dist: " + dist + ", min dist " + min_distance);
 
     if (dist < min_distance) { // does not fit
       //console.log("didn't fit")
@@ -119,8 +133,9 @@ function getRandomPositions(container_width, container_height, elements) {
       var pos = getRandomPosition(elements[i], container_width, container_height);
     
       // 2. check if this positions is possible
-      if(checkPosition(elements[i], pos, positions, elements)) {
+      if(checkPosition(pos, positions)) {
         positions.push(pos);
+        //console.log("placed after " + j + " iterations")
         break;
       }       
     }
@@ -131,6 +146,5 @@ function getRandomPositions(container_width, container_height, elements) {
     }
       
   }
-  //console.log("finished after " + i + " iterations")
   return positions
 }
