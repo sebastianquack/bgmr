@@ -34,12 +34,10 @@ de:
   out_of: "von"
   hide_text: "Text verbergen"
   search: "Suche"
-
+  preview: "Vorschau"
   routes:
     projects: "projekte"
     topics: "themen"
-
-
   deactivated: "Deaktiviert"
   asociated_projects: "Asoziierte Projekte"
   slugs: "Links"
@@ -49,11 +47,13 @@ de:
   description: "Beschreibung"
   slideshow: "Slideshow"
   image: "Bild"
+  images: "Bilder"
   file: "Datei"
   image_upload_info: "Bild als JPG/PNG/GIF hochladen"
   pdf_upload_info: "Datei im PDF-Format hochladen"
   move_up: "nach oben ↑"
   move_down: "nach unten ↓"
+  read_more: "weiterlesen"
   activerecord: 
       models: 
         project: 
@@ -86,6 +86,12 @@ de:
         publication:
           one: "Publikation"
           other: "Publikationen"
+        news_item: 
+          one: "News"
+          other: "News"
+        news_image:
+          one: "Bild"
+          other: "Bilder"
       attributes:
         project:
           title: "Titel"
@@ -117,9 +123,22 @@ de:
           title: "Titel"
           file: "Datei"
           draft: "Entwurf"
+        news_item: 
+          title: "Titel"
+          preview: "Vorschautext"
+          content: "Volltext"
+          draft: "Entwurf"
+          slug: "Link"
       errors:
         models:
           project:
+            attributes:
+              title:
+                blank: "darf nicht leer sein"
+              slug:
+                blank: "darf nicht leer sein"
+                invalid: "darf keine Sonderzeichen enthalten"
+          news_item:
             attributes:
               title:
                 blank: "darf nicht leer sein"

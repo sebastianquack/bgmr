@@ -50,6 +50,7 @@ en:
   image: "Image"
   image_upload_info: "Upload image as JPG/PNG/GIF"
   pdf_upload_info: "Upload file as PDF"
+  read_more: "read more"
   activerecord: 
       models: 
         project: 

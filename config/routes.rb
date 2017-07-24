@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :topics, :only => [:show, :index]
       resources :staff, :only => [:index, :insert_at, :reorder] #, :only => [:insert_at, :reorder]
       resources :publications, :only => [:index]
+      resources :news_items, :only => [:show, :index]
     end
     #resources :pages, :only => [:show] #, :path => '' # route everything to pages controller
     #resources :welcome, :only => [:index]

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170705154745) do
+ActiveRecord::Schema.define(version: 20170724183806) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -65,6 +65,31 @@ ActiveRecord::Schema.define(version: 20170705154745) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+
+  create_table "news_images", force: :cascade do |t|
+    t.integer  "news_item_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  create_table "news_items", force: :cascade do |t|
+    t.string   "title_de"
+    t.string   "title_en"
+    t.text     "preview_de"
+    t.text     "preview_en"
+    t.text     "content_de"
+    t.text     "content_en"
+    t.integer  "position"
+    t.boolean  "draft"
+    t.string   "slug_de"
+    t.string   "slug_en"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "pages", force: :cascade do |t|
     t.boolean  "draft"
@@ -179,13 +204,13 @@ ActiveRecord::Schema.define(version: 20170705154745) do
   end
 
   create_table "topics", force: :cascade do |t|
-    t.string   "title_de"
-    t.string   "title_en"
+    t.string   "title_de",           null: false
+    t.string   "title_en",           null: false
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.string   "slug_en",            null: false
+    t.string   "slug_de",            null: false
     t.string   "color"
-    t.string   "slug_en"
-    t.string   "slug_de"
     t.string   "seed_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
