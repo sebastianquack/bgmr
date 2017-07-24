@@ -9,7 +9,8 @@ Rails.application.routes.draw do
     localized do
       resources :projects, :only => [:show, :index]
       resources :topics, :only => [:show, :index]
-      resources :staff #, :only => [:insert_at, :reorder]
+      resources :staff, :only => [:index, :insert_at, :reorder] #, :only => [:insert_at, :reorder]
+      resources :publications, :only => [:index]
     end
     #resources :pages, :only => [:show] #, :path => '' # route everything to pages controller
     #resources :welcome, :only => [:index]

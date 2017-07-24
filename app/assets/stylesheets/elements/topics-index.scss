@@ -85,7 +85,7 @@ $d_topics_topic_dot_border_width: 2px;
 
   @for $i from 1 through 40 {
     .topic_container:nth-child(#{$i}) .topic {
-      transition: background-color 0.4s, color 0.4s, transform #{ 0.8 + $i * 0.08 }s #{ $i * 0.08 }s;
+      transition: background-color 0.4s, color 0.4s, transform #{ 0.8 + $i * 0.08 }s #{ ($i - 1) * 0.08 }s;
     }
   }
   

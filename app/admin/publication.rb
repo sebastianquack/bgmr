@@ -17,7 +17,7 @@ config.paginate   = false
  end
 reorderable
 
-index as: :reorderable_table do
+  index as: :reorderable_table do
     column :draft
     column :title
     column t(:image) do |p|

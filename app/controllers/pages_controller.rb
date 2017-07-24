@@ -8,5 +8,11 @@ class PagesController < ApplicationController
       @staffs = Staff.all
       render "staffs/index"
     end
+
+    if @page.seed_id && @page.seed_id == "publications"
+      @publications = Publication.all
+      render "publications/index"
+    end
+
   end
 end
