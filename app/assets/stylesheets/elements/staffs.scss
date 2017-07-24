@@ -1,3 +1,90 @@
 // Place all the styles related to the staffs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.staffs_list {
+  @include grid-container;
+
+  .staffs_list_entry {
+
+    margin-top: 2 * $d_gridheight;
+    text-align: center;
+
+    @include bp($b_8_and_lower) { 
+      margin-top: 10 * $d_gridheight;
+    } 
+
+    @include grid-column(4);
+    @include bp($b_4-8) { @include grid-column($columns_count/1); }
+    @include bp($b_8-12) { @include grid-column($columns_count/2); }
+    @include bp($b_12-16) { @include grid-column($columns_count/3); }
+    @include bp($b_16-20) { @include grid-column($columns_count/4); }
+    @include bp($b_20-24) { @include grid-column($columns_count/5); }
+    @include bp($b_24_and_up) { @include grid-column($columns_count/6); }
+
+    img {
+      display: block;
+      width: calc( 100% - #{ $d_gutterwidth_abs } );
+      height: 28 * $d_gridheight;
+      object-fit: cover;
+      object-position: center center;
+      margin-bottom: 2 * $d_gridheight;
+      padding-left: 0.5 * $d_gutterwidth_abs;
+      padding-right: 0.5 * $d_gutterwidth_abs;
+    }
+
+    .staff_name {
+      height: 2 * $base-line-height;
+      overflow: hidden;
+      font-weight: bold;
+
+      @include visual_bg;      
+    }
+
+    @include visual_bg;
+  }
+
+  .staffs_list_entry:first-child {
+
+    @include bp($b_8-12) { @include grid-column($columns_count/1); height: 56 * $d_gridheight; }
+    @include bp($b_12-16) { @include grid-column($columns_count/1); }
+    @include bp($b_16-20) { @include grid-column($columns_count/4); }
+    @include bp($b_20-24) { @include grid-column($columns_count/5); }
+    @include bp($b_24_and_up) { @include grid-column($columns_count/6); }
+
+    img {
+      display: block;
+      margin-bottom: 2 * $d_gridheight;
+      @include bp($b_8-12) { 
+        
+      }
+    }
+
+    .staff_image {
+      @include bp($b_8-12) { 
+        width: calc( 50% - #{ 0.5 * $d_gutterwidth_abs } ); 
+        float:right;
+      }      
+    }
+
+    .staff_text { 
+      display: none;
+    }
+
+    .staff_info {
+      @include bp($b_8-12) { 
+        float:left;
+      }
+      position: relative;
+    }
+
+    .staff_contact {
+      white-space: pre;
+      text-align: left;
+      position:absolute;
+      bottom:0;
+    }
+
+  }
+
+}

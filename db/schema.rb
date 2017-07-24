@@ -179,13 +179,13 @@ ActiveRecord::Schema.define(version: 20170705154745) do
   end
 
   create_table "topics", force: :cascade do |t|
-    t.string   "title_de",           null: false
-    t.string   "title_en",           null: false
+    t.string   "title_de"
+    t.string   "title_en"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.string   "slug_en",            null: false
-    t.string   "slug_de",            null: false
     t.string   "color"
+    t.string   "slug_en"
+    t.string   "slug_de"
     t.string   "seed_id"
     t.string   "image_file_name"
     t.string   "image_content_type"

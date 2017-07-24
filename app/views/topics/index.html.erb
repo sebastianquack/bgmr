@@ -1,7 +1,7 @@
 <ul id="topics" class="topics_canvas">
   <% @topics.each do |topic| %>
     <li class="topic_container" data-projects="<%= topic.projects.length %>">
-      <a class="topic" lang="<%= I18n.locale %>" href="<%= topic_path(:id => topic.slug) %>" style="background-color:<%= topic.color %>">
+      <a class="topic" lang="<%= I18n.locale %>" href="<%= topic_path(:id => topic.slug) %>" style="background-color:<%= topic.color %>; border-color:<%= topic.color %>; color:<%= topic.color %>">
         <%= topic.title %>
       </a>
     </li>
