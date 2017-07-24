@@ -2,6 +2,7 @@
 
 d_topics_topic_dot_base_radius = 40;
 d_topics_topic_dot_padding = 10;
+d_topics_topic_dot_border_width = 2;
 
 // event bindings
 
@@ -28,7 +29,7 @@ $(document).on('turbolinks:visit, turbolinks:before-cache', function(){
 
 var debouncedPlaceTopics = debounce(function() {
   placeTopics()
-}, 550);
+}, 1000);
 
 function resetTopics() {
   var container_elem = $('#topics.topics_canvas').get(0)
@@ -59,8 +60,9 @@ function placeTopics() {
 function setTopicRadiusCSS(e, radius) {
   $(e).css('width', 2*radius+'px');
   $(e).css('height', 2*radius+'px');
-  $(e).find('.topic').css('width', (2*radius-2*d_topics_topic_dot_padding)+'px');
-  $(e).find('.topic').css('height', (2*radius-2*d_topics_topic_dot_padding)+'px');
+  $(e).find('.topic').css('width', (2*(radius-d_topics_topic_dot_padding-d_topics_topic_dot_border_width))+'px');
+  $(e).find('.topic').css('height', (2*(radius-d_topics_topic_dot_padding-d_topics_topic_dot_border_width))+'px');
+  $(e).css('font-size', radius+'px');
 }
 
 // calculates the radius from the css width and the number of projects for this topic

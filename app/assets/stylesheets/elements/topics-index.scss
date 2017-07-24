@@ -2,9 +2,11 @@
 
 $d_topics_topic_dot_base_radius: 40px;
 $d_topics_topic_dot_padding: 10px;
+$d_topics_topic_dot_border_width: 2px;
 
 @debug 'javascript: d_topics_topic_dot_base_radius = #{ strip-units($d_topics_topic_dot_base_radius) }';
 @debug 'javascript: d_topics_topic_dot_padding = #{ strip-units($d_topics_topic_dot_padding) }';
+@debug 'javascript: d_topics_topic_dot_border_width = #{ strip-units($d_topics_topic_dot_border_width) }';
 
 .topics_canvas {
   @include bp($b_8_and_lower) { height: 96 * $d_gridheight; }
@@ -23,24 +25,32 @@ $d_topics_topic_dot_padding: 10px;
 
   .topic_container {
     position: absolute;
-    width: 2*$d_topics_topic_dot_base_radius; // modified at topics.js
-    height: 2*$d_topics_topic_dot_base_radius; // modified at topics.js
+    width: 2*$d_topics_topic_dot_base_radius; // modified by topics.js
+    height: 2*$d_topics_topic_dot_base_radius; // modified by topics.js
+    font-size: 2*$d_topics_topic_dot_base_radius; // modified by topics.js
     transform: translateX(-50%) translateY(-50%);
 
     //transition: all 0.4s;
 
+    &:not(:hover) {
+      z-index:4;
+    }
+
+    &:hover {
+      z-index:5;
+    }
+
   }
 
   .topic {
-    width: 2*$d_topics_topic_dot_base_radius - 2 * $d_topics_topic_dot_padding; // modified at topics.js
-    height: 2*$d_topics_topic_dot_base_radius - 2 * $d_topics_topic_dot_padding; // modified at topics.js
+    width: 2*$d_topics_topic_dot_base_radius - 2 * $d_topics_topic_dot_padding - 2*$d_topics_topic_dot_border_width; // modified by topics.js
+    height: 2*$d_topics_topic_dot_base_radius - 2 * $d_topics_topic_dot_padding - 2*$d_topics_topic_dot_border_width; // modified by topics.js
     border-radius: 50%;
-    background-color: grey;
-    color:white;
-    display: block;
+    background-color: grey; // modified by inline styles
+    display: inline-block;
     line-height: 1.1;
     text-align: center;
-    font-size: 12px;
+    font-size: 20%;
     padding:$d_topics_topic_dot_padding;
     display: table-cell;
     vertical-align: middle;
@@ -52,13 +62,21 @@ $d_topics_topic_dot_padding: 10px;
 
     opacity: 0.8;
 
+    border: solid 2px;
+    border-color: grey; // modified by inline styles
+
+    &:not(:hover) {
+      background-color: transparent !important; // modified by inline styles
+    }
+
     &:hover {
       opacity: 1;
+      color:white !important;
     }
   }
 
   .topic_container, .topic {
-    mix-blend-mode: hard-light;
+    mix-blend-mode: luminosity;
   }
 
   .topic_container.positioned .topic {
@@ -67,7 +85,7 @@ $d_topics_topic_dot_padding: 10px;
 
   @for $i from 1 through 40 {
     .topic_container:nth-child(#{$i}) .topic {
-      transition: transform 0.1s #{ $i * 0.03 }s;
+      transition: background-color 0.4s, color 0.4s, transform #{ 0.8 + $i * 0.08 }s #{ $i * 0.08 }s;
     }
   }
   
