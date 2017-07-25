@@ -6,48 +6,62 @@
     </a>
   </div>
 
-  <ul id="menu_dynamic">
-    <li>
-      <%= link_to_unless_current t("topics"),  topics_path, data: { 'turbolinks-action': "restore" } %>
-    </li>
-    <li>
-      <%= link_to_unless_current t("projects"), projects_path %>
-    </li>
-  </ul>
+  <div class="menu_container">
 
-  <ul id="menu_static">
-    <li>
-      <%= link_to_unless_current get_seed_page('about').title, page_path(get_seed_page('about')) %>
-    </li>
-    <li>
-      <%= link_to_unless_current get_seed_page('news').title, page_path(get_seed_page('news')) %>
-    </li>
-    <li>
-      <%= link_to_unless_current get_seed_page('publications').title, page_path(get_seed_page('publications')) %>
-    </li>
-    <li>
-      <%= link_to_unless_current get_seed_page('imprint').title, page_path(get_seed_page('imprint')) %>
-    </li>
-    <li>
-      <%= link_to 'Log in', 'https://owncloud.org/' %>
-    </li>    
-  </ul>
+    <ul id="menu_dynamic">
+      <li>
+        <%= link_to_unless_current t("topics"),  topics_path, data: { 'turbolinks-action': "restore" } %>
+      </li>
+      <li>
+        <%= link_to_unless_current t("projects"), projects_path %>
+      </li>
+    </ul>
 
-  <ul id="menu_language">
-    <li>
-      <% if current_locale :en %>
-        <abbr title="English">en</abbr>
-      <% else %>
-        <a href="<%= translated_url_for_current_request(:en) %>" title="English" rel="alternate" hreflang="en"><abbr title="English">en</abbr></a>
-      <% end %>
-    </li>
-    <li>
-      <% if current_locale :de %>
-        <abbr title="Deutsch">de</abbr>
-      <% else %>
-        <a href="<%= translated_url_for_current_request(:de) %>" title="Deutsch" rel="alternate" hreflang="de"><abbr title="Deutsch">de</abbr></a>
-      <% end %>
-    </li>
-  </ul>
+    <ul id="menu_static">
+      <li>
+        <%= link_to_unless_current get_seed_page('about').title, page_path(get_seed_page('about')) %>
+      </li>
+      <li>
+        <%= link_to_unless_current get_seed_page('news').title, page_path(get_seed_page('news')) %>
+      </li>
+      <li>
+        <%= link_to_unless_current get_seed_page('publications').title, page_path(get_seed_page('publications')) %>
+      </li>
+      <li>
+        <%= link_to_unless_current get_seed_page('imprint').title, page_path(get_seed_page('imprint')) %>
+      </li>
+      <li>
+        <%= link_to 'Log in', 'https://owncloud.org/' %>
+      </li>    
+    </ul>
+
+    <ul id="menu_language">
+      <li>
+        <% if current_locale :en %>
+          <abbr title="English">en</abbr>
+        <% else %>
+          <a href="<%= translated_url_for_current_request(:en) %>" title="English" rel="alternate" hreflang="en"><abbr title="English">en</abbr></a>
+        <% end %>
+      </li>
+      <li>
+        <% if current_locale :de %>
+          <abbr title="Deutsch">de</abbr>
+        <% else %>
+          <a href="<%= translated_url_for_current_request(:de) %>" title="Deutsch" rel="alternate" hreflang="de"><abbr title="Deutsch">de</abbr></a>
+        <% end %>
+      </li>
+    </ul>
+
+    <svg class="close_icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="-2 -2 26 26">
+      <path fill="none" d="M1 1l20 20m0-20L1 21"></path>
+    </svg>
+
+  </div>
+
+  <svg class="menu_button" xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16">
+    <line x1="0" y1="2" x2="20" y2="2" ></line>
+    <line x1="0" y1="8" x2="20" y2="8" ></line>
+    <line x1="0" y1="14" x2="20" y2="14" ></line>
+  </svg>   
 
 </nav>
