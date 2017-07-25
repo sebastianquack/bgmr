@@ -1,0 +1,25 @@
+<% # locals: news_item, preview %>
+
+<% news_images = preview ? [news_item.news_images.first] : news_item.news_images %>
+
+<article class="news_item">
+  
+  <div class="news_item_info">
+    <h3 class="news_item_title"><%= news_item.title %></h3>
+    
+    <% if preview %>
+      <div class="news_item_preview"><%= news_item.preview.html_safe %> <a class="read_more" href="<%= news_item_path(:id => news_item.slug) %>">> <%= t(:read_more) %></a></div>
+    <% else %>
+      <div class="news_item_content"><%= news_item.content.html_safe %></div>
+    <% end %>
+  </div>
+
+  <div class="news_item_images">
+    <% if news_images.length > 0 %>
+      <% news_images.each do |news_image| %>
+        <%= image_tag news_image.image(:medium) if !news_image.nil? %>
+      <% end %>
+    <% end %>
+  </div>
+
+</article>

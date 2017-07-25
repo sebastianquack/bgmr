@@ -1,11 +1,7 @@
   <ul class="news_items_list">
     <% news_items.each do |news_item| %>
       <li>
-          <h3><%= news_item.title %></h3>
-          <% if news_item.news_images.length > 0 %>
-            <%= image_tag news_item.news_images.first.image(:medium) %>
-          <% end %>
-          <div><%= news_item.preview %> <a href="<%= news_item_path(:id => news_item.slug) %>">> <%= t(:read_more) %></a></div>
+        <%= render partial: "news_items/news_item", locals: { news_item: news_item, preview: true } %>
       </li>
     <% end %>
   </ul>

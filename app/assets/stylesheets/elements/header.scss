@@ -21,7 +21,7 @@
 
   // LAYOUT: ALL EXCEPT LOGO
 
-  & > ul {
+  ul {
     margin-top: 7 * $d_gridheight - $base-line-height;
     @include baseline_adjust_base;
     display:inline;

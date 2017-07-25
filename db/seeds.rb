@@ -15,7 +15,7 @@ Page.create!(seed_id: 'news', title_de: "Neuigkeiten", title_en: "News", slug_de
 Page.create!(seed_id: 'publications', title_de: "Publikationen", title_en: "Publications", slug_de: "publikationen", slug_en: "publications")    if Page.where(seed_id: 'publications').empty?
 
 # add initial entry
-Staff.create!(name: "bgmr", position: 1) if Staff.all.empty?
+Staff.create!(name: "bgmr Landschaftsarchitekten", position: 1, contact: "Tel (030) 214 59 59-23\nFax (030) 214 59 59-59\ninfo@bgmr.de") if Staff.all.empty?
 
 # just do once, remember with seed_id
 Topic.create!(seed_id: '1', color: '#C200FB', title_de: "Schöne Orte", title_en: "Nice Places", slug_de: "schoene_orte", slug_en: "nice_places")    if Topic.where(seed_id: '1').empty?
@@ -108,7 +108,6 @@ if ENV["fakestaffs"]
   index = 0  
 
   while index < 20 do
-    slug = "dummy" + index.to_s
     
     if ENV["fakestaffs"]!="remove"
       name = Faker::Name.name
@@ -116,7 +115,7 @@ if ENV["fakestaffs"]
 
       contact = "Tel. (030) 214 59 59-23\ninfo@bgmr.de"
       
-      Staff.create!(name: name, text_de: text, text_en: text, primary_image: File.open('../dummy-images/' + index.to_s + '.jpg', 'rb'), secondary_image: File.open('../dummy-images/' + (20+index).to_s + '.jpg', 'rb'), contact: contact)
+      Staff.create!(name: name, text_de: text, text_en: text, primary_image: URI.parse("http://www.fillmurray.com/300/#{200+index}"), secondary_image: URI.parse("http://www.fillmurray.com/300/#{180+index}"), contact: contact)
 
       logger.info "Add Fake Staff ”" + name + "”"
     end
@@ -131,23 +130,22 @@ logger = Logger.new(STDOUT)
 
 if ENV["fakenews"]
 
-  destroyed = news.where("text_de LIKE ?",'%[Example]%').destroy_all
-  logger.info destroyed.to_a.length.to_s + " removed" if destroyed.to_a.length > 0
-
   index = 0  
 
-  while index < 20 do
+  while index < 3 do
     slug = "dummy" + index.to_s
+
+    destroyed = NewsItem.where(slug_de: slug).destroy_all
+    logger.info destroyed.to_a.length.to_s + " removed" if destroyed.to_a.length > 0
     
     if ENV["fakenewss"]!="remove"
-      name = Faker::Name.name
-      text = Faker::Lorem.paragraph(2, false, 8) + ' [Example]'
-
-      contact = "Tel. (030) 214 59 59-23\ninfo@bgmr.de"
+      title = Faker::Overwatch.quote
+      preview = Faker::Lorem.paragraph(1, false, 1)
+      content = Faker::Lorem.paragraph(2, false, 20)
       
-      news.create!(name: name, text_de: text, text_en: text, primary_image: File.open('../dummy-images/' + index.to_s + '.jpg', 'rb'), secondary_image: File.open('../dummy-images/' + (20+index).to_s + '.jpg', 'rb'), contact: contact)
+      item = NewsItem.create!(slug_de: slug, slug_en: slug, title_de: title, title_en: title, preview_de: preview, preview_en: preview, content_de: content, content_en: content)
 
-      logger.info "Add Fake news ”" + name + "”"
+      logger.info "Add Fake news ”" + title + "”"
     end
     index += 1
   end

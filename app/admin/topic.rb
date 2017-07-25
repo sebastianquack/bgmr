@@ -2,7 +2,7 @@ ActiveAdmin.register Topic do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-menu :priority => 3
+menu :priority => 2
 
 permit_params :title_de, :title_en, :slug_de, :slug_en, :color, :image, :description_de, :description_en
 

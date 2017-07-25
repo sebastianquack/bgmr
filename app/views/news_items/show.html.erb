@@ -1,11 +1,1 @@
-<article id="news_item">
-
-<h1><%= @news_item.title %></h1>
-
-<div><%= @news_item.content %></div>
-
-<% @news_item.news_images.each do |news_image| %>
-	<%= image_tag news_image.image(:medium) %>
-<% end %>
-
-</article>
+<%= render partial: "news_items/news_item", locals: { news_item: @news_item, preview: false } %>

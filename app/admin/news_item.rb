@@ -4,6 +4,7 @@ ActiveAdmin.register NewsItem do
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
 permit_params :slug_de, :slug_en, :title_de, :title_en, :preview_de, :preview_en, :content_de, :content_en, :draft, :position, :news_images_attributes => [:id, :image, :_destroy]
+menu :priority => 10
 #
 # or
 #
@@ -16,8 +17,6 @@ permit_params :slug_de, :slug_en, :title_de, :title_en, :preview_de, :preview_en
 config.sort_order = 'position_asc'
 config.paginate   = false
 reorderable
-
-menu :priority => 20
 
   index as: :reorderable_table do
     column :title

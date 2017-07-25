@@ -11,6 +11,7 @@
 @import "active_admin/mixins";
 @import "active_admin/base";
 @import "elements/image_swapper";
+@import "config/colors";
 
 @import "activeadmin_reorderable";
 
@@ -379,4 +380,25 @@ form fieldset > ol > li fieldset:not(.has_many_fields) ol {
 
 form fieldset ol > li label {
   font-weight: normal;
+}
+
+
+#header #site_title_image {
+  height: 32px;
+  width: auto;
+  top:0;
+}
+
+#header ul.tabs > li.current > a,
+#header ul.tabs > li:hover > a {
+  background-color: $c_bgmr_secondary;
+}
+
+#title_bar h2 {
+  font-size: 2em;
+}
+
+.has_many_container.news_images img {
+  height:200px;
+  max-height: 30vh;
 }

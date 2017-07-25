@@ -2,7 +2,7 @@ ActiveAdmin.register Page do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-menu :priority => 1
+menu :priority => 11
 permit_params :title_de, :title_en, :content_de, :content_en, :slug_de, :slug_en, :draft
 #
 # or

@@ -14,5 +14,10 @@ class PagesController < ApplicationController
       render "publications/index"
     end
 
+    if @page.seed_id && @page.seed_id == "news"
+      @news_items = NewsItem.all
+      render "news_items/index"
+    end
+
   end
 end
