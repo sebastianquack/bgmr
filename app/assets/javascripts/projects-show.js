@@ -100,11 +100,16 @@ $(document).on('turbolinks:load', function(){
 
 $(document).on('turbolinks:load', function(){
   $('#project .slide_link a').click(function(event){
-    event.preventDefault()
-    event.stopPropagation()
+
     var $slides = $('.slides')
     var targetIndex = parseInt($(this).attr('data-target-order')) - 1
     var currentIndex = $slides.slick('slickCurrentSlide')
+
+    $slides.slick('slickGoTo',targetIndex)
+
+/*
+    event.preventDefault()
+    event.stopPropagation()
 
     // do animation
     var previousSpeed = $slides.slick('slickGetOption','speed')
@@ -122,6 +127,8 @@ $(document).on('turbolinks:load', function(){
     setTimeout(function(){
       $slides.slick('slickSetOption','speed',previousSpeed)
     },400)    
+*/
+
   })
 })
 
