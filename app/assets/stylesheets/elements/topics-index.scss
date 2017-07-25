@@ -76,7 +76,8 @@ $d_topics_topic_dot_border_width: 2px;
   }
 
   .topic_container, .topic {
-    mix-blend-mode: luminosity;
+    mix-blend-mode: multiply;
+    //mix-blend-mode: luminosity; // nice, but not supported by safari
   }
 
   .topic_container.positioned .topic {
