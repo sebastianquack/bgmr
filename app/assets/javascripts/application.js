@@ -35,3 +35,4 @@
 //= require projects-show
 //= require topics
 //= require welcome
+//= require header

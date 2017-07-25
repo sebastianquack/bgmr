@@ -94,3 +94,61 @@ if ENV["fakeprojects"]
     index += 1
   end
 end
+
+# populate db with example staffs, run with "rake db:seed fakestaffs=true", always overwrite existing ones
+# remove with "rake db:seed fakestaffs=remove"
+
+logger = Logger.new(STDOUT)
+
+if ENV["fakestaffs"]
+
+  destroyed = Staff.where("text_de LIKE ?",'%Example%').destroy_all
+  logger.info destroyed.to_a.length.to_s + " removed" if destroyed.to_a.length > 0
+
+  index = 0  
+
+  while index < 20 do
+    slug = "dummy" + index.to_s
+    
+    if ENV["fakestaffs"]!="remove"
+      name = Faker::Name.name
+      text = Faker::Lorem.paragraph(2, false, 8) + ' [Example]'
+
+      contact = "Tel. (030) 214 59 59-23\ninfo@bgmr.de"
+      
+      Staff.create!(name: name, text_de: text, text_en: text, primary_image: File.open('../dummy-images/' + index.to_s + '.jpg', 'rb'), secondary_image: File.open('../dummy-images/' + (20+index).to_s + '.jpg', 'rb'), contact: contact)
+
+      logger.info "Add Fake Staff ”" + name + "”"
+    end
+    index += 1
+  end
+end
+
+# populate db with example news, run with "rake db:seed fakenews=true", always overwrite existing ones
+# remove with "rake db:seed fakenews=remove"
+
+logger = Logger.new(STDOUT)
+
+if ENV["fakenews"]
+
+  destroyed = news.where("text_de LIKE ?",'%[Example]%').destroy_all
+  logger.info destroyed.to_a.length.to_s + " removed" if destroyed.to_a.length > 0
+
+  index = 0  
+
+  while index < 20 do
+    slug = "dummy" + index.to_s
+    
+    if ENV["fakenewss"]!="remove"
+      name = Faker::Name.name
+      text = Faker::Lorem.paragraph(2, false, 8) + ' [Example]'
+
+      contact = "Tel. (030) 214 59 59-23\ninfo@bgmr.de"
+      
+      news.create!(name: name, text_de: text, text_en: text, primary_image: File.open('../dummy-images/' + index.to_s + '.jpg', 'rb'), secondary_image: File.open('../dummy-images/' + (20+index).to_s + '.jpg', 'rb'), contact: contact)
+
+      logger.info "Add Fake news ”" + name + "”"
+    end
+    index += 1
+  end
+end

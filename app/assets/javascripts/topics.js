@@ -128,7 +128,7 @@ function getRandomPositions(container_width, container_height, elements) {
   for (var i = 0; i < elements.length; i++) {
     //console.log(positions)
     
-    var max_j = 100; // maxumum iterations (very simple non-deterministic algorithm)
+    var max_j = 300; // maxumum iterations (very simple non-deterministic algorithm)
     for(var j = 0; j < max_j; j++) {
       
       // 1. get new random position

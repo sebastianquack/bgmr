@@ -35,6 +35,7 @@ $neat-grid: (
 body {
   padding:0;
   margin:0;
+  overflow-y: scroll;
 
   @if ($debug_show_grid) {
     background-size: #{ $d_gridwidth_abs + $d_gutterwidth_abs } $d_gridheight;
@@ -54,8 +55,6 @@ body {
 
 #content {
 }
-
-
 
 
 

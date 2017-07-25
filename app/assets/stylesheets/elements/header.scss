@@ -2,12 +2,7 @@
   @include grid-container;
 
   margin-top: $d_header_margin_top;
-
   height: $d_header_height;
-
-  li {
-    display: inline;
-  }
 
   li {
     color: $ca_menu_active;
@@ -59,10 +54,15 @@
     @include bp($b_20-24) { @include grid-column-mod(7,20) }
     @include bp($b_16-20) { @include grid-column-mod(5,16) }
     @include bp($b_12-16) { @include grid-column-mod(3,12) }
-    @include bp($b_12_and_lower) { display: none; }
+    @include bp($b_12_and_lower) { }
 
-    li:nth-child(n+1) {
-      margin-right: 1em;
+    @include bp($b_12_and_up) { 
+      li:nth-child(n+1) {
+        margin-right: 1em;
+      }
+      li {
+        display: inline;
+      }
     }
 
     @include visual_bg
@@ -75,12 +75,20 @@
     @include bp($b_20-24) { @include grid-column-mod(9,20) }
     @include bp($b_16-20) { @include grid-column-mod(7,16) }
     @include bp($b_12-16) { @include grid-column-mod(5,12) }
-    @include bp($b_12_and_lower) { display: none; }
+    @include bp($b_12_and_lower) { 
+      margin-bottom: 2rem;
+      margin-top: 2rem;
+    }
 
     text-align: right;
 
-    li:nth-child(n+1) {
-      margin-left: 1em;
+    @include bp($b_12_and_up) { 
+      li:nth-child(n+1) {
+        margin-left: 1em;
+      }
+      li {
+        display: inline;
+      }      
     }
 
     @include visual_bg
@@ -93,15 +101,85 @@
     @include bp($b_20-24) { @include grid-column-mod(2,20) }
     @include bp($b_16-20) { @include grid-column-mod(2,16) }
     @include bp($b_12-16) { @include grid-column-mod(2,12) }
-    @include bp($b_12_and_lower) { display: none; }
+    @include bp($b_12_and_lower) { }
 
     text-align: center;
     position: relative;
 
     text-transform: uppercase;
 
+    li {
+      display: inline;
+    }      
+
     @include visual_bg
   }
 
   @include visual_bg;
+
+
+  //////// mobile
+
+  .menu_container {
+    @include bp($b_12_and_lower) {  
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      top:0;
+      background-color: $ca_mobile_menu_background;
+
+      display:flex;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 20;
+
+      font-size: 1.5rem;
+      line-height: 3rem;
+
+      li a, li:after {
+        color:white !important;
+        font-weight: normal;
+      }
+
+      li {
+        color: black;
+      }
+
+      ul, li {
+        text-align: center;
+      }
+
+      transition: height 0.5s, opacity 0.3s 0.1s;
+      overflow: hidden;
+
+      body:not(.menu_active) & {
+        height:0vh;
+        opacity: 0;
+      }
+
+    }
+  }
+
+  .close_icon, .menu_button {
+    cursor: pointer;
+    fill: white;
+    stroke: white;
+    stroke-width: 4px;
+    stroke-linecap: butt;
+    position: absolute;
+    top: 0;
+    right:0;
+    width: 2.5rem;
+    height: auto;
+    margin: $d_lineheight $d_gutterwidth_abs;
+    @include bp($b_12_and_up) { display: none; }
+  }
+
+  .menu_button {
+    stroke: $ca_menu_icon;
+    fill: $ca_menu_icon;
+    stroke-width: 3px;
+  }
+
+
 }

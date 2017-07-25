@@ -8,7 +8,8 @@
   .staffs_list_entry {
 
     margin-top: 2 * $d_gridheight;
-    text-align: center;
+    margin-bottom: 3 * $d_gridheight;
+    text-align: left;
 
     @include bp($b_8_and_lower) { 
       margin-top: 10 * $d_gridheight;
@@ -16,11 +17,11 @@
 
     @include grid-column(4);
     @include bp($b_4-8) { @include grid-column($columns_count/1); }
-    @include bp($b_8-12) { @include grid-column($columns_count/2); }
-    @include bp($b_12-16) { @include grid-column($columns_count/3); }
-    @include bp($b_16-20) { @include grid-column($columns_count/4); }
-    @include bp($b_20-24) { @include grid-column($columns_count/5); }
-    @include bp($b_24_and_up) { @include grid-column($columns_count/6); }
+    @include bp($b_8-12) { @include grid-column($columns_count/2);  &:nth-child(2n+2) { clear:both; }}
+    @include bp($b_12-16) { @include grid-column($columns_count/3);  &:nth-child(3n+2) { clear:both; }}
+    @include bp($b_16-20) { @include grid-column($columns_count/4);  &:nth-child(4n+2) { clear:both; }}
+    @include bp($b_20-24) { @include grid-column($columns_count/5);  &:nth-child(5n+2) { clear:both; }}
+    @include bp($b_24_and_up) { @include grid-column($columns_count/6); &:nth-child(6n+2) { clear:both; }}
 
     img {
       display: block;
@@ -33,6 +34,11 @@
       padding-right: 0.5 * $d_gutterwidth_abs;
     }
 
+    .staff_info {
+      padding-left: 0.5 * $d_gutterwidth_abs;
+      padding-right: 0.5 * $d_gutterwidth_abs;
+    }
+
     .staff_name {
       height: 2 * $base-line-height;
       overflow: hidden;
@@ -41,23 +47,43 @@
       @include visual_bg;      
     }
 
+    .staff_contact {
+      padding-top: $d_lineheight;
+      white-space: pre;
+    }
+
     @include visual_bg;
+  }
+
+  .staffs_list_entry:nth-child(2) {
+    clear:both;
   }
 
   .staffs_list_entry:first-child {
 
-    @include bp($b_8-12) { @include grid-column($columns_count/1); height: 56 * $d_gridheight; }
-    @include bp($b_12-16) { @include grid-column($columns_count/1); }
-    @include bp($b_16-20) { @include grid-column($columns_count/4); }
-    @include bp($b_20-24) { @include grid-column($columns_count/5); }
-    @include bp($b_24_and_up) { @include grid-column($columns_count/6); }
+    margin-bottom: 5 * $d_gridheight;
 
+    @include bp($b_8-12) { 
+      @include grid-column($columns_count/1); 
+      height: 30 * $d_gridheight; 
+    }
+    @include bp($b_12_and_up) {
+      height: 56 * $d_gridheight;
+    }
+    @include bp($b_12-16) { 
+      @include grid-column($columns_count/1); 
+    }
+    @include bp($b_16-20) { 
+      @include grid-column($columns_count/(4/3)); 
+    }
+    @include bp($b_20-24) { 
+      @include grid-column($columns_count/(5/3)); 
+    }    
+    @include bp($b_24_and_up) { 
+      @include grid-column($columns_count/(6/3)); 
+    }    
     img {
-      display: block;
       margin-bottom: 2 * $d_gridheight;
-      @include bp($b_8-12) { 
-        
-      }
     }
 
     .staff_image {
@@ -65,6 +91,11 @@
         width: calc( 50% - #{ 0.5 * $d_gutterwidth_abs } ); 
         float:right;
       }      
+      @include bp($b_12_and_up) { 
+        width: 66%;  
+        float:right;
+        img { height: 56 * $d_gridheight; }
+      }         
     }
 
     .staff_text { 
@@ -74,6 +105,13 @@
     .staff_info {
       @include bp($b_8-12) { 
         float:left;
+        height:100%;
+        padding-left: 0.5 * $d_gutterwidth_abs;
+      }
+      @include bp($b_12_and_up) { 
+        float: left;
+        height:100%;
+        padding-left: 0.5 * $d_gutterwidth_abs;
       }
       position: relative;
     }
