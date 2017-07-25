@@ -26,6 +26,10 @@ reorderable
     actions
   end
 
+  filter :title
+  filter :file_name
+  filter :draft
+
   show do
       attributes_table do
         row :title do |p|

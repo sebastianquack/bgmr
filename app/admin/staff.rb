@@ -32,6 +32,12 @@ reorderable
     actions
   end
 
+  filter :name
+  filter :text_de
+  filter :text_en
+  filter :contact
+  filter :draft
+
   show do
       attributes_table do
         row :name do |staff|
