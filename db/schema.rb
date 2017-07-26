@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170724183806) do
+ActiveRecord::Schema.define(version: 20170726035318) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -218,6 +218,7 @@ ActiveRecord::Schema.define(version: 20170724183806) do
     t.datetime "image_updated_at"
     t.string   "description_en"
     t.string   "description_de"
+    t.float    "weight"
   end
 
 end

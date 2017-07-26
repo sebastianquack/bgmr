@@ -29,6 +29,8 @@ class Project < ActiveRecord::Base
   
   validates_format_of :slug, :with => /\A[a-z0-9_]+\z/i  
 
+  scope :published, -> { where(draft: false, draft: nil) }
+
   after_save :fix_order
 
   def fix_order

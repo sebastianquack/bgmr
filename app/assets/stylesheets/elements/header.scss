@@ -143,6 +143,8 @@
 
       li {
         color: black;
+        opacity: 1;
+        transition: opacity 0.3s 0.1s;
       }
 
       ul, li {
@@ -154,8 +156,11 @@
 
       body:not(.menu_active) & {
         height:0vh;
-        opacity: 0;
       }
+
+      body:not(.menu_active) & li {
+        opacity: 0;
+      }      
 
     }
   }

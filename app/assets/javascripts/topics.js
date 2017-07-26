@@ -1,8 +1,10 @@
 // Place all the behaviors and hooks related to the matching controller here.
 
-d_topics_topic_dot_base_radius = 40;
+d_topics_topic_dot_base_radius = 80;
 d_topics_topic_dot_padding = 10;
 d_topics_topic_dot_border_width = 2;
+
+desired_density = 0.8
 
 // event bindings
 
@@ -29,7 +31,7 @@ $(document).on('turbolinks:visit, turbolinks:before-cache', function(){
 
 var debouncedPlaceTopics = debounce(function() {
   placeTopics()
-}, 1000);
+}, 550);
 
 function resetTopics() {
   var container_elem = $('#topics.topics_canvas').get(0)
@@ -43,52 +45,62 @@ function placeTopics() {
   var container_height = container_elem.offsetHeight;
 
   var elements = $(container_elem).find('.topic_container')
+
+  // adjust base radius
+  var elements_total = elements.length
+  var elems_area = elements_total * Math.pow(2*d_topics_topic_dot_base_radius,2)
+  var canvas_area = container_width * container_height
+  var x = Math.sqrt( desired_density / (elems_area / canvas_area) )
+  d_topics_topic_dot_base_radius = d_topics_topic_dot_base_radius * x*desired_density
   
   var positions = getRandomPositions(container_width, container_height, elements)
 
   for (var i = positions.length-1; i>=0; i--) {
     var e = $(elements).get(i)
-    $(e).css('left',positions[i].x + "px")
-    $(e).css('top',positions[i].y + "px")
-    //TODO: set size for element
-    //$(e).css('width', getRadius($(e).outerWidth(), $(e).data("projects")));
-    setTopicRadiusCSS(e, positions[i].radius);
-    $(e).addClass('positioned')
+    setTopicCSS(e, positions[i]);
   }
 }
 
-function setTopicRadiusCSS(e, radius) {
+function setTopicCSS(e, position) {
+  $(e).css('left',position.x + "px")
+  $(e).css('top',position.y + "px")  
+  var radius = position.radius
   $(e).css('width', 2*radius+'px');
   $(e).css('height', 2*radius+'px');
   $(e).find('.topic').css('width', (2*(radius-d_topics_topic_dot_padding-d_topics_topic_dot_border_width))+'px');
   $(e).find('.topic').css('height', (2*(radius-d_topics_topic_dot_padding-d_topics_topic_dot_border_width))+'px');
   $(e).css('font-size', radius+'px');
+  $(e).addClass('positioned')
 }
 
 // calculates the radius from the css width and the number of projects for this topic
-function getRadius(width, projects) {
+function getRadius(width, weight_category) {
   var weight = 1;
-  if(projects > 5) {
-    weight = 1.5;
+  if(weight_category == 1) {
+    weight = 0.75;
   }
-  if(projects > 10) {
-    weight = 2;
+  if(weight_category == 2) {
+    weight = 1;
   }
-  if(projects > 15) {
-    weight = 2.5;
+  if(weight_category == 3) {
+    weight = 1.25;
   }
   return width * weight;
 }
 
 // generates a random position for an element
-function getRandomPosition(element, container_width, container_height) {
+function getRandomPosition(element, container_width, container_height, elements, i) {
 
-  var elem_radius = getRadius(d_topics_topic_dot_base_radius, $(element).data("projects"));
+  var elem_radius = getRadius(d_topics_topic_dot_base_radius, $(element).data("weight-category"));
   
-  var min_x = elem_radius
-  var max_x = container_width - elem_radius;
-  var min_y = elem_radius
-  var max_y = container_height - elem_radius;  
+  var cluster_factor = (i/elements.length < 0.5 ? 0.8 : 1) // decrease the bounding box for the first elements so they cluster more in the center
+
+  console.log(cluster_factor)
+
+  var min_x = elem_radius / cluster_factor
+  var max_x = ( container_width - elem_radius ) * cluster_factor;
+  var min_y = elem_radius / cluster_factor
+  var max_y = ( container_height - elem_radius ) * cluster_factor;  
   return {
     x: Math.round(Math.random() * (max_x-min_x) + min_x ),
     y: Math.round(Math.random() * (max_y-min_y) + min_y ),
@@ -109,7 +121,7 @@ function checkPosition(newPos, positions) {
     var dist = Math.hypot(other_x - newPos.x, other_y - newPos.y)
 
     //get min distance for each element 
-    var min_distance = newPos.radius + other_radius - 2*d_topics_topic_dot_padding;
+    var min_distance = newPos.radius + other_radius - 2.2*d_topics_topic_dot_padding;
 
     //console.log("dist: " + dist + ", min dist " + min_distance);
 
@@ -132,7 +144,7 @@ function getRandomPositions(container_width, container_height, elements) {
     for(var j = 0; j < max_j; j++) {
       
       // 1. get new random position
-      var pos = getRandomPosition(elements[i], container_width, container_height);
+      var pos = getRandomPosition(elements[i], container_width, container_height, elements, i);
     
       // 2. check if this positions is possible
       if(checkPosition(pos, positions)) {
