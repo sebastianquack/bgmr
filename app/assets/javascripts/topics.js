@@ -75,17 +75,8 @@ function setTopicCSS(e, position) {
 
 // calculates the radius from the css width and the number of projects for this topic
 function getRadius(width, weight_category) {
-  var weight = 1;
-  if(weight_category == 1) {
-    weight = 0.75;
-  }
-  if(weight_category == 2) {
-    weight = 1;
-  }
-  if(weight_category == 3) {
-    weight = 1.25;
-  }
-  return width * weight;
+  var weight_factor = weight_category * 0.25 + 0.5 // linear transformation for 3 categories => 0.75, 1, 1.25 
+  return width * weight_factor;
 }
 
 // generates a random position for an element
