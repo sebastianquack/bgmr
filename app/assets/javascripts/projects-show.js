@@ -20,10 +20,13 @@ $(document).on('turbolinks:load', function(){
 $(document).on('turbolinks:load', function(){
 
   $('#project .slide__image img').on('load', function(event){
+    console.log("load")
     var pos = positionSlidelinks(this);
     positionZoomableControl(this, pos.left);
   })
+  
   $(window).on('resize', function(event){
+    console.log("resize")
     $('#project .slide__image img').each(function(i,img){
       var im = img
       window.setTimeout(function(){
@@ -34,6 +37,7 @@ $(document).on('turbolinks:load', function(){
   })  
 
   $('#project .slides').on('init reInit afterChange',function(e){
+    console.log("init reinit change")
     var img = $(e.target).find('.slick-current .slide.zoomable img')
     positionZoomableControl(img, img.attr('data-actual-offset-left'))
   }) 
@@ -272,3 +276,28 @@ $(document).on('turbolinks:load', function(){
 $(document).on('turbolinks:before-cache', function(){
   $('#project .slides').slick('unslick')
 }) 
+
+// toggle topics display
+
+$(document).on('turbolinks:load', function(){
+
+  $('#project .project__topics .topic').click(function(event){
+    if (!$(this).hasClass("active")) {
+      event.preventDefault();
+    }
+    
+    $(this).toggleClass("active")
+    $(this).siblings('.topic').toggleClass("active", false)
+    // console.log(this)
+  })
+
+  $(document).on('turbolinks:before-cache', function(){
+    $('#project .project__topics .topic').toggleClass("active", false)
+  }) 
+
+  $('#project .slides').on('beforeChange',function(e){
+    $('#project .project__topics .topic').toggleClass("active", false)
+  })
+
+})
+
