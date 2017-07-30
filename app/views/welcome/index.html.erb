@@ -1,3 +1,7 @@
 <div id="welcome">
-  <%= link_to image_tag(@project.main_image(:large)), project_path(@project), html_options = { "title": @project.title } %>
+  <% if @project.nil? %>
+    <%= image_tag 'welcome.jpg' %>
+  <% else %>
+    <%= link_to image_tag(@project.main_image(:large)), project_path(@project), html_options = { "title": @project.title } %>
+  <% end %>
 </div>
