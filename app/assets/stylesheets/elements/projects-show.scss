@@ -112,7 +112,8 @@
       a {
         border: solid $d_loophole_radius_width $ca_loophole_line;
         border-radius: 50%;
-        width:$d_loophole_inner_radius;
+        padding-left: $d_caption_loophole_radius_width;
+        width:$d_loophole_inner_radius - $d_caption_loophole_radius_width;
         height:$d_loophole_inner_radius;
         display: block;
         text-align: center;
@@ -123,6 +124,7 @@
         cursor:pointer;
         
         color: $ca_loophole_line;
+        line-height: calc( 1rem - #{$d_caption_loophole_radius_width} );
         
         outline: none;
 
