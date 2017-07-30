@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$loophole_shadow_color: rgba(44,44,44,0.25);
+$loophole_shadow_color: rgba(66,66,66,0.25);
 
 #project {
 
@@ -131,6 +131,7 @@ $loophole_shadow_color: rgba(44,44,44,0.25);
         outline: none;
 
         box-shadow: 0px 0px $d_loophole_inner_radius 0px $loophole_shadow_color, inset 0px 0px $d_loophole_inner_radius 0px $loophole_shadow_color;
+        text-shadow: 0px 0px $d_loophole_inner_radius black;
 
         transition: background-color 0.3s;
 
@@ -232,10 +233,6 @@ $loophole_shadow_color: rgba(44,44,44,0.25);
         top: - 3 * $d_gridheight;
         position: relative;
 
-        &.expandable {
-          cursor: pointer;
-        }
-
         > * > * {
           display: block;
           @include bp($b_8_and_up) { 
@@ -254,7 +251,8 @@ $loophole_shadow_color: rgba(44,44,44,0.25);
 
         .project__headline_1 {
           padding-right: 0.5 * $d_gutterwidth_abs;
-
+          cursor: pointer;
+          
           @include bp($b_8_and_lower) { width: 100%; }
         }
 

@@ -143,7 +143,7 @@ $(document).on('turbolinks:load', function(event){
 
   $('.project__headline').addClass('expandable')
 
-  $('.project__headline').click(function(event){
+  $('.project__headline .project__headline_1').click(function(event){
     var elem = event.target
     toggle_expandable(elem, {root:'.project__info', autoHeight:'.project__description'})
   })
