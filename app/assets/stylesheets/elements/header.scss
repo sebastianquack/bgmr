@@ -75,9 +75,12 @@
     @include bp($b_20-24) { @include grid-column-mod(9,20) }
     @include bp($b_16-20) { @include grid-column-mod(7,16) }
     @include bp($b_12-16) { @include grid-column-mod(5,12) }
+
     @include bp($b_12_and_lower) { 
-      margin-bottom: 2rem;
-      margin-top: 2rem;
+      @include bp("(min-height: 500px)") {
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+      }
     }
 
     text-align: right;
@@ -136,6 +139,11 @@
       font-size: 1.5rem;
       line-height: 3rem;
 
+      @include bp("(max-height: 500px)") {
+        font-size: 1rem;
+        line-height: 2rem;
+      }
+
       li a, li:after {
         color:white !important;
         font-weight: normal;
@@ -172,10 +180,10 @@
     stroke-width: 4px;
     stroke-linecap: butt;
     position: absolute;
-    top: 0;
+    top: 1px;
     right:0;
     width: 2.5rem;
-    height: auto;
+    height: 2.5rem;
     margin: $d_lineheight $d_gutterwidth_abs;
     @include bp($b_12_and_up) { display: none; }
   }
