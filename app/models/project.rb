@@ -3,7 +3,7 @@ class Project < ActiveRecord::Base
 
   friendly_id :title, :use => [:slugged, :simple_i18n]
 
- 	has_attached_file :main_image, styles: { medium: "600x600>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+ 	has_attached_file :main_image, styles: { large: "1000x1000>", medium: "600x600>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   
   validates_attachment_content_type :main_image, content_type: /\Aimage\/.*\z/
 
@@ -30,6 +30,9 @@ class Project < ActiveRecord::Base
   validates_format_of :slug, :with => /\A[a-z0-9_]+\z/i  
 
   scope :published, -> { where(draft: false, draft: nil) }
+
+  scope :featured, -> { where(featured: true) }
+
 
   after_save :fix_order
 
