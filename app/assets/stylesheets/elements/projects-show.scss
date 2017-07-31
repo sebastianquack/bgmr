@@ -88,7 +88,11 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
 
     &.zoomable .slide__image img {
       position: absolute;
+      padding-left: 1 * $d_gutterwidth_abs;
+      padding-right: 1 * $d_gutterwidth_abs;      
       left:0;
+      top:0;
+      width: calc(100% - #{2 * $d_gutterwidth_abs});
       background: transparent;
     }
 
