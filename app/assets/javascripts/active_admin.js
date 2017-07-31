@@ -1,9 +1,9 @@
-#= require active_admin/base
-#= require ckeditor-jquery
-#= require ckeditor/config.js
-#= require blueimp-file-upload/js/jquery.fileupload.js
-#= require common_functions
-#= require activeadmin_reorderable
+//= require active_admin/base
+//= require ckeditor-jquery
+//= require ckeditor/config.js
+//= require blueimp-file-upload/js/jquery.fileupload.js
+//= require common_functions
+//= require activeadmin_reorderable
 
 $(document).on("ready",function() {
   $('.js-upload').on('change', function(){ previewImage(this) });

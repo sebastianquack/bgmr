@@ -20,7 +20,7 @@ $(document).on('turbolinks:load', function(){
 $(document).on('turbolinks:load', function(){
 
   $('#project .slide__image img').on('load', function(event){
-    console.log("load")
+    $(event.target).closest(".slide").addClass("loaded")
     var pos = positionSlidelinks(this);
     positionZoomableControl(this, pos.left);
   })
@@ -263,7 +263,8 @@ function leaveZoomMode() {
   //console.log("zoomMode off")
 }
 
-function insertZoomImage(slide, activate=false) {
+function insertZoomImage(slide, activate) {
+  if (active===undefined) active = false
   if (!$(slide).hasClass("zoomable")) return;
   if ($(slide).find(".zoomed-image").length >= 1) {
     if (activate) $(slide).find(".zoomed-image").css("visibility","visible")
