@@ -82,6 +82,16 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
       }
     }
 
+    &.plan .slide__image img {
+      filter: brightness(95%);
+    }
+
+    &.zoomable .slide__image img {
+      position: absolute;
+      left:0;
+      background: transparent;
+    }
+
     .slide__loopholes {
       position: absolute;
       top:0;

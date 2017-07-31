@@ -163,36 +163,42 @@ $(document).on('turbolinks:load', function(){
 
   $('#project .slides').on('init reInit afterChange',function(event){
     leaveZoomMode() // just in case
-    $(".slick-current .slide.zoomable").panzoom({
-      $zoomRange: $("input[type='range']"),
-      panOnlyWhenZoomed: true,
-      minScale: 1,
-      maxScale: 4,
-      contain: 'invert',
-      duration: 200,
-      transition: true,
-      //maxScale: elem.naturalWidth / elem.clientWidth
-      onZoom: function(e,d) {
-        var newScale = 1/d.scale
-        $(e.target).find(".slide__loophole").each(function (i,loophole) {
-          setTransformScale(loophole, newScale)
-        })
-        //console.log(d.scale)
-        if (d.scale <= 1) {
-          leaveZoomMode()
-        } else {
-          enterZoomMode()
+    $(".slick-current .slide.zoomable").each(function(i,elem){
+      var factor_x = $(elem).attr("data-width") / $(elem).innerWidth()
+      var factor_y = $(elem).attr("data-height") / $(elem).innerHeight()
+      let maxScale = Math.min(factor_x, factor_y)
+      console.log(maxScale)
+      $(elem).panzoom({
+        $zoomRange: $("input[type='range']"),
+        panOnlyWhenZoomed: true,
+        minScale: 1,
+        maxScale: maxScale,
+        contain: 'invert',
+        duration: 200,
+        transition: true,
+        //maxScale: elem.naturalWidth / elem.clientWidth
+        onZoom: function(e,d) {
+          var newScale = 1/d.scale
+          $(e.target).find(".slide__loophole").each(function (i,loophole) {
+            setTransformScale(loophole, newScale)
+          })
+          //console.log(d.scale)
+          if (d.scale <= 1) {
+            leaveZoomMode()
+          } else {
+            enterZoomMode($(".slick-current .slide").get(0))
+          }
+        },
+        onPan: function(e,d) {
+          lastPanned = Date.now()
+          //console.log(d)
+        },
+        onReset: function(e,d) {
+          $(e.target).find(".slide__loophole").each(function (i,loophole) {
+            setTransformScale(loophole, 1)
+          })
         }
-      },
-      onPan: function(e,d) {
-        lastPanned = Date.now()
-        //console.log(d)
-      },
-      onReset: function(e,d) {
-        $(e.target).find(".slide__loophole").each(function (i,loophole) {
-          setTransformScale(loophole, 1)
-        })
-      }
+      });
     });
   })
 
@@ -226,15 +232,25 @@ $(document).on('turbolinks:load', function(){
       leaveZoomMode()
     }
   })
+
+  // preload high resolution image
+  $("#project .slides").on('afterChange', function(event){
+    if ($("#project .slides img").filter(function(i,img){  return !this.complete }).length > 0) {
+    } else {
+      insertZoomImage($(".slick-current .slide").get(0))
+    }
+  })
+
 })
 
-function enterZoomMode() {
+function enterZoomMode(slide) {
   if (zoomMode == true) return
   zoomMode = true
   var slides = $('.slides')
   $(slides).addClass('zoomed')
   $(slides).slick('slickSetOption','swipe',false)
   //console.log($(slides), "zoomMode on")
+  insertZoomImage(slide, true)
 }
 
 function leaveZoomMode() {
@@ -246,6 +262,20 @@ function leaveZoomMode() {
   zoomMode = false
   $(slides).slick('slickSetOption','swipe',true)
   //console.log("zoomMode off")
+}
+
+function insertZoomImage(slide, activate=false) {
+  if (!$(slide).hasClass("zoomable")) return;
+  if ($(slide).find(".zoomed-image").length >= 1) {
+    if (activate) $(slide).find(".zoomed-image").css("visibility","visible")
+    return
+  }
+  var imgElem = $(slide).find("img").get(0)
+  var src = $(imgElem).attr('data-zoom-src')
+  var imgElemZoom = $(imgElem).clone()
+  imgElemZoom.attr('src',src).addClass("zoomed-image")
+  if (!activate) imgElemZoom.css("visibility","hidden")
+  imgElemZoom.insertAfter(imgElem)
 }
 
 // init slick slider (after other calls, so init events can get heard)

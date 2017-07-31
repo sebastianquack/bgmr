@@ -99,6 +99,7 @@ de:
           main_image: "Bild"
           slug: "Link"
           draft: "Entwurf"
+          featured: "Auf Startseite"
           updated_at: "Letzte Änderung"
           description: "Beschreibung"
         page:
@@ -119,6 +120,7 @@ de:
           image: "Bild"
           caption: "Bildunterschrift"
           order: "Slide-Position"
+          zoomable: "Plan"
         publication:
           title: "Titel"
           file: "Datei"

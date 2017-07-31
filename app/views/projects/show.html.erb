@@ -27,9 +27,9 @@
         <% @project.slides.each do |slide| %>
 
           <div class="pan_container">
-            <div class="slide <%= "zoomable" if slide.zoomable %>">
+            <div class="slide <%= "zoomable" if slide.zoomable && slide.large_enough_for_zoom %> <%= "plan" if slide.zoomable %>" data-width="<%= slide.image.width %>" data-height="<%= slide.image.height %>">
               <div class="slide__image">
-                <%= image_tag slide.image.url(:large) %>
+                <%= image_tag slide.image.url(:large), html_options = { "data-zoom-src": slide.image.url(:original) } %>
               </div>
               <div class="slide__loopholes slide_links">
                 <% slide.slide_links.each do |loop| %>
