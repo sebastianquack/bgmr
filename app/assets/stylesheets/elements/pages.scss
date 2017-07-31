@@ -5,4 +5,35 @@
 #page {
   margin-left: $d_gutterwidth_abs;
   margin-right: $d_gutterwidth_abs;
+
+  &.large_gap {
+    @include bp($b_8_and_up) {
+      padding-top: 10 * $lineheight;
+    }
+  }
+
+  padding-left: $d_gutterwidth_abs;
+  padding-right: $d_gutterwidth_abs;
+  max-width: col_width_abs(12,1);
+  margin:auto;
+}
+
+.formatted_content {
+
+  &.columns {
+    @include bp($b_8_and_up) {
+      column-count: 2;
+    }
+  }
+
+  p {
+    margin-bottom: $lineheight;
+  }
+
+  hr {
+    -webkit-column-break-before: always;
+    break-before: column;
+    height:0;
+    border: none;
+  }
 }

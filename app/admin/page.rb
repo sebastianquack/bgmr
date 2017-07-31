@@ -4,6 +4,7 @@ ActiveAdmin.register Page do
 #
 menu :priority => 11
 permit_params :title_de, :title_en, :content_de, :content_en, :slug_de, :slug_en, :draft
+
 #
 # or
 #
@@ -23,21 +24,26 @@ index do
     column :slug_en do |page|
       link_to "/" + page.slug_en, page, :locale => "en"
     end
-    column :draft
-    column :updated_at
+    column :has_content
     actions
 end
 
-filter :title_de
-filter :title_en
-filter :content_de
-filter :content_en
-filter :draft
+
+config.filters = false
+#filter :title_de
+#filter :title_en
+#filter :content_de
+#filter :content_en
+#filter :draft
 
 show do
     attributes_table do
       row :title_de
-      row :content_de
+      if resource.has_content
+        row :content_de do |page|
+          page.content_de.html_safe if page.content_de
+        end
+      end
       row :slug_de do |page|
         if page.draft 
           span t(:deactivated), :class => "empty"
@@ -46,7 +52,11 @@ show do
         end
       end
       row :title_en
-      row :content_en
+      if resource.has_content
+        row :content_en do |page|
+          page.content_en.html_safe if page.content_en
+        end
+      end
       row :slug_en do |page|
         if page.draft 
           span t(:deactivated), :class => "empty"
@@ -54,7 +64,9 @@ show do
           link_to "/" + page.slug_en, page, :locale => "en"
         end
       end
-      row :draft
+      if resource.has_content
+        row :draft
+      end
     end
   end
 
@@ -66,18 +78,22 @@ form do |f|
     f.input :title_de
     f.input :title_en 
   end
-  f.inputs t(:content) do
-    f.input :content_de, :input_html => { :class => 'ckeditor' }
-    f.input :content_en, :input_html => { :class => 'ckeditor' }
+  if resource.has_content
+    f.inputs t(:content) do
+      f.input :content_de, :input_html => { :class => 'ckeditor' }
+      f.input :content_en, :input_html => { :class => 'ckeditor' }
+    end
   end
   f.inputs t(:slugs) do
     f.input :slug_de
     f.input :slug_en
   end  
-  f.inputs t(:special) do
-  	f.input :draft
+  if resource.has_content
+    f.inputs t(:special) do
+      f.input :draft
+    end
   end
-
+  
   f.actions
 end
 

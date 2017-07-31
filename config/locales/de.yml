@@ -108,6 +108,7 @@ de:
           content: "Inhalt"
           draft: "Entwurf"
           updated_at: "Letzte Änderung"
+          has_content: "Textinhalt"
         area:
           title: "Titel"
         tag:

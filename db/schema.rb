@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170730122421) do
+ActiveRecord::Schema.define(version: 20170731151140) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -93,15 +93,16 @@ ActiveRecord::Schema.define(version: 20170730122421) do
 
   create_table "pages", force: :cascade do |t|
     t.boolean  "draft"
-    t.string   "title_de",   null: false
-    t.string   "title_en",   null: false
+    t.string   "title_de",    null: false
+    t.string   "title_en",    null: false
     t.text     "content_de"
     t.text     "content_en"
-    t.string   "slug_en",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "slug_de",    null: false
+    t.string   "slug_en",     null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "slug_de",     null: false
     t.string   "seed_id"
+    t.boolean  "has_content"
   end
 
   add_index "pages", ["seed_id"], name: "index_pages_on_seed_id"
