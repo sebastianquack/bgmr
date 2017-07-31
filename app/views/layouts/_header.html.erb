@@ -1,4 +1,4 @@
-<nav id="page_header">
+<header id="page_header">
 
   <div id="logo">
     <a href="<%= root_url %>">
@@ -6,7 +6,9 @@
     </a>
   </div>
 
-  <div class="menu_container">
+  <h1 class="section_title"><%= current_section %></h1>  
+
+  <nav class="menu_container">
 
     <ul id="menu_dynamic">
       <li>
@@ -56,7 +58,7 @@
       <path fill="none" d="M1 1l20 20m0-20L1 21"></path>
     </svg>
 
-  </div>
+  </nav>
 
   <svg class="menu_button" xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16">
     <line x1="0" y1="2" x2="20" y2="2" ></line>
@@ -64,4 +66,4 @@
     <line x1="0" y1="14" x2="20" y2="14" ></line>
   </svg>   
 
-</nav>
+</header>

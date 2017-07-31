@@ -5,6 +5,7 @@ $columns_count: 24;
 }
 
 $b_4_and_lower:  '(max-width: #{ col_width_abs(4, 1,-1) })';
+$b_5_and_lower:  '(max-width: #{ col_width_abs(5, 1,-1) })';
 $b_6_and_lower:  '(max-width: #{ col_width_abs(6, 1,-1) })';
 $b_8_and_lower:  '(max-width: #{ col_width_abs(8, 1,-1) })';
 $b_12_and_lower: '(max-width: #{ col_width_abs(12,1,-1) })';

@@ -25,5 +25,14 @@ module ApplicationHelper
     I18n.locale == locale
   end
 
+  def current_section
+    return nil if current_page?(root_path)
+    return t("topics") if current_page?(topics_path)
+    return t("projects") if current_page?(projects_path)
+    return link_to t("topics"), topics_path if current_page?(topic_path)
+    return link_to t("projects"), projects_path if current_page?(project_path)
+    return link_to get_seed_page("news").title, page_path("news") if current_page?(news_item_path)
+    return Page.friendly.find(params[:id]).title if current_page?(page_path)
+  end
 
 end
