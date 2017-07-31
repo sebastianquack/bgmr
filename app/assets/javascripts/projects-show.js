@@ -277,7 +277,7 @@ function insertZoomImage(slide, activate) {
   if (!activate) imgElemZoom.css("visibility","hidden")
   setTimeout(function(){
     imgElemZoom.insertAfter(imgElem)
-  },200) // make is smoother
+  },500) // make is smoother
 }
 
 // init slick slider (after other calls, so init events can get heard)

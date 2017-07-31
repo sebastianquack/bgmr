@@ -223,14 +223,23 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
         bottom:0;
         padding-top: inherit;
       }
-
+      
       background-color: white;
       
       @include visual_bg;
 
-      width: calc( 100% - #{ 2*$d_gutterwidth_abs } );
-      padding-left: $d_gutterwidth_abs;
-      padding-right: $d_gutterwidth_abs;
+      @include bp($b_8_and_up) {
+        width: calc( 100% - #{ 2*$d_gutterwidth_abs + 1 * $d_gridwidth_abs } );
+        padding-left: $d_gutterwidth_abs + 0.5 * $d_gridwidth_abs;
+        padding-right: $d_gutterwidth_abs+ 0.5 * $d_gridwidth_abs;
+      }
+
+      @include bp($b_20_and_up) {
+        width: calc( 100% - #{ 6*$d_gutterwidth_abs + 4*$d_gridwidth_abs } );
+        padding-left: 3 * $d_gutterwidth_abs + 2 * $d_gridwidth_abs;
+        padding-right: 3 * $d_gutterwidth_abs+ 2 * $d_gridwidth_abs;
+      }
+
       transition: padding-bottom 0.2s;
 
       .project__title, .project__title__controls {

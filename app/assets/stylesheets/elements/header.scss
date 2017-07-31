@@ -1,5 +1,4 @@
 #page_header {
-  @include grid-container;
 
   margin-top: $d_header_margin_top;
   height: $d_header_height;
@@ -30,15 +29,16 @@
   // FIRST
 
   #logo {
-    @include bp($b_24_and_up) { @include grid-column-mod(2,24) }
-    @include bp($b_20-24) { @include grid-column-mod(2,20) }
-    @include bp($b_16-20) { @include grid-column-mod(2,16) }
-    @include bp($b_12-16) { @include grid-column-mod(2,12) }
-    @include bp($b_8-12) { @include grid-column-mod(2,8) }
-    @include bp($b_8_and_lower) { @include grid-column-mod(2,8) }
 
-    text-align: center;
-    @include bp($b_8_and_lower) { text-align: left; }
+    box-sizing: border-box;
+    margin-left: $d_gutterwidth_abs;
+    float: left;
+    text-align: left;
+
+    @include bp($b_8_and_up) { 
+      padding-left: 0.5 * $d_gridwidth_abs;
+      width: 2 * $d_gridwidth_abs + 1 * $d_gutterwidth_abs ;
+    }
 
     img {
       height: 8 * $d_gridheight;
@@ -50,15 +50,15 @@
   // SECOND
 
   #menu_dynamic {
-    @include bp($b_24_and_up) { @include grid-column-mod(9,24) }
-    @include bp($b_20-24) { @include grid-column-mod(7,20) }
-    @include bp($b_16-20) { @include grid-column-mod(5,16) }
-    @include bp($b_12-16) { @include grid-column-mod(3,12) }
-    @include bp($b_12_and_lower) { }
+
+    box-sizing: border-box;
+    margin-left: $d_gutterwidth_abs;
+    align-self: flex-start;
+    text-align: left;
 
     @include bp($b_12_and_up) { 
-      li:nth-child(n+1) {
-        margin-right: 1em;
+      li:nth-child(n+2) {
+        margin-left: 1em;
       }
       li {
         display: inline;
@@ -71,23 +71,13 @@
   // THIRD
 
   #menu_static {
-    @include bp($b_24_and_up) { @include grid-column-mod(11,24) }
-    @include bp($b_20-24) { @include grid-column-mod(9,20) }
-    @include bp($b_16-20) { @include grid-column-mod(7,16) }
-    @include bp($b_12-16) { @include grid-column-mod(5,12) }
-
-    @include bp($b_12_and_lower) { 
-      @include bp("(min-height: 500px)") {
-        margin-bottom: 2rem;
-        margin-top: 2rem;
-      }
-    }
 
     text-align: right;
+    flex-grow: 1;
 
     @include bp($b_12_and_up) { 
       li:nth-child(n+1) {
-        margin-left: 1em;
+        margin-right: 1em;
       }
       li {
         display: inline;
@@ -100,16 +90,18 @@
   // FOURTH
 
   #menu_language {
-    @include bp($b_24_and_up) { @include grid-column-mod(2,24) }
-    @include bp($b_20-24) { @include grid-column-mod(2,20) }
-    @include bp($b_16-20) { @include grid-column-mod(2,16) }
-    @include bp($b_12-16) { @include grid-column-mod(2,12) }
-    @include bp($b_12_and_lower) { }
 
-    text-align: center;
+    text-align: right;
     position: relative;
-
+    box-sizing: border-box;
     text-transform: uppercase;
+
+    margin-right: $d_gutterwidth_abs;
+
+    @include bp($b_8_and_up) { 
+      padding-right: 0.5 * $d_gridwidth_abs;
+      width: 2 * $d_gridwidth_abs + 1 * $d_gutterwidth_abs ;
+    }    
 
     li {
       display: inline;
@@ -120,6 +112,19 @@
 
   @include visual_bg;
 
+  //////// not mobile
+
+  .menu_container {
+    @include bp($b_12_and_up) {  
+      display: flex;
+      align-items: stretch;
+      justify-content: flex-end;
+      @include visual_bg;
+    }
+    @include bp($b_20_and_up) {  
+      font-size: 16px;
+    }    
+  }
 
   //////// mobile
 
@@ -186,6 +191,9 @@
     height: 2.5rem;
     margin: $d_lineheight $d_gutterwidth_abs;
     @include bp($b_12_and_up) { display: none; }
+    @include bp($b_8_and_up) { 
+      padding-right: 0.5 * $d_gridwidth_abs;
+    }
   }
 
   .menu_button {
