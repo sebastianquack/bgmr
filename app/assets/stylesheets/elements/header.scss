@@ -51,10 +51,15 @@
 
   #menu_dynamic {
 
-    box-sizing: border-box;
-    margin-left: $d_gutterwidth_abs;
-    align-self: flex-start;
-    text-align: left;
+    @include bp($b_12_and_up) {  
+      box-sizing: border-box;
+      margin-left: $d_gutterwidth_abs;
+      align-self: flex-start;
+    }
+
+    @include bp($b_12_and_lower) {  
+      text-align: center;
+    }
 
     @include bp($b_12_and_up) { 
       li:nth-child(n+2) {
@@ -72,8 +77,10 @@
 
   #menu_static {
 
-    text-align: right;
-    flex-grow: 1;
+    @include bp($b_12_and_up) {  
+      flex-grow: 1;
+      text-align: right;
+    }
 
     @include bp($b_12_and_up) { 
       li:nth-child(n+1) {
@@ -91,17 +98,19 @@
 
   #menu_language {
 
-    text-align: right;
-    position: relative;
     box-sizing: border-box;
     text-transform: uppercase;
 
-    margin-right: $d_gutterwidth_abs;
-
-    @include bp($b_8_and_up) { 
+    @include bp($b_12_and_up) { 
+      text-align: right;
+      margin-right: $d_gutterwidth_abs;
       padding-right: 0.5 * $d_gridwidth_abs;
       width: 2 * $d_gridwidth_abs + 1 * $d_gutterwidth_abs ;
     }    
+
+    @include bp($b_12_and_lower) { 
+      width: 100%;
+    }
 
     li {
       display: inline;
