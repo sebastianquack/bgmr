@@ -166,8 +166,7 @@ $(document).on('turbolinks:load', function(){
     $(".slick-current .slide.zoomable").each(function(i,elem){
       var factor_x = $(elem).attr("data-width") / $(elem).innerWidth()
       var factor_y = $(elem).attr("data-height") / $(elem).innerHeight()
-      let maxScale = Math.min(factor_x, factor_y)
-      console.log(maxScale)
+      var maxScale = Math.min(factor_x, factor_y)
       $(elem).panzoom({
         $zoomRange: $("input[type='range']"),
         panOnlyWhenZoomed: true,
