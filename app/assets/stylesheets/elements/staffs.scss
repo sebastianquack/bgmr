@@ -117,10 +117,12 @@
     }
 
     .staff_contact {
-      white-space: pre;
-      text-align: left;
-      position:absolute;
-      bottom:0;
+      @include bp($b_8_and_up) { 
+        white-space: pre;
+        text-align: left;
+        position:absolute;
+        bottom:0;
+      }
     }
 
   }
