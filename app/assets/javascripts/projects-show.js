@@ -264,7 +264,7 @@ function leaveZoomMode() {
 }
 
 function insertZoomImage(slide, activate) {
-  if (active===undefined) active = false
+  if (activate===undefined) activate = false
   if (!$(slide).hasClass("zoomable")) return;
   if ($(slide).find(".zoomed-image").length >= 1) {
     if (activate) $(slide).find(".zoomed-image").css("visibility","visible")
