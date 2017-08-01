@@ -130,7 +130,7 @@ form :html => { :enctype => "multipart/form-data" } do |f|
           f_sl.input :pos_y, :wrapper_html => { :class =>  "hidden" }, :input_html => { :class =>  "pos_y" }
         end
       end
-      f_s.input :zoomable, :wrapper_html => { class: 'indent'}
+      f_s.input :zoomable, :wrapper_html => { class: 'indent'}, :hint => "(Zoom aktiviert sich bei Plänen ab "+Rails.application.config.zoomable_min_width.to_s+" x "+Rails.application.config.zoomable_min_height.to_s+" Pixeln)"
       f_s.input :caption_de
       f_s.input :caption_en
       

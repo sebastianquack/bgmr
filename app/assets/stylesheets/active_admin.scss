@@ -402,3 +402,12 @@ form fieldset ol > li label {
   height:200px;
   max-height: 30vh;
 }
+
+[id*="zoomable_input"] {
+  label {
+    width: auto !important;
+    + .inline-hints {
+      margin-top:0;
+    }
+  }
+}
