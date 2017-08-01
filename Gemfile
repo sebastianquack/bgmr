@@ -65,6 +65,7 @@ gem 'paperclip-meta'
 
 gem 'acts_as_list'
 gem 'activeadmin_reorderable'
+gem 'htmlentities'
 
 gem 'faker' # create fake data
 

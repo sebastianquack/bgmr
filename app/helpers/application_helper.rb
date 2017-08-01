@@ -1,3 +1,5 @@
+require 'htmlentities'
+
 module ApplicationHelper
 
   def get_seed_page(seed_id)
@@ -33,6 +35,13 @@ module ApplicationHelper
     return link_to t("projects"), projects_path if current_page?(project_path)
     return link_to get_seed_page("news").title, page_path("news") if current_page?(news_item_path)
     return Page.friendly.find(params[:id]).title if current_page?(page_path)
+  end
+
+  def strip_all x
+    coder = HTMLEntities.new
+    x = strip_tags(x.to_s.html_safe).gsub("\n","")
+    x = coder.decode(x)
+    x = x.gsub(/[\"<>&]/,"").gsub(/ +/,' ')
   end
 
 end

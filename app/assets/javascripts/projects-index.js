@@ -23,7 +23,7 @@ $(document).on('turbolinks:load', function(){
       if (active) {
         setTimeout(function(){
           $container.removeClass("active")        // for touch delay
-        }, 550)
+        }, 400)
         
       }
       else if ( event.target.tagName == "LABEL" && $target.hasClass('area') )  {
@@ -44,7 +44,7 @@ $(document).on('turbolinks:load', function(){
 
   // search
 
-  $('#project_selection__search').on('keyup',updateProjectsFilter)
+  $('#project_selection__search').on('search keyup',updateProjectsFilter)
 
 })
 
@@ -74,22 +74,23 @@ function updateProjectsFilter() {
 
   var area = $('#project_selection__areas input:checked').val()
 
-  var search = $('#project_selection__search input').val()
+  var search = $('#project_selection__search input').val().replace(/"\]/g, '');
 
   // make selectors
   var tagsSelector = $(tagsList).map(function(){return '[data-tags~=' +this+ ']'}).get().join("")
 
   var areaSelector = (area == "" ? '' : '[data-areas~=' +area+ ']')
 
-  var searchSelector = (search == "" ? '' : '[title*="' +search+ '"i]')
+    // possible improvement: split search input at spaces -> trim -> create searchSelector for each word -> combine searchSelectors[] with comma
+
+  var searchSelectorTitle       = (search == "" ? '' : '[title*="' +search+ '"i]')
+  var searchSelectorDescription = (search == "" ? '' : '[data-description*="' +search+ '"i]')
 
   // combine selectors
-  var allSelectors = tagsSelector + areaSelector + searchSelector
+  var allSelectors = searchSelectorTitle + searchSelectorDescription + tagsSelector + areaSelector
 
-  console.log(allSelectors)
-
-  var showElems = $('.project'+allSelectors)
-  var hideElems = $('.project:not('+allSelectors+')')
+  var showElems = $('.project'+searchSelectorTitle+', .project'+searchSelectorDescription).filter($('.project'+tagsSelector+areaSelector))
+  var hideElems = $('.project').not(showElems)
 
   console.log("show " + showElems.length + ", hide " + hideElems.length)
 

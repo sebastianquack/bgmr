@@ -17,7 +17,7 @@
     float:left;
     position: relative;
 
-    transition: max-height 0s 0.3s;
+    transition: max-height 0s 0.2s;
     max-height: 10 * $d_gridheight;
     &.active {
       max-height: 5 * $d_gridheight;
@@ -58,7 +58,7 @@
       span {
         display: block;
       }
-      transition: background-color 0.1s, max-height 0.3s;
+      transition: background-color 0.1s, max-height 0.15s;
     }
 
     &, label {
