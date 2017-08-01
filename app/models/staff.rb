@@ -2,7 +2,7 @@ class Staff < ActiveRecord::Base
 
     acts_as_list
 
-    translates :text
+    translates :text, :text_cont
 
     default_scope { order(position: :asc) }
 

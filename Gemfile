@@ -58,6 +58,7 @@ gem 'ckeditor_rails'
 gem 'traco' # Translatable columns for Rails 3 and 4, stored in the model table itself.
 gem 'friendly_id', '~> 5.0.0'
 gem 'route_translator'# translate routes 
+gem 'ransack' # multi-column search
 
 gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'paperclip-meta'

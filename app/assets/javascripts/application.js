@@ -36,3 +36,4 @@
 //= require topics
 //= require welcome
 //= require header
+//= require staffs

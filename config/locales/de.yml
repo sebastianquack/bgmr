@@ -132,6 +132,13 @@ de:
           content: "Volltext"
           draft: "Entwurf"
           slug: "Link"
+        staff:
+          text_de_or_text_de_cont: "Text (DE)"
+          text_en_or_text_en_cont: "Text (EN)"
+          image: "Bild"
+          draft: "Entwurf"
+          text: "Text – Anfang"
+          text_cont: "Text – Fortgesetzt"
       errors:
         models:
           project:

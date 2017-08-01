@@ -8,7 +8,7 @@ config.sort_order = 'position_asc'
 config.paginate   = false
 
 menu :priority => 10
-permit_params :draft, :name, :text_de, :text_en, :contact, :primary_image, :secondary_image
+permit_params :draft, :name, :text_de, :text_en, :text_cont_de, :text_cont_en, :contact, :primary_image, :secondary_image
 reorderable
 
 #
@@ -33,8 +33,8 @@ reorderable
   end
 
   filter :name
-  filter :text_de
-  filter :text_en
+  filter :text_de_or_text_de_cont
+  filter :text_en_or_text_en_cont
   filter :contact
   filter :draft
 
@@ -46,9 +46,15 @@ reorderable
         row :text_de do |staff|
           staff.text_de
         end
+        row :text_cont_de do |staff|
+          staff.text_cont_de
+        end        
         row :text_en do |staff|
           staff.text_en
         end   
+        row :text_cont_en do |staff|
+          staff.text_cont_en
+        end                
         row :contact do |staff|
          span staff.contact
         end
@@ -65,10 +71,16 @@ reorderable
     f.inputs t(:name) do
       f.input :name
     end
-    f.inputs t(:text) do
-      f.input :text_de, as: :text
-      f.input :text_en, as: :text
-      f.input :contact, as: :text
+    f.inputs t(:text_de) do
+      f.input :text_de, as: :text, :input_html => { :class => 'autogrow', :rows => 2 }
+      f.input :text_cont_de, as: :text, :input_html => { :class => 'autogrow', :rows => 4 }
+    end
+    f.inputs t(:text_en) do
+      f.input :text_en, as: :text, :input_html => { :class => 'autogrow', :rows => 2 }
+      f.input :text_cont_en, as: :text, :input_html => { :class => 'autogrow', :rows => 4 }
+    end
+    f.inputs t(:contact) do
+      f.input :contact, as: :text, :input_html => { :class => 'autogrow', :rows => 2 }
     end
     f.inputs t(:images), :class => "inputs image" do         
       f.input :primary_image, :input_html => { :class => "js-upload" }, hint: f.object.primary_image? ? image_tag(f.object.primary_image.url(:medium)) : content_tag(:span, t(:image_upload_info))

@@ -111,11 +111,12 @@ if ENV["fakestaffs"]
     
     if ENV["fakestaffs"]!="remove"
       name = Faker::Name.name
-      text = Faker::Lorem.paragraph(2, false, 8) + ' [Example]'
+      text = Faker::Lorem.paragraph(2, false, 3) + ' [Example]'
+      text_cont = Faker::Lorem.paragraph(2, false, 8) + ' [Example]'
 
       contact = "Tel. (030) 214 59 59-23\ninfo@bgmr.de"
       
-      Staff.create!(name: name, text_de: text, text_en: text, primary_image: URI.parse("http://www.fillmurray.com/300/#{200+index}"), secondary_image: URI.parse("http://www.fillmurray.com/300/#{180+index}"), contact: contact)
+      Staff.create!(name: name, text_de: text, text_en: text, text_cont_de: text, text_cont_en: text, primary_image: URI.parse("http://www.fillmurray.com/300/#{200+index}"), secondary_image: URI.parse("http://www.fillmurray.com/300/#{180+index}"), contact: contact)
 
       logger.info "Add Fake Staff ”" + name + "”"
     end

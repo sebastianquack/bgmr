@@ -2,66 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.staffs_list {
+.company_row {
   @include grid-container;
 
-  .staffs_list_entry {
-
-    margin-top: 2 * $d_gridheight;
-    margin-bottom: 3 * $d_gridheight;
-    text-align: left;
-
-    @include bp($b_8_and_lower) { 
-      margin-top: 10 * $d_gridheight;
-    } 
+  .company {
 
     @include grid-column(4);
     @include bp($b_4-8) { @include grid-column($columns_count/1); }
-    @include bp($b_8-12) { @include grid-column($columns_count/2);  &:nth-child(2n+2) { clear:both; }}
-    @include bp($b_12-16) { @include grid-column($columns_count/3);  &:nth-child(3n+2) { clear:both; }}
-    @include bp($b_16-20) { @include grid-column($columns_count/4);  &:nth-child(4n+2) { clear:both; }}
-    @include bp($b_20-24) { @include grid-column($columns_count/5);  &:nth-child(5n+2) { clear:both; }}
-    @include bp($b_24_and_up) { @include grid-column($columns_count/6); &:nth-child(6n+2) { clear:both; }}
+    @include bp($b_8-12) { @include grid-column($columns_count/2);  &:nth-child(2n+1) { clear:both; }}
+    @include bp($b_12-16) { @include grid-column($columns_count/3);  &:nth-child(3n+1) { clear:both; }}
+    @include bp($b_16-20) { @include grid-column($columns_count/4);  &:nth-child(4n+1) { clear:both; }}
+    @include bp($b_20-24) { @include grid-column($columns_count/5);  &:nth-child(5n+1) { clear:both; }}
+    @include bp($b_24_and_up) { @include grid-column($columns_count/6); &:nth-child(6n+1) { clear:both; }}
 
-    img {
-      display: block;
-      width: calc( 100% - #{ $d_gutterwidth_abs } );
-      height: 28 * $d_gridheight;
-      object-fit: cover;
-      object-position: center center;
-      margin-bottom: 2 * $d_gridheight;
-      padding-left: 0.5 * $d_gutterwidth_abs;
-      padding-right: 0.5 * $d_gutterwidth_abs;
-    }
-
-    .staff_info {
-      padding-left: 0.5 * $d_gutterwidth_abs;
-      padding-right: 0.5 * $d_gutterwidth_abs;
-    }
-
-    .staff_name {
-      height: 2 * $base-line-height;
-      overflow: hidden;
-      font-weight: bold;
-
-      @include visual_bg;      
-    }
-
-    .staff_contact {
-      padding-top: $d_lineheight;
-      white-space: pre;
-    }
-
-    @include visual_bg;
-  }
-
-  .staffs_list_entry:nth-child(2) {
-    clear:both;
-  }
-
-  .staffs_list_entry:first-child {
-
-    margin-bottom: 5 * $d_gridheight;
+    margin-bottom: 6 * $d_gridheight;
 
     @include bp($b_8-12) { 
       @include grid-column($columns_count/1); 
@@ -83,7 +37,14 @@
       @include grid-column($columns_count/(6/3)); 
     }    
     img {
+      display: block;
+      width: calc( 100% - #{ $d_gutterwidth_abs } );
+      height: 28 * $d_gridheight;
+      object-fit: cover;
+      object-position: center center;
       margin-bottom: 2 * $d_gridheight;
+      padding-left: 0.5 * $d_gutterwidth_abs;
+      padding-right: 0.5 * $d_gutterwidth_abs;      
     }
 
     .staff_image {
@@ -103,6 +64,8 @@
     }
 
     .staff_info {
+      padding-left: 0.5 * $d_gutterwidth_abs;
+      padding-right: 0.5 * $d_gutterwidth_abs; 
       @include bp($b_8-12) { 
         float:left;
         height:100%;
@@ -117,6 +80,10 @@
     }
 
     .staff_contact {
+
+      padding-top: $d_lineheight;
+      white-space: pre;
+      
       @include bp($b_8_and_up) { 
         white-space: pre;
         text-align: left;
@@ -125,6 +92,106 @@
       }
     }
 
+    @include visual_bg;
   }
 
+  @include visual_bg;
+}
+
+
+
+
+
+.staffs_list {
+  @include grid-container;
+
+  .staffs_list_entry {
+
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 2 * $d_gridheight;
+    margin-bottom: 3 * $d_gridheight;
+    text-align: left;
+
+    transition: height 0.3s;
+
+    @include bp($b_8_and_lower) { 
+      margin-top: 10 * $d_gridheight;
+    } 
+
+    @include grid-column(4);
+    @include bp($b_4-8) { @include grid-column($columns_count/1); }
+    @include bp($b_8-12) { @include grid-column($columns_count/2);  &:nth-child(2n+1) { clear:both; }}
+    @include bp($b_12-16) { @include grid-column($columns_count/3);  &:nth-child(3n+1) { clear:both; }}
+    @include bp($b_16-20) { @include grid-column($columns_count/4);  &:nth-child(4n+1) { clear:both; }}
+    @include bp($b_20-24) { @include grid-column($columns_count/5);  &:nth-child(5n+1) { clear:both; }}
+    @include bp($b_24_and_up) { @include grid-column($columns_count/6); &:nth-child(6n+1) { clear:both; }}
+
+    img {
+      display: block;
+      width: calc( 100% - #{ $d_gutterwidth_abs } );
+      height: 28 * $d_gridheight;
+      object-fit: cover;
+      object-position: center center;
+      margin-bottom: 2 * $d_gridheight;
+      padding-left: 0.5 * $d_gutterwidth_abs;
+      padding-right: 0.5 * $d_gutterwidth_abs;
+    }
+
+    .staff_info {
+      padding-left: 0.5 * $d_gutterwidth_abs;
+      padding-right: 0.5 * $d_gutterwidth_abs;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .staff_name {
+      height: 2 * $base-line-height;
+      overflow: hidden;
+      font-weight: bold;
+
+      @include visual_bg;      
+    }
+
+    .staff_text {
+      flex-grow: 1;
+    }
+
+    .read_more {
+      color: $c_bgmr_primary;
+      cursor:pointer;
+    }
+
+    &.show_cont {
+      .staff_text_2 {
+        display: inline;
+        opacity: 1;
+      }
+      .read_more {
+        display: none;
+      }
+    }
+
+    &:not(.show_cont) {
+      .staff_text_2 {
+        position: absolute;
+        height:0;
+        overflow: hidden;
+        opacity: 0;
+      }
+    }
+
+    .staff_text_2 {
+      transition: opacity 0.2s;
+    }
+
+    .staff_contact {
+      padding-top: $d_lineheight;
+      white-space: pre;
+    }
+
+    @include visual_bg;
+  }
 }
