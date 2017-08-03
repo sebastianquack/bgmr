@@ -30,6 +30,7 @@
 //= require breakpoints
 
 // elements
+//= require init
 //= require pages
 //= require projects-index
 //= require projects-show

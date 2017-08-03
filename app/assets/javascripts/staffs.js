@@ -10,10 +10,12 @@ function initStaffsRows(){
   $(items).css("max-height","initial")
 
   // get row data
+  items.addClass("no-transition").css("visibility","hidden")
   items.addClass("show_cont")
   var rowsOpen = getRows(items)
   items.removeClass("show_cont")
   var rowsClosed = getRows(items)
+  items.removeClass("no-transition").css("visibility","visible")
 
   // set height, max-height
   $(rowsClosed).each(function(index,row){

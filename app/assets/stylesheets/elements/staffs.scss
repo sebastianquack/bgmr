@@ -63,6 +63,10 @@
       display: none;
     }
 
+    .staff_name {
+      font-weight: bold;
+    }
+
     .staff_info {
       padding-left: 0.5 * $d_gutterwidth_abs;
       padding-right: 0.5 * $d_gutterwidth_abs; 
@@ -114,8 +118,10 @@
     margin-bottom: 3 * $d_gridheight;
     text-align: left;
 
-    transition: height 0.3s;
-
+    &:not(.no-transition){
+      transition: height 0.3s;
+    }
+    
     @include bp($b_8_and_lower) { 
       margin-top: 10 * $d_gridheight;
     } 
@@ -128,13 +134,18 @@
     @include bp($b_20-24) { @include grid-column($columns_count/5);  &:nth-child(5n+1) { clear:both; }}
     @include bp($b_24_and_up) { @include grid-column($columns_count/6); &:nth-child(6n+1) { clear:both; }}
 
+    .staff_image {
+      height: 28 * $d_gridheight;
+      display: block;
+      margin-bottom: 2 * $d_gridheight;      
+    }
+
     img {
       display: block;
       width: calc( 100% - #{ $d_gutterwidth_abs } );
       height: 28 * $d_gridheight;
       object-fit: cover;
       object-position: center center;
-      margin-bottom: 2 * $d_gridheight;
       padding-left: 0.5 * $d_gutterwidth_abs;
       padding-right: 0.5 * $d_gutterwidth_abs;
     }

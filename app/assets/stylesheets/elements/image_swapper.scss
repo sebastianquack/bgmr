@@ -1,5 +1,6 @@
 .image_swapper {
   position: relative;
+  overflow: hidden;
 
   > *:last-child {
     position: absolute;
