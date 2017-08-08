@@ -167,6 +167,7 @@ $(document).on('turbolinks:load', function(){
       var factor_x = $(elem).attr("data-width") / $(elem).innerWidth()
       var factor_y = $(elem).attr("data-height") / $(elem).innerHeight()
       var maxScale = Math.min(factor_x, factor_y)
+      console.log("init zoom")
       $(elem).panzoom({
         $zoomRange: $("input[type='range']"),
         panOnlyWhenZoomed: true,
