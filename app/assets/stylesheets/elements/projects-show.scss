@@ -171,12 +171,9 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
     .slide__caption__order {
       line-height: $d_caption_loophole_radius;
       display: inline-block;
-      width: $d_caption_loophole_radius;
       height: $d_caption_loophole_radius;
-      border: solid $d_caption_loophole_radius_width $ca_loophole_inverted;
-      border-radius: 50%;
       text-align: center;
-      margin-left: 0.3em; // default word spacing is 0.25em
+      margin-left: 0.75em; // default word spacing is 0.25em
     }
 
     .slide & {
