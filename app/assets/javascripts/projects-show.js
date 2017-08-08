@@ -300,6 +300,7 @@ $(document).on('turbolinks:load', function(){
   $('#project .slides').slick(slickOptions)
 
   $(window).resize(function(event,d){
+    leaveZoomMode();
     if (window.innerWidth > breakpoint_8 && $('#project .slides').slick('getSlick').unslicked)
       $('#project .slides').slick(slickOptions)    
   })

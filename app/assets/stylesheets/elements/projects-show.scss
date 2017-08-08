@@ -79,6 +79,10 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
         object-fit: contain;
         object-position: center;
         @include visual_bg;
+
+        &.zoomed-image {
+          @include bp($b_8_and_lower) { display: none; }
+        }
       }
     }
 
@@ -86,14 +90,16 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
       filter: brightness(95%);
     }
 
-    &.zoomable .slide__image img {
-      position: absolute;
-      padding-left: 1 * $d_gutterwidth_abs;
-      padding-right: 1 * $d_gutterwidth_abs;      
-      left:0;
-      top:0;
-      width: calc(100% - #{2 * $d_gutterwidth_abs});
-      background: transparent;
+    @include bp($b_8_and_up) {
+      &.zoomable .slide__image img {
+        position: absolute;
+        padding-left: 1 * $d_gutterwidth_abs;
+        padding-right: 1 * $d_gutterwidth_abs;      
+        left:0;
+        top:0;
+        width: calc(100% - #{2 * $d_gutterwidth_abs});
+        background: transparent;
+      }
     }
 
     .slide__loopholes {
