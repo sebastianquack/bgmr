@@ -76,12 +76,13 @@ $(document).on('turbolinks:load', function(){
     }
     if (cursorDirection != currentCursorDirection) {
       if (cursorDirection == "left") {
-        var cursor = 'url(/assets/links.png) 2 33, w-resize'
+        $(this).toggleClass('cursorLeft',true)
+        $(this).toggleClass('cursorRight',false)
       }
       else {
-        var cursor = 'url(/assets/rechts.png) 40 33, e-resize'
+        $(this).toggleClass('cursorLeft',false)
+        $(this).toggleClass('cursorRight',true)        
       }
-      $(this).css('cursor',cursor)  
       currentCursorDirection = cursorDirection
     }
   }) 

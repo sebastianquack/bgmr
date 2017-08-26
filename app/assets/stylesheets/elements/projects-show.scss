@@ -57,6 +57,22 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
       transition: transform 0.2s, opacity 0.2s;
     }
 
+    &.cursorLeft {
+      cursor: url(/assets/links.png) 1 16, w-resize;
+      cursor: -webkit-image-set(
+        url('/assets/links.png') 1x,
+        url('/assets/links_2x.png') 2x
+      ) 2 16, auto;
+    }
+
+    &.cursorRight {
+      cursor: url(/assets/rechts.png) 20 16, e-resize;
+      cursor: -webkit-image-set(
+        url('/assets/rechts.png') 1x,
+        url('/assets/rechts_2x.png') 2x
+      ) 20 16, auto;      
+    }
+
   }
 
   .pan_container {
