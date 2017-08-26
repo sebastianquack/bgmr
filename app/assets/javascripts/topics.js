@@ -4,7 +4,10 @@ d_topics_topic_dot_base_radius = 80;
 d_topics_topic_dot_padding = 10;
 d_topics_topic_dot_border_width = 2;
 
-desired_density = 0.8
+desired_density = 0.86
+max_iterations = 1000
+
+overlap = 2.5*d_topics_topic_dot_padding;
 
 // event bindings
 
@@ -84,17 +87,30 @@ function getRandomPosition(element, container_width, container_height, elements,
 
   var elem_radius = getRadius(d_topics_topic_dot_base_radius, $(element).data("weight-category"));
   
-  var cluster_factor = (i/elements.length < 0.5 ? 0.8 : 1) // decrease the bounding box for the first elements so they cluster more in the center
 
-  console.log(cluster_factor)
+  // var cluster_factor = (i/elements.length < 0.3 ? 0.7 : 1) // decrease the bounding box for the first elements so they cluster more in the center
+  // var min_x = (elem_radius / cluster_factor) + 0.5 * (container_width - container_width*cluster_factor)
+  // var max_x = ( container_width - elem_radius ) * cluster_factor;
+  // var min_y = elem_radius / cluster_factor + 0.5 * (container_height - container_height*cluster_factor)
+  // var max_y = ( container_height - elem_radius ) * cluster_factor;  
 
-  var min_x = elem_radius / cluster_factor
-  var max_x = ( container_width - elem_radius ) * cluster_factor;
-  var min_y = elem_radius / cluster_factor
-  var max_y = ( container_height - elem_radius ) * cluster_factor;  
+  var min_x = elem_radius
+  var max_x = container_width - elem_radius
+  var min_y = elem_radius
+  var max_y = container_height - elem_radius
+
+  //weighted_random_x = (1-Math.pow(2*Math.random()-1, 2))
+  //weighted_random_y = (1-Math.pow(2*Math.random()-1, 2))
+
+  //weighted_random_x = Math.sin(Math.PI * (Math.random()))
+  //weighted_random_y = Math.cos(Math.PI * (Math.random() - 0.5))
+
+  weighted_random_x = (1-Math.pow(2*Math.random()-1, 3))/2
+  weighted_random_y = (1-Math.pow(2*Math.random()-1, 3))/2
+
   return {
-    x: Math.round(Math.random() * (max_x-min_x) + min_x ),
-    y: Math.round(Math.random() * (max_y-min_y) + min_y ),
+    x: Math.round(weighted_random_x * (max_x-min_x) + min_x ),
+    y: Math.round(weighted_random_y * (max_y-min_y) + min_y ),
     radius: elem_radius,
   }
 }
@@ -112,7 +128,7 @@ function checkPosition(newPos, positions) {
     var dist = Math.hypot(other_x - newPos.x, other_y - newPos.y)
 
     //get min distance for each element 
-    var min_distance = newPos.radius + other_radius - 2.2*d_topics_topic_dot_padding;
+    var min_distance = newPos.radius + other_radius - overlap;
 
     //console.log("dist: " + dist + ", min dist " + min_distance);
 
@@ -131,7 +147,7 @@ function getRandomPositions(container_width, container_height, elements) {
   for (var i = 0; i < elements.length; i++) {
     //console.log(positions)
     
-    var max_j = 300; // maxumum iterations (very simple non-deterministic algorithm)
+    var max_j = max_iterations; // maxumum iterations (very simple non-deterministic algorithm)
     for(var j = 0; j < max_j; j++) {
       
       // 1. get new random position
