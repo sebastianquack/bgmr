@@ -119,56 +119,37 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
       top:0;
       left:0;
 
-      height:$d_loophole_outer_radius;
-      width:$d_loophole_outer_radius;
+      height:$d_project_loophole_dot_radius;
+      width:$d_project_loophole_dot_radius;
 
       transform: translateX(-50%) translateY(-50%) scale(1); // center it on the coordinates. scale may get modified by js
       transform-origin: center;
 
-      border: solid $d_loophole_radius_width $ca_loophole_line;
       border-radius: 50%;
 
-      box-shadow: 0px 0px #{$d_loophole_outer_radius - $d_loophole_inner_radius} 0px $loophole_shadow_color, inset 0px 0px #{$d_loophole_outer_radius - $d_loophole_inner_radius} 0px $loophole_shadow_color;
+      background-color: $ca_loophole_background;
+      text-align: center;
 
       a {
-        border: solid $d_loophole_radius_width $ca_loophole_line;
-        border-radius: 50%;
-        padding-left: $d_caption_loophole_radius_width;
-        width:$d_loophole_inner_radius - $d_caption_loophole_radius_width;
-        height:$d_loophole_inner_radius;
-        display: block;
-        text-align: center;
-        position:relative;
-        left: ($d_loophole_outer_radius - $d_loophole_inner_radius)/2 - $d_loophole_radius_width;
-        top: ($d_loophole_outer_radius - $d_loophole_inner_radius)/2 - $d_loophole_radius_width;
 
-        cursor:pointer;
+        cursor: pointer;
+
+        display:block;
+        width:inherit;
+        height:inherit;
+        border-radius: 50%;
         
-        color: $ca_loophole_line;
+        color: $ca_loophole_text;
         line-height: calc( 1rem - #{$d_caption_loophole_radius_width} );
         font-weight:bold;
+
+        
+        line-height: $d_project_loophole_dot_radius;
         
         outline: none;
-
-        box-shadow: 0px 0px $d_loophole_inner_radius 0px $loophole_shadow_color, inset 0px 0px $d_loophole_inner_radius 0px $loophole_shadow_color;
-        text-shadow: 0px 0px $d_loophole_inner_radius black;
-
-        transition: background-color 0.3s;
-
-        &:hover {
-          background-color: $ca_loophole_inverted;
-        }
         
-        span {
-          position: relative;
-          top: ($d_loophole_inner_radius - $base-font-size - $d_loophole_radius_width)/2;
-        }
       }
 
-      //@include prefixer('background-image', "radial-gradient(30px 30px 45deg, circle cover, yellow 0%, orange 100%, red 95%)", webkit moz spec);
-
-      //height:inherit;
-      //width:100%;
     }
   }
 
@@ -417,9 +398,6 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
 
     @include bp($b_8_and_lower) { display: none; }
   }
-
-  $d_project_topic_dot_radius: 26px;
-  $d_project_topic_triangle_size: 8px;
 
   .project__topics {
     .topic {

@@ -9,12 +9,17 @@ $d_lineheight: 2 * $d_gridheight;
 $d_header_margin_top: 2 * $d_gridheight;
 $d_header_height: 12 * $d_gridheight;
 
-$d_loophole_outer_radius: 45px;
-$d_loophole_inner_radius: 25px;
-$d_loophole_radius_width: 2px;
+// $d_loophole_outer_radius: 45px;
+// $d_loophole_inner_radius: 25px;
+// $d_loophole_radius_width: 2px;
+
+$d_project_loophole_dot_radius: 26px;
 
 $d_caption_loophole_radius: 31px;
 $d_caption_loophole_radius_width: 1px;
 
 $d_project_info_header_height: 13 * $d_gridheight;
 $d_project_info_header_margin_top: 4 * $d_gridheight;
+
+$d_project_topic_dot_radius: 26px;
+$d_project_topic_triangle_size: 8px;
