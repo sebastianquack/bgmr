@@ -8,7 +8,7 @@
   .company {
 
     @include grid-column(4);
-    @include bp($b_4-8) { @include grid-column($columns_count/1); }
+    @include bp($b_8_and_lower) { @include grid-column($columns_count/1); }
     @include bp($b_8-12) { @include grid-column($columns_count/2);  &:nth-child(2n+1) { clear:both; }}
     @include bp($b_12-16) { @include grid-column($columns_count/3);  &:nth-child(3n+1) { clear:both; }}
     @include bp($b_16-20) { @include grid-column($columns_count/4);  &:nth-child(4n+1) { clear:both; }}
@@ -31,7 +31,8 @@
       @include grid-column($columns_count/(4/3)); 
     }
     @include bp($b_20-24) { 
-      @include grid-column($columns_count/(5/3)); 
+      @include grid-column($columns_count/(5/4)); 
+      height: 72 * $d_gridheight;
     }    
     @include bp($b_24_and_up) { 
       @include grid-column($columns_count/(6/3)); 
@@ -39,7 +40,7 @@
     img {
       display: block;
       width: calc( 100% - #{ $d_gutterwidth_abs } );
-      height: 28 * $d_gridheight;
+      height: 28 * $d_gridheight;          
       object-fit: cover;
       object-position: center center;
       margin-bottom: 2 * $d_gridheight;
@@ -48,6 +49,9 @@
     }
 
     .staff_image {
+      @include bp($b_5-8) { 
+        img { height: 40 * $d_gridheight; }
+      }            
       @include bp($b_8-12) { 
         width: calc( 50% - #{ 0.5 * $d_gutterwidth_abs } ); 
         float:right;
@@ -57,6 +61,10 @@
         float:right;
         img { height: 56 * $d_gridheight; }
       }         
+      @include bp($b_20-24) { 
+        width: 74.4% ; 
+        img { height: 72 * $d_gridheight; }
+      }
     }
 
     .staff_text { 
@@ -127,7 +135,7 @@
     } 
 
     @include grid-column(4);
-    @include bp($b_4-8) { @include grid-column($columns_count/1); }
+    @include bp($b_8_and_lower) { @include grid-column($columns_count/1); }
     @include bp($b_8-12) { @include grid-column($columns_count/2);  &:nth-child(2n+1) { clear:both; }}
     @include bp($b_12-16) { @include grid-column($columns_count/3);  &:nth-child(3n+1) { clear:both; }}
     @include bp($b_16-20) { @include grid-column($columns_count/4);  &:nth-child(4n+1) { clear:both; }}
@@ -138,12 +146,18 @@
       height: 28 * $d_gridheight;
       display: block;
       margin-bottom: 2 * $d_gridheight;      
+      @include bp($b_5-8) { 
+        height: 40 * $d_gridheight;
+      }             
     }
 
     img {
       display: block;
       width: calc( 100% - #{ $d_gutterwidth_abs } );
       height: 28 * $d_gridheight;
+      @include bp($b_5-8) { 
+        height: 40 * $d_gridheight;
+      }             
       object-fit: cover;
       object-position: center center;
       padding-left: 0.5 * $d_gutterwidth_abs;

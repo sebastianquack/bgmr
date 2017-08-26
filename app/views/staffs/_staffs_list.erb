@@ -23,7 +23,7 @@
         <p class="staff_text">
           <span class="staff_text_1"><%= staff.text %></span>
           <% if staff.text_cont && !staff.text_cont.empty? %>
-            <span class="read_more"> <%= t(:read_more) %>&nbsp;&gt;</span>
+            <span class="read_more"> &gt;&nbsp;<%= t(:read_more) %></span>
             <span class="staff_text_2"><%= staff.text_cont %></span>
           <% end %>
         </p>

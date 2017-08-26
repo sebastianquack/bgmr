@@ -204,7 +204,7 @@
     } 
 
     @include grid-column(4);
-    @include bp($b_4-8) { @include grid-column($columns_count/1); }
+    @include bp($b_8_and_lower) { @include grid-column($columns_count/1); }
     @include bp($b_8-12) { @include grid-column($columns_count/2); }
     @include bp($b_12-16) { @include grid-column($columns_count/3); }
     @include bp($b_16-20) { @include grid-column($columns_count/4); }

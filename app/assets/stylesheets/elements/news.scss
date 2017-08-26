@@ -5,6 +5,10 @@
   text-align: left;
   margin:auto;
 
+  margin-bottom: 4 * $d_gridheight;
+  clear: both;
+  overflow: hidden;
+
   &:first-child {
     margin-top: 2 * $d_gridheight;
   }
@@ -56,9 +60,6 @@
     white-space: nowrap;
   }
 
-  margin-bottom: 7.5 * $d_gridheight;
-  clear: both;
-  overflow: hidden;
 }
 
 .topic__image {
