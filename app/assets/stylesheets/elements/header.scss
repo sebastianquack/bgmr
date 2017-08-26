@@ -1,7 +1,16 @@
+#main {
+  padding-top: $d_header_height + $d_header_margin_top;
+}
+
 #page_header {
 
-  margin-top: $d_header_margin_top;
-  height: $d_header_height;
+  position:fixed;
+  width:100%;
+  background-color: white;
+  z-index:20;
+
+  padding-top: $d_header_margin_top;
+  height: $d_header_height /* - 2*$d_gridheight */;
 
   text-align: center;
 
