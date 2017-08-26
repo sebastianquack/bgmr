@@ -378,6 +378,10 @@ form fieldset > ol > li fieldset:not(.has_many_fields) ol {
   }
 }
 
+.inline-hints img {
+  max-width: 100%;
+}
+
 form fieldset ol > li label {
   font-weight: normal;
 }
