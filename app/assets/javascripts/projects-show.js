@@ -76,10 +76,10 @@ $(document).on('turbolinks:load', function(){
     }
     if (cursorDirection != currentCursorDirection) {
       if (cursorDirection == "left") {
-        var cursor = 'url(/assets/links.png) 20 33, w-resize'
+        var cursor = 'url(/assets/links.png) 2 33, w-resize'
       }
       else {
-        var cursor = 'url(/assets/rechts.png) 20 33, e-resize'
+        var cursor = 'url(/assets/rechts.png) 40 33, e-resize'
       }
       $(this).css('cursor',cursor)  
       currentCursorDirection = cursorDirection
