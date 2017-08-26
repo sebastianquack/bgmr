@@ -8,14 +8,18 @@
     left: 0;
   }
 
+  > *:last-child, > *:first-child {
+    transition: opacity 0.3s;
+  }
+
   &:hover {
     > *:fist-child {
-      display:none;
+      opacity:0;
     }
   }
   &:not(:hover) {
     > *:last-child {
-      display:none;
+      opacity:0;
     }
   }  
 }
