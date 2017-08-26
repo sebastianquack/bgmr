@@ -277,8 +277,11 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
 
         .project__headline_1 {
           padding-right: 0.5 * $d_gutterwidth_abs;
-          cursor: pointer;
-          
+
+          .project__title, .project__title__controls {
+            cursor: pointer;
+          }
+
           @include bp($b_8_and_lower) { width: 100%; }
         }
 
