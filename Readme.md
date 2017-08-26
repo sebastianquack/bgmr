@@ -42,9 +42,9 @@ to enable push:
 
 restart: `svc -du ~/service/bgmr-web`
 
-port: 54123
+port: 62480
 
-see ~/html/.htaccess & ~/services/bgmr-web
+see ~/html/.htaccess & ~/service/bgmr-web
 
 ### postgres
 
