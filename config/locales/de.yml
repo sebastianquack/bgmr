@@ -53,7 +53,7 @@ de:
   pdf_upload_info: "Datei im PDF-Format hochladen"
   move_up: "nach oben ↑"
   move_down: "nach unten ↓"
-  read_more: "weiterlesen"
+  read_more: "mehr"
   activerecord: 
       models: 
         project: 
