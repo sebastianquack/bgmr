@@ -221,7 +221,7 @@ $(document).on('turbolinks:load', function(){
   })
 
   // zoom out on click
-  $(".slide.zoomable").on('dblclick',function(e){
+  $(".slide.zoomable").on('dblclick doubletap',function(e){
 
     /*if (lastPanned == 0) { // do not react the first time to allow discovery of pan
       lastPanned = 1

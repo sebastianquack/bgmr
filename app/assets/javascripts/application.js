@@ -19,6 +19,7 @@
 // vendor npm
 //= require slick-carousel/slick/slick.js
 //= require jquery.panzoom/dist/jquery.panzoom.js
+//= require jquery-touch-events/src/jquery.mobile-events.js
 
 // helpers
 //= require helpers

@@ -7,6 +7,13 @@
   #project_selection__areas *, #project_selection__search * {
     font-weight: normal;
   }
+
+  @include bp($b_16_and_up) { 
+    margin-left: col_width_abs(2,1);
+    margin-right: col_width_abs(2,1);
+  }
+
+  @include visual_bg;
 }
 
 #project_selection {

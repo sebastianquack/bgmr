@@ -234,7 +234,7 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
         padding-right: $d_gutterwidth_abs+ 0.5 * $d_gridwidth_abs;
       }
 
-      @include bp($b_20_and_up) {
+      @include bp($b_16_and_up) {
         width: calc( 100% - #{ 6*$d_gutterwidth_abs + 4*$d_gridwidth_abs } );
         padding-left: 3 * $d_gutterwidth_abs + 2 * $d_gridwidth_abs;
         padding-right: 3 * $d_gutterwidth_abs+ 2 * $d_gridwidth_abs;
