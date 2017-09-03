@@ -124,7 +124,16 @@
 
     margin-top: 2 * $d_gridheight;
     margin-bottom: 3 * $d_gridheight;
-    text-align: left;
+    text-align: flex;
+    justify-content: center;
+
+    > * {
+      width: col_width_abs(4,-2);
+      text-align: left;
+      margin-left:auto;
+      margin-right:auto;
+      @include visual_bg;
+    }
 
     &:not(.no-transition){
       transition: height 0.3s;
@@ -146,22 +155,17 @@
       height: 28 * $d_gridheight;
       display: block;
       margin-bottom: 2 * $d_gridheight;      
-      @include bp($b_5-8) { 
-        height: 40 * $d_gridheight;
-      }             
     }
 
     img {
       display: block;
       width: calc( 100% - #{ $d_gutterwidth_abs } );
       height: 28 * $d_gridheight;
-      @include bp($b_5-8) { 
-        height: 40 * $d_gridheight;
-      }             
+      width: col_width_abs(5,0);     
       object-fit: cover;
       object-position: center center;
-      padding-left: 0.5 * $d_gutterwidth_abs;
-      padding-right: 0.5 * $d_gutterwidth_abs;
+      // padding-left: 0.5 * $d_gutterwidth_abs;
+      // padding-right: 0.5 * $d_gutterwidth_abs;
     }
 
     .staff_info {
