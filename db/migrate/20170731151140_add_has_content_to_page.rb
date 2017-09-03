@@ -4,9 +4,12 @@ class AddHasContentToPage < ActiveRecord::Migration
   
     reversible do |dir|
       dir.up do
-        imprint = Page.where(:seed_id => "imprint").first
-        imprint.has_content = true
-        imprint.save
+        imprint_query = Page.where(:seed_id => "imprint")
+        if imprint_query.count() > 0
+          imprint = imprint_query.first
+          imprint.has_content = true
+          imprint.save
+        end
       end
     end
   end

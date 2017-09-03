@@ -53,6 +53,7 @@ end
 
 gem 'activeadmin', '1.0.0.pre5'
 gem 'devise'
+gem 'devise-i18n'
 gem 'ckeditor_rails'
 
 gem 'traco' # Translatable columns for Rails 3 and 4, stored in the model table itself.

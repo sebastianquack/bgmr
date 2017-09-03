@@ -99,6 +99,7 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.2.0)
     erubis (2.7.0)
     execjs (2.7.0)
     faker (1.8.4)
@@ -269,6 +270,7 @@ DEPENDENCIES
   ckeditor_rails
   coffee-rails (~> 4.1.0)
   devise
+  devise-i18n
   faker
   friendly_id (~> 5.0.0)
   htmlentities
@@ -294,4 +296,4 @@ RUBY VERSION
    ruby 2.2.7p470
 
 BUNDLED WITH
-   1.14.6
+   1.15.4
