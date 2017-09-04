@@ -37,6 +37,14 @@ module ApplicationHelper
     return Page.friendly.find(params[:id]).title if current_page?(page_path)
   end
 
+  def current_section_key
+    return "welcome" if current_page?(root_path)
+    return "topics" if current_page?(topics_path)
+    return "projects" if current_page?(projects_path)
+    return "topic" if current_page?(topic_path)
+    return "project" if current_page?(project_path)
+  end
+
   def strip_all x
     coder = HTMLEntities.new
     x = strip_tags(x.to_s.html_safe).gsub("\n","")

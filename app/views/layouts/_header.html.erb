@@ -42,14 +42,14 @@
         <% if current_locale :en %>
           <abbr title="English">en</abbr>
         <% else %>
-          <a href="<%= translated_url_for_current_request(:en) %>" title="English" rel="alternate" hreflang="en"><abbr title="English">en</abbr></a>
+          <a href="<%= translated_url_for_current_request(:en) %>" title="English" rel="alternate" hreflang="en" data-turbolinks="false"><abbr title="English">en</abbr></a>
         <% end %>
       </li>
       <li>
         <% if current_locale :de %>
           <abbr title="Deutsch">de</abbr>
         <% else %>
-          <a href="<%= translated_url_for_current_request(:de) %>" title="Deutsch" rel="alternate" hreflang="de"><abbr title="Deutsch">de</abbr></a>
+          <a href="<%= translated_url_for_current_request(:de) %>" title="Deutsch" rel="alternate" hreflang="de" data-turbolinks="false"><abbr title="Deutsch">de</abbr></a>
         <% end %>
       </li>
     </ul>

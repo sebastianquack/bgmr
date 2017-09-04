@@ -4,10 +4,17 @@
 
 $loophole_shadow_color: rgba(66,66,66,0.25);
 
+body[data-section="project"] {
+  &, & #frame, & #main {
+    height:100%;
+    overflow:hidden;
+  }
+}
+
 #project {
 
   @include bp($b_8_and_up) {
-    height: calc( 100vh - #{ $d_header_margin_top + $d_header_height + 3*$d_gridheight } ) !important; // overwrite calc-enabled browsers
+    height: calc( 100% - #{ $d_header_margin_top + $d_header_height + 3*$d_gridheight } ) !important; // overwrite calc-enabled browsers
   }
 
   .project__title {
@@ -34,7 +41,7 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
     @include bp($b_24_and_up)   { height: 134 * $d_gridheight; }
 
     @include bp($b_8_and_up) {
-      height: calc( 100vh - #{ $d_header_margin_top + $d_header_height + 5*$d_gridheight + $d_project_info_header_height } ) !important; // overwrite calc-enabled browsers
+      height: calc( 100vh - #{ $d_header_margin_top + $d_header_height + 5*$d_gridheight + $d_project_info_header_height } ) !important; // TODO: use percentage of window height
     }
 
     overflow:hidden;

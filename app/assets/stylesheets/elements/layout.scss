@@ -36,6 +36,10 @@ $neat-grid: (
   gutter: $d_gutterwidth_abs,
 );
 
+html {
+  height:100%;
+}
+
 body {
   padding:0;
   margin:0;

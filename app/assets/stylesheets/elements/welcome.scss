@@ -2,26 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body[data-section="welcome"] {
+  &, & #frame, & #main {
+    height:100%;
+    overflow:hidden;
+  }
+}
+
 #welcome {
   margin-left: $d_gutterwidth_abs;
   margin-right: $d_gutterwidth_abs;
+
+  height: calc( 100% - #{ $d_header_margin_top + $d_header_height + 3*$d_gridheight } ) !important; // overwrite calc-enabled browsers
 
   img {
     width: 100%;
     object-fit: cover;
     object-position: left center;
+    height:100%;
 
-    @include bp($b_8_and_lower) { height: 96 * $d_gridheight; } // todo crop to fit horizontal grid
-    @include bp($b_8-12)        { height: 96 * $d_gridheight; }
-    @include bp($b_12-16)       { height: 96 * $d_gridheight; }
-    @include bp($b_16-20)       { height: 96 * $d_gridheight; }
-    @include bp($b_20-24)       { height: 96 * $d_gridheight; }
-    @include bp($b_24_and_up)   { height: 134 * $d_gridheight; }      
-
-    @debug $d_header_margin_top;
-    @debug $d_header_height;
-
-
-    height: calc( 100vh - #{ $d_header_margin_top + $d_header_height + 3*$d_gridheight } ) !important; // overwrite calc-enabled browsers
   }
 }
