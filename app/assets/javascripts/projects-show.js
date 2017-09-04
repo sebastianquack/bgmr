@@ -177,13 +177,19 @@ $(document).on('turbolinks:load', function(){
         contain: 'invert',
         duration: 200,
         transition: true,
+        rangeStep: 0.05,
+        easing: "ease-in-out",
         //maxScale: elem.naturalWidth / elem.clientWidth
         onZoom: function(e,d) {
           var newScale = 1/d.scale
           $(e.target).find(".slide__loophole").each(function (i,loophole) {
             setTransformScale(loophole, newScale)
           })
-          //console.log(d.scale)
+
+          var img = $(e.target).find('.slide__image img')
+          var left_offset = img.attr('data-actual-offset-left')
+          var img_width = d.container.width - 2*parseInt(left_offset)
+          var scale_limit = d.container.width / img_width // use to prevent x-axis movement before limit is reached
           if (d.scale <= 1) {
             leaveZoomMode()
           } else {
@@ -192,7 +198,8 @@ $(document).on('turbolinks:load', function(){
         },
         onPan: function(e,d) {
           lastPanned = Date.now()
-          //console.log(d)
+          console.log(d)
+          
         },
         onReset: function(e,d) {
           $(e.target).find(".slide__loophole").each(function (i,loophole) {
