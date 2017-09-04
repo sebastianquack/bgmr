@@ -4,8 +4,8 @@ d_topics_topic_dot_base_radius = 80;
 d_topics_topic_dot_padding = 10;
 d_topics_topic_dot_border_width = 2;
 
-desired_density = 0.86
-max_iterations = 1000
+desired_density = 0.8
+max_iterations = 10000
 
 overlap = 2.5*d_topics_topic_dot_padding;
 

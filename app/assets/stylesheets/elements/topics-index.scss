@@ -23,7 +23,7 @@ $d_topics_topic_dot_border_width: 2px;
   overflow: hidden;
 
   margin: 0 $d_gutterwidth_abs;
-  @include bp($b_16_and_up)   {
+  @include bp($b_12_and_up)   {
     margin-left: col_width_abs(1,1);
     margin-right: col_width_abs(1,1);
   }
@@ -60,6 +60,7 @@ $d_topics_topic_dot_border_width: 2px;
     display: table-cell;
     vertical-align: middle;
     @include must-break;
+    letter-spacing: 0.1ex;
 
     transition: transform 0.2s;
     transition-timing-function: ease-out;

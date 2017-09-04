@@ -30,20 +30,31 @@ class Topic < ActiveRecord::Base
     end
   end
 
-  def weight_category(amount=3)
+  def weight_category(amount=4)
     total = Topic.count
     index = Topic.reorder(weight: :asc).index(self) + 1
     ( index.to_f / total.to_f * amount.to_f ).ceil # note: floor+1 gives nice results in amount+1 categories
   end
 
-  def nice_weight_category(amount=3) # put only the largest in the top category
-    cat = self.weight_category(amount)
-    if cat == amount # in top category
-      if Topic.reorder(weight: :desc).index(self) != 0 # but not heaviest?
-        return amount - 1 # reduce by 1
-      end
+
+  def nice_weight_category(amount=4) # all are small except the top <amount>
+    total = Topic.count
+    index = Topic.reorder(weight: :desc).index(self)
+    if index >= amount-1
+      return 1 # last category
+    else
+      return amount - index
     end
-    cat
   end
+
+  # def nice_weight_category(amount=4) # put only the largest in the top category
+  #   cat = self.weight_category(amount)
+  #   if cat == amount # in top category
+  #     if Topic.reorder(weight: :desc).index(self) != 0 # but not heaviest?
+  #       return amount - 1 # reduce by 1
+  #     end
+  #   end
+  #   cat
+  # end
 
 end
