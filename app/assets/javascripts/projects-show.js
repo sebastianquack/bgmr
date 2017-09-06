@@ -21,6 +21,7 @@ $(document).on('turbolinks:load', function(){
 
   $('#project .slide__image img').on('load', function(event){
     $(event.target).closest(".slide").addClass("loaded")
+    $(event.target).closest(".slick-current").closest('.slides').addClass("current-loaded")
     var pos = positionSlidelinks(this);
     positionZoomableControl(this, pos.left);
   })

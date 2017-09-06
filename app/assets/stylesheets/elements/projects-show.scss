@@ -416,7 +416,8 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
     @include bp($b_8_and_lower) { display: none; }
   }
 
-  .slides:not(.zoomable) ~ .zoomable_control {
+  .slides:not(.zoomable) ~ .zoomable_control,
+  .slides:not(.current-loaded) ~ .zoomable_control {
     opacity:0;
     pointer-events: none;
   }
