@@ -263,9 +263,9 @@ $(document).on('turbolinks:load', function(){
 
   $('.zoom_button_plus').click(function(event){
     var elem = $(".slick-current .slide.zoomable").get(0);
-    var scale = parseFloat($(elem).attr('data-current-zoom'))-1;
-    var maxScale = parseFloat($(elem).attr('data-max-zoom'))-1;
-    var newScale = ((scale < maxScale /2) ? (maxScale/2) : maxScale);
+    var scale = roughly(parseFloat($(elem).attr('data-current-zoom'))-1);
+    var maxScale = roughly(parseFloat($(elem).attr('data-max-zoom'))-1);
+    var newScale = roughly((scale < maxScale /2) ? (maxScale/2) : maxScale);
     // console.log(scale, maxScale, newScale)
     $(elem).addClass("force-transition")
     $(elem).panzoom("zoom", newScale+1);
@@ -274,25 +274,35 @@ $(document).on('turbolinks:load', function(){
   
   $('.zoom_button_minus').click(function(event){
     var elem = $(".slick-current .slide.zoomable").get(0);
-    var scale = parseFloat($(elem).attr('data-current-zoom'))-1;
-    var maxScale = parseFloat($(elem).attr('data-max-zoom'))-1;
-    var newScale = ((scale > maxScale /2) ? (maxScale/2) : 0);
-    // console.log(scale, maxScale, newScale)
+    var scale = roughly(parseFloat($(elem).attr('data-current-zoom'))-1);
+    var maxScale = roughly(parseFloat($(elem).attr('data-max-zoom'))-1);
+    var newScale = roughly((scale > maxScale /2) ? (maxScale/2) : 0);
+    console.log(scale, maxScale, newScale)
     $(elem).addClass("force-transition")
     $(elem).panzoom("zoom", newScale+1);
     $(elem).one("transitionend", function() {$(elem).removeClass("force-transition")} )
   })
 
-
-  // preload high resolution image
-  $("#project .slides").on('afterChange', function(event){
-    if ($("#project .slides img").filter(function(i,img){  return !this.complete }).length > 0) {
-    } else {
-      insertZoomImage($(".slick-current .slide").get(0))
-    }
+  // preload high resolution image after 6 seconds
+  $("#project .slides").on('afterChange', function(event, d){
+    var currentIndex = d.currentSlide;
+    setTimeout( function(){
+      if ($("#project .slides img").filter(function(i,img){  return !this.complete }).length > 0) {
+      } else {
+        var nowCurrentIndex = $("#project .slides").slick('slickCurrentSlide')
+        if (nowCurrentIndex === currentIndex) {
+          console.log("preload")
+          insertZoomImage($(".slick-current .slide").get(0)) // disabled, need to be more refined. max 1 image downlaod at a time, because there are now progressive jpgs
+        }
+      }  
+    }, 6000)
   })
 
 })
+
+function roughly(number) {
+  return Math.floor(number * 1000) / 1000
+}
 
 function enterZoomMode(slide) {
   if (zoomMode == true) return
