@@ -165,43 +165,58 @@ $(document).on('turbolinks:load', function(){
   $('#project .slides').on('init reInit afterChange',function(event){
     leaveZoomMode() // just in case
     $(".slick-current .slide.zoomable").each(function(i,elem){
-      var factor_x = $(elem).attr("data-width") / $(elem).innerWidth()
-      var factor_y = $(elem).attr("data-height") / $(elem).innerHeight()
-      var maxScale = Math.min(factor_x, factor_y)
-      console.log("init zoom")
+      var maxScale = getMaxScale(elem)
+      $(elem).attr("data-max-zoom",maxScale);
+      $(elem).attr("data-current-zoom",1);
+      manageZoomButtonStates();
       $(elem).panzoom({
-        $zoomRange: $("input[type='range']"),
         panOnlyWhenZoomed: true,
+        linearZoom: false,
         minScale: 1,
-        maxScale: maxScale,
+        maxScale,
         contain: 'invert',
         duration: 200,
         transition: true,
-        rangeStep: 0.05,
         easing: "ease-in-out",
-        //maxScale: elem.naturalWidth / elem.clientWidth
         onZoom: function(e,d) {
+
+          // manage loophole scale
           var newScale = 1/d.scale
           $(e.target).find(".slide__loophole").each(function (i,loophole) {
             setTransformScale(loophole, newScale)
           })
 
+          // manage locking of x-axis movement before limit is reached (unfinished)
           var img = $(e.target).find('.slide__image img')
           var left_offset = img.attr('data-actual-offset-left')
           var img_width = d.container.width - 2*parseInt(left_offset)
-          var scale_limit = d.container.width / img_width // use to prevent x-axis movement before limit is reached
+          var scale_limit = d.container.width / img_width
+
+          // manage zoomMode
           if (d.scale <= 1) {
             leaveZoomMode()
           } else {
             enterZoomMode($(".slick-current .slide").get(0))
           }
+
+          // manage data attributes
+          $(elem).attr('data-current-zoom',d.scale);
+
+          // manage buttons
+          manageZoomButtonStates()
+
         },
         onPan: function(e,d) {
           lastPanned = Date.now()
-          console.log(d)
+          //console.log(d)
           
         },
         onReset: function(e,d) {
+          $(e.target).attr("data-current-zoom",1);
+          var maxScale = getMaxScale(e.target)
+          $(e.target).attr("data-max-zoom",maxScale);
+          $(e.target).panzoom("option", "maxScale", maxScale);   
+          manageZoomButtonStates()       
           $(e.target).find(".slide__loophole").each(function (i,loophole) {
             setTransformScale(loophole, 1)
           })
@@ -228,6 +243,7 @@ $(document).on('turbolinks:load', function(){
   })
 
   // zoom out on click
+  
   $(".slide.zoomable").on('dblclick doubletap',function(e){
 
     /*if (lastPanned == 0) { // do not react the first time to allow discovery of pan
@@ -240,6 +256,27 @@ $(document).on('turbolinks:load', function(){
       leaveZoomMode()
     }
   })
+
+  // zoom controls
+
+  $('.zoom_button_plus').click(function(event){
+    var elem = $(".slick-current .slide.zoomable").get(0);
+    var scale = Number.parseFloat($(elem).attr('data-current-zoom'))-1;
+    var maxScale = Number.parseFloat($(elem).attr('data-max-zoom'))-1;
+    var newScale = scale < maxScale /2 ? maxScale/2 : maxScale;
+    console.log(scale, maxScale, newScale)
+    $(elem).addClass("force-transition")
+    $(elem).panzoom("zoom", newScale+1);
+    $(elem).one("transitionend",() => $(elem).removeClass("force-transition"))
+  })
+  
+  $('.zoom_button_minus').click(function(event){
+    var elem = $(".slick-current .slide.zoomable").get(0);
+    $(elem).addClass("force-transition")
+    $(elem).panzoom("zoom", 1, { animate: true });
+    $(elem).one("transitionend",() => $(elem).removeClass("force-transition"))
+  })
+
 
   // preload high resolution image
   $("#project .slides").on('afterChange', function(event){
@@ -287,6 +324,32 @@ function insertZoomImage(slide, activate) {
   setTimeout(function(){
     imgElemZoom.insertAfter(imgElem)
   },500) // make is smoother
+}
+
+function getMaxScale(elem) {
+  var factor_x = $(elem).attr("data-width") / $(elem).innerWidth()
+  var factor_y = $(elem).attr("data-height") / $(elem).innerHeight()
+  var maxScale = Math.min(factor_x, factor_y)
+  return maxScale;
+}
+
+function manageZoomButtonStates() {
+  var plus = $('.zoom_button_plus');
+  var minus = $('.zoom_button_minus');
+  var scale = Number.parseFloat($(".slick-current .slide.zoomable").attr('data-current-zoom'));
+  var maxScale = Number.parseFloat($(".slick-current .slide.zoomable").attr('data-max-zoom'));
+
+  if (scale <= 1) {
+    $(plus).attr("disabled", false);
+    $(minus).attr("disabled", true);
+  }
+  else if (scale >= maxScale) {
+    $(plus).attr("disabled", true);
+    $(minus).attr("disabled", false);
+  } else {
+    $(plus).attr("disabled", false);
+    $(minus).attr("disabled", false);
+  }
 }
 
 // init slick slider (after other calls, so init events can get heard)

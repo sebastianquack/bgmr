@@ -110,6 +110,7 @@ body[data-section="project"] {
     }
 
     &.plan .slide__image img {
+      transform: translateZ(0) scale(1.0, 1.0); // just a strange hack to make safari not blurry
       filter: brightness(95%);
     }
 
@@ -411,6 +412,10 @@ body[data-section="project"] {
     transition: opacity 0.2s;
   }
 
+  .slide.zoomable.force-transition {
+    transition: transform 200ms ease-in-out !important;
+  }
+  
   .project__tags {
     position: absolute;
     text-align: center;
