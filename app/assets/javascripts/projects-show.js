@@ -173,7 +173,7 @@ $(document).on('turbolinks:load', function(){
         panOnlyWhenZoomed: true,
         linearZoom: false,
         minScale: 1,
-        maxScale,
+        maxScale: maxScale,
         contain: 'invert',
         duration: 200,
         transition: true,
