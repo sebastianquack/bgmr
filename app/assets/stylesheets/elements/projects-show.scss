@@ -4,10 +4,12 @@
 
 $loophole_shadow_color: rgba(66,66,66,0.25);
 
-body[data-section="project"] {
-  &, & #frame, & #main {
-    height:100%;
-    overflow:hidden;
+@include bp($b_8_and_up){
+  body[data-section="project"] {
+    &, & #frame, & #main {
+      height:100%;
+      overflow:hidden;
+    }
   }
 }
 
@@ -329,6 +331,11 @@ body[data-section="project"] {
         transition: height 0.2s;
         transition-timing-function: ease-in-out;
         margin-bottom: 5 * $d_gridheight;
+
+        @include bp($b_8_and_lower) {
+          margin-left: $d_gutterwidth_abs;
+          margin-right: $d_gutterwidth_abs;
+        }
 
         @include visual_bg;
       }
