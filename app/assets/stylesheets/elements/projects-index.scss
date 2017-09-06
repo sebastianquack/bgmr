@@ -3,14 +3,20 @@
 }
 
 #project_selection {
-  margin: 0 $d_gutterwidth_abs #{6 * $d_gridheight} $d_gutterwidth_abs;
+
+  position: fixed;
+  background-color: white;
+
+  padding: 0 $d_gutterwidth_abs #{5 * $d_gridheight} $d_gutterwidth_abs;
+  margin-bottom: 1 * $d_gridheight;
+
   #project_selection__areas *, #project_selection__search * {
     font-weight: normal;
   }
 
   @include bp($b_16_and_up) { 
-    margin-left: col_width_abs(2,1);
-    margin-right: col_width_abs(2,1);
+    padding-left: col_width_abs(2,1);
+    padding-right: col_width_abs(2,1);
   }
 
   @include visual_bg;

@@ -104,3 +104,15 @@ function updateProjectsFilter() {
   }
 
 }
+
+// adjust space for fixed header
+
+$(document).on('turbolinks:load', updateProjectsListMarginTop);
+$(window).on('resize', updateProjectsListMarginTop);
+
+function updateProjectsListMarginTop() {
+  var list = $(".projects_list");
+  var fixed = $("#project_selection");
+  var margin = $(fixed).outerHeight(true);
+  $(list).css('padding-top',margin+"px")
+}
