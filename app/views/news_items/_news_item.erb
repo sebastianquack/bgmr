@@ -17,7 +17,13 @@
   <div class="news_item_images">
     <% if news_images.length > 0 %>
       <% news_images.each do |news_image| %>
-        <%= image_tag news_image.image(:medium) if !news_image.nil? %>
+        <% if !news_image.nil? %>
+          <% if preview %>
+            <%= link_to image_tag(news_image.image(:medium)), news_item_path(:id => news_item.slug) %>
+          <% else %>
+            <%= image_tag news_image.image(:medium) %>
+          <% end %>
+        <% end %>
       <% end %>
     <% end %>
   </div>
