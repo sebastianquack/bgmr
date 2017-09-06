@@ -109,9 +109,15 @@ body[data-section="project"] {
       }
     }
 
+    &:not(.loaded) {
+      .slide__loopholes {
+        display:none;
+      }
+    }
+
     &.plan .slide__image img {
-      transform: translateZ(0) scale(1.0, 1.0); // just a strange hack to make safari not blurry
-      filter: brightness(95%);
+      // transform: translateZ(0) scale(1.0, 1.0); // just a strange hack to make safari not blurry
+      // filter: brightness(95%);
     }
 
     @include bp($b_8_and_up) {

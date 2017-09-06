@@ -321,7 +321,7 @@ function insertZoomImage(slide, activate) {
   }
   var imgElem = $(slide).find("img").get(0)
   var src = $(imgElem).attr('data-zoom-src')
-  var imgElemZoom = $(imgElem).clone()
+  var imgElemZoom = $(imgElem).clone().removeAttr("srcset")
   imgElemZoom.attr('src',src).addClass("zoomed-image")
   if (!activate) imgElemZoom.css("visibility","hidden")
   setTimeout(function(){
