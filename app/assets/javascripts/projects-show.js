@@ -253,6 +253,7 @@ $(document).on('turbolinks:load', function(){
     
     if (zoomMode == true && ( Date.now() - lastPanned > 200) ) {
       e.stopPropagation()
+      e.stopImmediatePropagation()
       leaveZoomMode()
     }
   })
@@ -303,9 +304,11 @@ function leaveZoomMode() {
   var slides = $('.slides')
   var zoomElem = $('.slide.zoomable')
   $(zoomElem).panzoom("reset",{animate: true});
+  setTimeout( ()=>{
   $(slides).removeClass('zoomed')
   zoomMode = false
-  $(slides).slick('slickSetOption','swipe',true)
+    $(slides).slick('slickSetOption','swipe',true)}
+  , 400);
   //console.log("zoomMode off")
 }
 
