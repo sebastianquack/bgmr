@@ -273,8 +273,12 @@ $(document).on('turbolinks:load', function(){
   
   $('.zoom_button_minus').click(function(event){
     var elem = $(".slick-current .slide.zoomable").get(0);
+    var scale = parseFloat($(elem).attr('data-current-zoom'))-1;
+    var maxScale = parseFloat($(elem).attr('data-max-zoom'))-1;
+    var newScale = ((scale > maxScale /2) ? (maxScale/2) : 0);
+    // console.log(scale, maxScale, newScale)
     $(elem).addClass("force-transition")
-    $(elem).panzoom("zoom", 1, { animate: true });
+    $(elem).panzoom("zoom", newScale+1);
     $(elem).one("transitionend", function() {$(elem).removeClass("force-transition")} )
   })
 
