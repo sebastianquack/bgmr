@@ -170,7 +170,7 @@ $(document).on('turbolinks:load', function(){
       $(elem).attr("data-max-zoom",maxScale);
       $(elem).attr("data-current-zoom",1);
       $(elem).attr("data-current-level", 0);
-      $(elem).attr('data-max-level', 2);
+      $(elem).attr('data-max-level', 3);
       manageZoomButtonStates();
       $(elem).panzoom({
         panOnlyWhenZoomed: true,
@@ -302,7 +302,9 @@ $(document).on('turbolinks:load', function(){
 function doSoftZoom(level, maxLevels) {
   var elem = $(".slick-current .slide.zoomable").get(0);
   var maxScale = parseFloat($(elem).attr('data-max-zoom'));
-  var newScale = (maxScale-1)/maxLevels * level;
+  var distortionFactor = 0.2; // smalle -> larger steps at the beginning
+  var weightedLevel =  level * (Math.pow(level, distortionFactor) / Math.pow(maxLevels, distortionFactor));
+  var newScale = (maxScale-1)/maxLevels * weightedLevel;
   $(elem).addClass("force-transition")
   $(elem).panzoom("zoom", newScale+1);
   $(elem).attr("data-current-level", level);
