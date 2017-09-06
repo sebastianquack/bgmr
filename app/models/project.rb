@@ -3,8 +3,16 @@ class Project < ActiveRecord::Base
 
   friendly_id :title, :use => [:slugged, :simple_i18n]
 
- 	has_attached_file :main_image, styles: { large: "1000x1000>", medium: "600x600>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
-  
+ 	has_attached_file :main_image, styles: { 
+    frontw2500: "2500x2500>", frontw2000: "2000x2000>", frontw1500: "1500x1500>", frontw1000: "1000x1000>", frontw500: "500x500>", list2x: "690x690>", list: "345x345>", thumb: "100x100>" }, default_url: "/images/:style/missing.png",
+		:convert_options => {
+      :frontw2500 => "-quality 90",
+      :frontw2000 => "-quality 90",
+      :frontw1500 => "-quality 90",
+			:frontw1000 => "-quality 90",
+			:frontw500 => "-quality 90"
+		}
+     
   validates_attachment_content_type :main_image, content_type: /\Aimage\/.*\z/
 
 	translates :title, :description, :slug
