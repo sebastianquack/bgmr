@@ -309,6 +309,7 @@ function leaveZoomMode() {
   var zoomElem = $('.slide.zoomable')
   $(zoomElem).panzoom("reset",{animate: true});
   setTimeout( function() {
+    insertZoomImage(zoomElem, true)
     $(slides).removeClass('zoomed');
     zoomMode = false;
     $(slides).slick('slickSetOption','swipe',true);
