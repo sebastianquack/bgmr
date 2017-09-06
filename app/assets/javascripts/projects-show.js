@@ -283,7 +283,7 @@ $(document).on('turbolinks:load', function(){
   })
 
   // preload high resolution image after 6 seconds
-  $("#project .slides").on('afterChange', function(event, d){
+  $("#project .slides").on('afterChange init', function(event, d){
     var currentIndex = d.currentSlide;
     setTimeout( function(){
       if ($("#project .slides img").filter(function(i,img){  return !this.complete }).length > 0) {
