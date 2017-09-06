@@ -20,13 +20,15 @@
       </div>
       <div class="staff_info">
         <h3 class="staff_name"><%= staff.name %></h3>
-        <p class="staff_text">
-          <span class="staff_text_1"><%= staff.text %></span>
-          <% if staff.text_cont && !staff.text_cont.empty? %>
-            <span class="read_more"> &gt;&nbsp;<%= t(:read_more) %></span>
-            <span class="staff_text_2"><%= staff.text_cont %></span>
-          <% end %>
-        </p>
+        <% if staff.text && !staff.text.strip.empty? %>
+          <p class="staff_text">
+            <span class="staff_text_1"><%= staff.text %></span>
+            <% if staff.text_cont && !staff.text_cont.empty? %>
+              <span class="read_more"> &gt;&nbsp;<%= t(:read_more) %></span>
+              <span class="staff_text_2"><%= staff.text_cont %></span>
+            <% end %>
+          </p>
+        <% end %>
         <p class="staff_contact"><%= staff.contact %></p>
       </div>
     </li>

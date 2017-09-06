@@ -140,7 +140,7 @@
     }
     
     @include bp($b_8_and_lower) { 
-      margin-top: 10 * $d_gridheight;
+      margin-top: 1 * $d_gridheight;
     } 
 
     @include grid-column(4);
@@ -219,6 +219,10 @@
     .staff_contact {
       padding-top: $d_lineheight;
       white-space: pre;
+    }
+
+    .staff_name + .staff_contact {
+      padding-top: 0;
     }
 
     @include visual_bg;
