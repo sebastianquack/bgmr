@@ -123,7 +123,7 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
     }
 
     &.zoomable {
-      will-change: transform;
+      will-change: content;
     }
 
     @include bp($b_8_and_up) {
