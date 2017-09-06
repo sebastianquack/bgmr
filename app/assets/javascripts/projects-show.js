@@ -169,6 +169,8 @@ $(document).on('turbolinks:load', function(){
       var maxScale = getMaxScale(elem)
       $(elem).attr("data-max-zoom",maxScale);
       $(elem).attr("data-current-zoom",1);
+      $(elem).attr("data-current-level", 0);
+      $(elem).attr('data-max-level', 2);
       manageZoomButtonStates();
       $(elem).panzoom({
         panOnlyWhenZoomed: true,
@@ -217,6 +219,7 @@ $(document).on('turbolinks:load', function(){
           var maxScale = getMaxScale(e.target)
           $(e.target).attr("data-max-zoom",maxScale);
           $(e.target).panzoom("option", "maxScale", maxScale);   
+          $(elem).attr("data-current-level", 0);
           manageZoomButtonStates()       
           $(e.target).find(".slide__loophole").each(function (i,loophole) {
             setTransformScale(loophole, 1)
@@ -263,24 +266,20 @@ $(document).on('turbolinks:load', function(){
 
   $('.zoom_button_plus').click(function(event){
     var elem = $(".slick-current .slide.zoomable").get(0);
-    var scale = roughly(parseFloat($(elem).attr('data-current-zoom'))-1);
-    var maxScale = roughly(parseFloat($(elem).attr('data-max-zoom'))-1);
-    var newScale = roughly((scale < maxScale /2) ? (maxScale/2) : maxScale);
-    // console.log(scale, maxScale, newScale)
-    $(elem).addClass("force-transition")
-    $(elem).panzoom("zoom", newScale+1);
-    $(elem).one("transitionend", function() {$(elem).removeClass("force-transition")} )
+    var level = parseInt($(elem).attr('data-current-level'));
+    var maxLevels = parseInt($(elem).attr('data-max-level'));
+    var newLevel = level + ( level < maxLevels ? 1 : 0 );
+    // console.log(level, maxLevels, newLevel)
+    doSoftZoom(newLevel, maxLevels)
   })
   
   $('.zoom_button_minus').click(function(event){
     var elem = $(".slick-current .slide.zoomable").get(0);
-    var scale = roughly(parseFloat($(elem).attr('data-current-zoom'))-1);
-    var maxScale = roughly(parseFloat($(elem).attr('data-max-zoom'))-1);
-    var newScale = roughly((scale > maxScale /2) ? (maxScale/2) : 0);
-    console.log(scale, maxScale, newScale)
-    $(elem).addClass("force-transition")
-    $(elem).panzoom("zoom", newScale+1);
-    $(elem).one("transitionend", function() {$(elem).removeClass("force-transition")} )
+    var level = parseInt($(elem).attr('data-current-level'));
+    var maxLevels = parseInt($(elem).attr('data-max-level'));
+    var newLevel = level + ( level > 0 ? -1 : 0 );
+    // console.log(level, maxLevels, newLevel)
+    doSoftZoom(newLevel, maxLevels)
   })
 
   // preload high resolution image after 6 seconds
@@ -300,8 +299,18 @@ $(document).on('turbolinks:load', function(){
 
 })
 
+function doSoftZoom(level, maxLevels) {
+  var elem = $(".slick-current .slide.zoomable").get(0);
+  var maxScale = parseFloat($(elem).attr('data-max-zoom'));
+  var newScale = (maxScale-1)/maxLevels * level;
+  $(elem).addClass("force-transition")
+  $(elem).panzoom("zoom", newScale+1);
+  $(elem).attr("data-current-level", level);
+  $(elem).one("transitionend", function() {$(elem).removeClass("force-transition")} )
+}  
+
 function roughly(number) {
-  return Math.floor(number * 1000) / 1000
+  return Math.round(number * 1000) / 1000
 }
 
 function enterZoomMode(slide) {
