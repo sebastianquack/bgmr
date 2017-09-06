@@ -30,7 +30,7 @@
             <div class="slide <%= "zoomable" if slide.zoomable && slide.large_enough_for_zoom %> <%= "plan" if slide.zoomable %>" data-width="<%= slide.image.width %>" data-height="<%= slide.image.height %>">
               <div class="slide__image">
                 <% prefix = slide.zoomable ? "plan_" : "" %>
-                <img src="<%= slide.image.url(prefix+"w1000") %>" srcset="<%= slide.image.url(prefix+"w2000") %> 2000w, <%= slide.image.url(prefix+"w1000") %> 1000w, <%= slide.image.url(prefix+"w500") %> 500w" data-zoom-src="<%= slide.image.url(:zoom) %>">
+                <img data-src="<%= slide.image.url(prefix+"w1000") %>" data-srcset="<%= slide.image.url(prefix+"w2000") %> 2000w, <%= slide.image.url(prefix+"w1000") %> 1000w, <%= slide.image.url(prefix+"w500") %> 500w" data-zoom-src="<%= slide.image.url(:zoom) %>">
               </div>
               <div class="slide__loopholes slide_links">
                 <% slide.slide_links.each do |loop| %>
