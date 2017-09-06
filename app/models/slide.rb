@@ -6,10 +6,10 @@ class Slide < ActiveRecord::Base
 			:w2000      => "-quality 90",
 			:w1000      => "-quality 90",
 			:w500       => "-quality 90",
-			:plan_w2000 => "-quality 95 -define modulate:colorspace=HSB -modulate 95",
-			:plan_w1000 => "-quality 95 -define modulate:colorspace=HSB -modulate 95",
-			:plan_w500  => "-quality 95 -define modulate:colorspace=HSB -modulate 95",
-			:zoom       => "-quality 95 -define modulate:colorspace=HSB -modulate 95"
+			:plan_w2000 => "-quality 95 -define modulate:colorspace=HSB -background transparent -modulate 95",
+			:plan_w1000 => "-quality 95 -define modulate:colorspace=HSB -background transparent -modulate 95",
+			:plan_w500  => "-quality 95 -define modulate:colorspace=HSB -background transparent -modulate 95",
+			:zoom       => "-quality 95 -define modulate:colorspace=HSB -background transparent -modulate 95"
 		}
 
     validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
