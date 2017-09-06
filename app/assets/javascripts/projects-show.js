@@ -416,9 +416,8 @@ $(document).on('turbolinks:before-cache', function(){
 // progressively load images
 
 $(document).on('turbolinks:load', function(){
-  loadNext()
+  setTimeout(loadNext, 2000)
 });
-
 
 function loadNext() {
   var img = $('img[data-src]').get(0)
