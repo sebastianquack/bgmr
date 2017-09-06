@@ -302,7 +302,7 @@ $(document).on('turbolinks:load', function(){
 function doSoftZoom(level, maxLevels) {
   var elem = $(".slick-current .slide.zoomable").get(0);
   var maxScale = parseFloat($(elem).attr('data-max-zoom'));
-  var distortionFactor = 0.2; // smalle -> larger steps at the beginning
+  var distortionFactor = 0.3; // smaller => larger steps at the beginning
   var weightedLevel =  level * (Math.pow(level, distortionFactor) / Math.pow(maxLevels, distortionFactor));
   var newScale = (maxScale-1)/maxLevels * weightedLevel;
   $(elem).addClass("force-transition")
