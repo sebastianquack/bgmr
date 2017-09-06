@@ -122,6 +122,10 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
       // filter: brightness(95%);
     }
 
+    &.zoomable {
+      will-change: transform;
+    }
+
     @include bp($b_8_and_up) {
       &.zoomable .slide__image img {
         position: absolute;
