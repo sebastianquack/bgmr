@@ -24,13 +24,14 @@
 
       <% if @project.slides.any? %>
 
-        <% @project.slides.each do |slide| %>
+        <% @project.slides.each_with_index do |slide,i| %>
 
           <div class="pan_container">
             <div class="slide <%= "zoomable" if slide.zoomable && slide.large_enough_for_zoom %> <%= "plan" if slide.zoomable %>" data-width="<%= slide.image.width %>" data-height="<%= slide.image.height %>">
               <div class="slide__image">
                 <% prefix = slide.zoomable ? "plan_" : "" %>
-                <img data-src="<%= slide.image.url(prefix+"w1000") %>" data-srcset="<%= slide.image.url(prefix+"w2000") %> 2000w, <%= slide.image.url(prefix+"w1000") %> 1000w, <%= slide.image.url(prefix+"w500") %> 500w" data-zoom-src="<%= slide.image.url(:zoom) %>">
+                <% postpone = i == 0 ? "" : "data-" %>
+                <img <%=postpone%>src="<%= slide.image.url(prefix+"w1000") %>" <%=postpone%>srcset="<%= slide.image.url(prefix+"w2000") %> 2000w, <%= slide.image.url(prefix+"w1000") %> 1000w, <%= slide.image.url(prefix+"w500") %> 500w" data-zoom-src="<%= slide.image.url(:zoom) %>">
               </div>
               <div class="slide__loopholes slide_links">
                 <% slide.slide_links.each do |loop| %>
