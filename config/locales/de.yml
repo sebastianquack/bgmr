@@ -26,7 +26,7 @@ de:
   areas: "Arbeitsfelder"
   all_areas: "alle"
   topics: "Themen"
-  tags: "Schlagworte"
+  tags: "Topografien"
   about: "Über uns"
   contact: "Kontakt"  
   about_headline: "bgmr Landschaftsarchitekten"
@@ -69,8 +69,8 @@ de:
           one: "Thema"
           other: "Themen"
         tag:
-          one: "Schlagwort"
-          other: "Schlagworte"
+          one: "Topografie"
+          other: "Topigrafien"
         admin_user:
           one: "Administrator"
           other: "Administratoren"
