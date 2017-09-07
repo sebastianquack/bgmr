@@ -41,6 +41,13 @@
       @include visual_bg;      
     }
 
+    .publication_title {
+      height: 2 * $base-line-height;
+      overflow: hidden;
+
+      @include visual_bg;      
+    }
+
     @include visual_bg;
   }
 
