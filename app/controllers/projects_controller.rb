@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   def index
     @tags = Tag.all
     @areas = Area.all
-    @projects = Project.all.includes(:areas, :tags)
+    @projects = Project.published.includes(:areas, :tags)
     respond_to do |format|
       format.js
       format.html

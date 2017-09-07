@@ -87,7 +87,7 @@ if ENV["fakeprojects"]
       random_topics = Topic.find(Topic.ids.sample(rand(2)+1))
       random_areas = Area.find(Area.ids.sample(rand(6)))
       
-      Project.create!(title_en: name, title_de: name, slug_de: slug, slug_en: slug, description_de: desc, description_en: desc, main_image: File.open('../dummy-images/' + index.to_s + '.jpg', 'rb'), tags: random_tags, areas: random_areas, topics: random_topics)
+      Project.create!(title_en: name, title_de: name, slug_de: slug, slug_en: slug, description_de: desc, description_en: desc, main_image: File.open('../dummy-images/' + index.to_s + '.jpg', 'rb'), tags: random_tags, areas: random_areas, topics: random_topics, draft: false)
 
       logger.info "Add Fake Project ”" + name + "”"
     end
@@ -116,7 +116,7 @@ if ENV["fakestaffs"]
 
       contact = "Tel. (030) 214 59 59-23\ninfo@bgmr.de"
       
-      Staff.create!(name: name, text_de: text, text_en: text, text_cont_de: text, text_cont_en: text, primary_image: URI.parse("http://www.fillmurray.com/300/#{200+index}"), secondary_image: URI.parse("http://www.fillmurray.com/300/#{180+index}"), contact: contact)
+      Staff.create!(name: name, text_de: text, text_en: text, text_cont_de: text, draft: false, text_cont_en: text, primary_image: URI.parse("http://www.fillmurray.com/300/#{200+index}"), secondary_image: URI.parse("http://www.fillmurray.com/300/#{180+index}"), contact: contact)
 
       logger.info "Add Fake Staff ”" + name + "”"
     end

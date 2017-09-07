@@ -24,6 +24,7 @@ class Topic < ActiveRecord::Base
 
   def calculate_weights
     total = Project.published.count
+    total = 1 if total == 0
     Topic.all.each do |topic|
       weight = topic.projects.count.to_f / total.to_f
       topic.update_column(:weight, weight) unless weight.nan?

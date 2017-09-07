@@ -37,7 +37,7 @@ class Project < ActiveRecord::Base
   
   validates_format_of :slug, :with => /\A[a-z0-9_]+\z/i  
 
-  scope :published, -> { where(draft: false, draft: nil) }
+  scope :published, -> { where(draft: false) }
 
   scope :featured, -> { where(featured: true) }
 
