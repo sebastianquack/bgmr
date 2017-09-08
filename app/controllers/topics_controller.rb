@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   def index
-    @topics = Topic.reorder(weight: :asc).all()
+    @topics = Topic.order(weight: :asc).all()
   end
 
   def show

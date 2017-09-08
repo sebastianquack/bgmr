@@ -40,7 +40,7 @@ class Topic < ActiveRecord::Base
 
   def nice_weight_category(amount=4) # all are small except the top <amount>
     total = Topic.count
-    index = Topic.reorder(weight: :desc).index(self)
+    index = Topic.order(weight: :desc).index(self)
     if index >= amount-1
       return 1 # last category
     else

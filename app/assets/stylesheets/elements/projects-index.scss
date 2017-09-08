@@ -7,6 +7,9 @@
   position: fixed;
   background-color: white;
 
+  box-sizing: border-box;
+  width:100%;
+
   padding: 0 $d_gutterwidth_abs #{5 * $d_gridheight} $d_gutterwidth_abs;
   margin-bottom: 1 * $d_gridheight;
 
