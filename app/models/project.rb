@@ -4,8 +4,9 @@ class Project < ActiveRecord::Base
   friendly_id :title, :use => [:slugged, :simple_i18n]
 
  	has_attached_file :main_image, styles: { 
-    frontw2500: "2500x2500>", frontw2000: "2000x2000>", frontw1500: "1500x1500>", frontw1000: "1000x1000>", frontw500: "500x500>", list2x: "690x690>", list: "345x345>", thumb: "100x100>" }, default_url: "/assets/:style/missing.png",
+    medium: "800x800>", frontw2500: "2500x2500>", frontw2000: "2000x2000>", frontw1500: "1500x1500>", frontw1000: "1000x1000>", frontw500: "500x500>", list2x: "690x690>", list: "345x345>", thumb: "100x100>" }, default_url: "/assets/:style/missing.png",
 		:convert_options => {
+      :medium => "-quality 90",
       :frontw2500 => "-quality 85 -interlace Plane",
       :frontw2000 => "-quality 90 -interlace Plane",
       :frontw1500 => "-quality 90 -interlace Plane",
