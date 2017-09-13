@@ -1,6 +1,6 @@
 .desaturation_effect {
   &:not(:hover){
-    filter: grayscale(55%);
+    filter: grayscale(60%);
   }
 
   -webkit-transition: 0.2s -webkit-filter linear;

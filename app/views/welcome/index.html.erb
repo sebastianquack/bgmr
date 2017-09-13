@@ -3,7 +3,7 @@
     <%= image_tag 'welcome.jpg' %>
   <% else %>
   <a href="<%= project_path(@project) %>" title="<%= @project.title %>">
-    <img src="<%= @project.main_image.url(:frontw1000) %>" srcset="<%= @project.main_image.url(:frontw2500) %> 2500w, <%= @project.main_image.url(:frontw2000) %> 2000w, <%= @project.main_image.url(:frontw1000) %> 1000w, <%= @project.main_image.url(:frontw500) %> 500w">
+    <img class="desaturation_effect" src="<%= @project.main_image.url(:frontw1000) %>" srcset="<%= @project.main_image.url(:frontw2500) %> 2500w, <%= @project.main_image.url(:frontw2000) %> 2000w, <%= @project.main_image.url(:frontw1000) %> 1000w, <%= @project.main_image.url(:frontw500) %> 500w">
   </a>
   <% end %>
 </div>
