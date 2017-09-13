@@ -2,7 +2,7 @@
     <% projects.each do |project| %>
       <li class="projects_list_entry project" data-tags="<%= project.tags.map(&:id).join " " %>" data-areas="<%= project.areas.map(&:id).join " " %>" title="<%= project.title %>" data-description="<%= strip_all(project.description).html_safe %>">
         <a href="<%= project_path(:id => project.slug) %>">
-          <img src="<%= project.main_image.url(:list)%>" srcset="<%= project.main_image.url(:list2x)%> 2x, <%= project.main_image.url(:list)%> 1x">
+          <img class="desaturation_effect" src="<%= project.main_image.url(:list)%>" srcset="<%= project.main_image.url(:list2x)%> 2x, <%= project.main_image.url(:list)%> 1x">
           <h3 class="project_title"><%= project.title %></h3>
         </a>
       </li>

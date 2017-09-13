@@ -3,7 +3,7 @@
       <li class="publications_list_entry publication" title="<%= publication.title %>">
 
         <%= link_to publication.file.url(:original) do %>
-          <%= image_tag publication.file.url(:medium), alt: publication.title %>
+          <%= image_tag publication.file.url(:medium), alt: publication.title, class: "desaturation_effect" %>
           <h3 class="publication_title"><%= publication.title %></h3>
         <% end %>
 
