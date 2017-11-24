@@ -106,8 +106,9 @@ function updateProjectsFilter() {
   // adjust tags - get tags
 
   var labels = $("label.tag")
+  var area = $("#project_selection__areas input:checked").val()
 
-  if ( $("#project_selection__tags input:checked").length > 0) {
+  if ( area == "") {
     
     labels.show()
   
@@ -115,7 +116,7 @@ function updateProjectsFilter() {
 
     var showTags = {}
 
-    $(showElems).each(function(){
+    $('.project[data-areas~="'+area+'"').each(function(){
       var tags = $(this).attr("data-tags").split(" ")
       tags.forEach(function(tag){
         if (tag != "") showTags[tag] = true;
@@ -127,6 +128,25 @@ function updateProjectsFilter() {
       //console.log('[for="tag-'+t+'"]'
       $(labels).filter('[for="tag-'+t+'"]').show()
     }
+
+    // disable hidden tags
+
+    var hiddenLabels = $("#project_selection__tags label:hidden")
+
+    if (hiddenLabels.length > 0) {
+      var changes = false
+      hiddenLabels.each(function(){
+        var input = $('#'+$(this).attr('for'))
+        if (input.prop("checked")) {
+          input.prop('checked', false)
+          changes = true
+        }
+      })
+      if (changes) updateProjectsFilter()
+    }
+
+    // $("#project_selection__tags input:hidden").prop('checked', false)
+
   }
 
 }
