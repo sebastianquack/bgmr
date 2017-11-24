@@ -103,6 +103,32 @@ function updateProjectsFilter() {
     $(showElems).toggleClass("hidden", false)
   }
 
+  // adjust tags - get tags
+
+  var labels = $("label.tag")
+
+  if ( $("#project_selection__tags input:checked").length > 0) {
+    
+    labels.show()
+  
+  } else {
+
+    var showTags = {}
+
+    $(showElems).each(function(){
+      var tags = $(this).attr("data-tags").split(" ")
+      tags.forEach(function(tag){
+        if (tag != "") showTags[tag] = true;
+      })
+    })
+
+    labels.hide()
+    for (var t in showTags) {
+      //console.log('[for="tag-'+t+'"]'
+      $(labels).filter('[for="tag-'+t+'"]').show()
+    }
+  }
+
 }
 
 // adjust space for fixed header
