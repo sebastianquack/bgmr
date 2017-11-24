@@ -48,6 +48,16 @@ class Topic < ActiveRecord::Base
     end
   end
 
+  def nice_weight_category_random(seed, amount=4) # all are small except the top <amount>
+    total = Topic.count
+    index = Topic.order(weight: :desc).shuffle(random: Random.new(seed)).index(self)
+    if index >= amount-1
+      return 1 # last category
+    else
+      return amount - index
+    end
+  end
+
   # def nice_weight_category(amount=4) # put only the largest in the top category
   #   cat = self.weight_category(amount)
   #   if cat == amount # in top category

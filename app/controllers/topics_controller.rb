@@ -1,6 +1,7 @@
 class TopicsController < ApplicationController
   def index
-    @topics = Topic.order(weight: :asc).all()
+  	@random_seed = Time.now.to_i
+    @topics = Topic.order(weight: :asc).shuffle(random: Random.new(@random_seed))
   end
 
   def show
