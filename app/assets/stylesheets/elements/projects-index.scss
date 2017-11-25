@@ -46,6 +46,9 @@
       width:100%; 
       margin-right: 0;
       margin-top: 2 * $d_gridheight;
+      .prefix {
+        display: none;
+      }
     } 
 
     border: solid 1px $tag-border-color;

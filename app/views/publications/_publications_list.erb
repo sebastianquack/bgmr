@@ -2,7 +2,7 @@
     <% publications.each_with_index do |publication, index| %>
       <li class="publications_list_entry publication" title="<%= publication.title %>">
 
-        <%= link_to publication.file.url(:original) do %>
+        <%= link_to publication.file.url(:original), :target => "_blank" do %>
           <%= image_tag publication.file.url(:medium), alt: publication.title, class: "desaturation_effect" %>
           <h3 class="publication_title"><%= publication.title %></h3>
         <% end %>
