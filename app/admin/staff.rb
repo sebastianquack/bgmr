@@ -8,7 +8,7 @@ config.sort_order = 'position_asc'
 config.paginate   = false
 
 menu :priority => 10
-permit_params :draft, :name, :text_de, :text_en, :text_cont_de, :text_cont_en, :contact, :primary_image, :secondary_image
+permit_params :draft, :name, :text_de, :text_en, :text_cont_de, :text_cont_en, :phone, :fax, :email, :primary_image, :secondary_image
 reorderable
 
 #
@@ -35,7 +35,7 @@ reorderable
   filter :name
   filter :text_de_or_text_de_cont
   filter :text_en_or_text_en_cont
-  filter :contact
+  filter :email
   filter :draft
 
   show do
@@ -56,7 +56,9 @@ reorderable
           staff.text_cont_en
         end                
         row :contact do |staff|
-         span staff.contact
+         div staff.phone
+         div staff.fax
+         div staff.email
         end
         row :images do |staff|
           span image_tag staff.primary_image(:thumb)
@@ -80,7 +82,9 @@ reorderable
       f.input :text_cont_en, as: :text, :input_html => { :class => 'autogrow', :rows => 4 }
     end
     f.inputs t(:contact) do
-      f.input :contact, as: :text, :input_html => { :class => 'autogrow', :rows => 2 }
+      f.input :phone
+      f.input :fax
+      f.input :email
     end
     f.inputs t(:images), :class => "inputs image" do         
       f.input :primary_image, :input_html => { :class => "js-upload" }, hint: f.object.primary_image? ? image_tag(f.object.primary_image.url(:medium)) : content_tag(:span, t(:image_upload_info))

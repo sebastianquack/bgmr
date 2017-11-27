@@ -114,9 +114,10 @@ if ENV["fakestaffs"]
       text = Faker::Lorem.paragraph(2, false, 3) + ' [Example]'
       text_cont = Faker::Lorem.paragraph(2, false, 8) + ' [Example]'
 
-      contact = "Tel. (030) 214 59 59-23\ninfo@bgmr.de"
+      phone = "(030) 214 59 59-23"
+      email = "info@bgmr.de"
       
-      Staff.create!(name: name, text_de: text, text_en: text, text_cont_de: text, draft: false, text_cont_en: text, primary_image: URI.parse("http://www.fillmurray.com/300/#{200+index}"), secondary_image: URI.parse("http://www.fillmurray.com/300/#{180+index}"), contact: contact)
+      Staff.create!(name: name, text_de: text, text_en: text, text_cont_de: text, draft: false, text_cont_en: text, primary_image: URI.parse("http://www.fillmurray.com/300/#{200+index}"), secondary_image: URI.parse("http://www.fillmurray.com/300/#{180+index}"), phone: phone, email: email)
 
       logger.info "Add Fake Staff ”" + name + "”"
     end

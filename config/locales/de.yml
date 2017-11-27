@@ -29,6 +29,9 @@ de:
   tags: "Topografien"
   about: "Über uns"
   contact: "Kontakt"  
+  phone: "Tel."
+  fax: "Fax"
+  email: "Email"
   about_headline: "bgmr Landschaftsarchitekten"
   welcome: "Willkommen bei bgmr"
   out_of: "von"
@@ -139,6 +142,11 @@ de:
           draft: "Entwurf"
           text: "Text – Anfang"
           text_cont: "Text – Fortgesetzt"
+          phone: "Tel."
+          fax: "Fax"
+          email: "Email"
+          contact: "Kontakt"
+          images: "Bilder"
       errors:
         models:
           project:

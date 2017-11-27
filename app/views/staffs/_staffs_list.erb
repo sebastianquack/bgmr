@@ -1,16 +1,3 @@
-<!--div class="company_row">
-  <div class="company" title="<%= @company.name %>">
-    <div class="staff_image image_swapper">
-      <%= image_tag @company.primary_image.url(:large), alt: @company.text %>
-      <%= image_tag @company.secondary_image.url(:large), alt: @company.text %>
-    </div>
-    <div class="staff_info">
-      <h3 class="staff_name"><%= @company.name %></h3>
-      <p class="staff_contact"><%= @company.contact %></p>
-    </div>
-  </div>
-</div-->
-
 <ul class="staffs_list">
   <% staffs.each_with_index do |staff, index| %>
     <li class="staffs_list_entry staff" title="<%= staff.name %>">
@@ -29,7 +16,17 @@
             <% end %>
           </p>
         <% end %>
-        <p class="staff_contact"><%= staff.contact %></p>
+        <ul class="staff_contact">
+          <li>
+            <%= tel_to staff.phone if staff.phone %>
+          </li>
+          <li>
+            <%= staff.fax if staff.fax %>
+          </li>
+          <li>
+            <%= mail_to staff.email if staff.email %>
+          </li>
+        </ul>
       </div>
     </li>
   <% end %>

@@ -52,4 +52,12 @@ module ApplicationHelper
     x = x.gsub(/[\"<>&]/,"").gsub(/ +/,' ')
   end
 
+  def tel_to(text)
+    groups = text.to_s.scan(/(?:^\+)?\d+/)
+    if groups[0][0] == "0"
+      groups[0] = "+49" + groups[0][1..100]
+    end
+    link_to text, "tel:#{groups.join ''}"
+  end
+
 end

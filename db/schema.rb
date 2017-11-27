@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170801013029) do
+ActiveRecord::Schema.define(version: 20171125215026) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -187,7 +187,6 @@ ActiveRecord::Schema.define(version: 20170801013029) do
     t.string   "name"
     t.text     "text_de"
     t.text     "text_en"
-    t.text     "contact"
     t.string   "primary_image_file_name"
     t.string   "primary_image_content_type"
     t.integer  "primary_image_file_size"
@@ -199,6 +198,9 @@ ActiveRecord::Schema.define(version: 20170801013029) do
     t.integer  "position"
     t.text     "text_cont_en"
     t.text     "text_cont_de"
+    t.string   "phone"
+    t.string   "fax"
+    t.string   "email"
   end
 
   create_table "tags", force: :cascade do |t|
