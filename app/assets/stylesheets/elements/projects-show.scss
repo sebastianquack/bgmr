@@ -124,6 +124,16 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
 
     &.zoomable {
       will-change: content;
+      //background-color:black;
+
+      img {
+        //padding:0 !important;
+        //object-fit: contain; 
+        //right: 0 !important;
+        //width: 100% !important;
+        //height:auto;
+        //background-color:red;
+      }
     }
 
     @include bp($b_8_and_up) {
@@ -157,13 +167,13 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
 
       height:$d_project_loophole_dot_radius;
       width:$d_project_loophole_dot_radius;
+      border: $d_gridheight solid rgba(0,0,0,0.4);
 
       transform: translateX(-50%) translateY(-50%) scale(1); // center it on the coordinates. scale may get modified by js
       transform-origin: center;
 
       border-radius: 50%;
 
-      background-color: $ca_loophole_background;
       text-align: center;
 
       a {
@@ -171,11 +181,12 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
         cursor: pointer;
 
         display:block;
-        width:inherit;
-        height:inherit;
+        width:$d_project_loophole_dot_radius;
+        height:$d_project_loophole_dot_radius;
         border-radius: 50%;
         
         color: $ca_loophole_text;
+        background-color: $ca_loophole_background;
         line-height: calc( 1rem - #{$d_caption_loophole_radius_width} );
         font-weight:bold;
 
