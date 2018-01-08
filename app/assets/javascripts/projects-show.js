@@ -24,6 +24,7 @@ $(document).on('turbolinks:load', function(){
     $(event.target).closest(".slick-current").closest('.slides').addClass("current-loaded")
     var pos = positionSlidelinks(this);
     positionZoomableControl(this, pos.left);
+    positionLoopholeBackLink(this, pos.left);
   })
   
   $(window).on('resize', function(event){
@@ -32,15 +33,22 @@ $(document).on('turbolinks:load', function(){
       var im = img
       window.setTimeout(function(){
       var pos = positionSlidelinks(im);
-      positionZoomableControl(im, pos.left)
+      if (($(im).closest('.slick-current').length) > 0) {
+        positionZoomableControl(im, pos.left)
+        positionLoopholeBackLink(im, pos.left)
+      }
       },60) // wait for responsive slider to properly resize first
     })
+    //var img = $('.slick-current .slide img')
+    
   })  
 
   $('#project .slides').on('init reInit afterChange',function(e){
     console.log("init reinit change")
     var img = $(e.target).find('.slick-current .slide.zoomable img')
     positionZoomableControl(img, img.attr('data-actual-offset-left'))
+    var img = $(e.target).find('.slick-current .slide img')
+    positionLoopholeBackLink(img, img.attr('data-actual-offset-left'))
   }) 
 })
 
@@ -51,6 +59,10 @@ function positionZoomableControl(img, left){
     .closest('.slides')
     .siblings('.zoomable_control')
     .css('left', left)
+}
+
+function positionLoopholeBackLink(img, left){
+  $('.nav_loophole_back').css('left', left)
 }
 
 // manage mouseclick controls for slideshow
@@ -103,6 +115,7 @@ $(document).on('turbolinks:load', function(){
 })
 
 // manage loophole navigation
+loopholePreviousIndex = null
 
 $(document).on('turbolinks:load', function(){
   $('#project .slide_link a').click(function(event){
@@ -111,32 +124,39 @@ $(document).on('turbolinks:load', function(){
     var targetIndex = parseInt($(this).attr('data-target-order')) - 1
     var currentIndex = $slides.slick('slickCurrentSlide')
 
+    loopholePreviousIndex = currentIndex
+
     $slides.slick('slickGoTo',targetIndex)
 
-/*
-    event.preventDefault()
-    event.stopPropagation()
-
-    // do animation
-    var previousSpeed = $slides.slick('slickGetOption','speed')
-    $slides.slick('slickSetOption','speed',0)
-    // 1
-    //$($slides.find(".slide").get(currentIndex)).addClass('loophole-transition')
-    //$($slides.find(".slide").get(targetIndex)).addClass('loophole-transition')
-    $slides.addClass('loophole-transition')
-    // 2
-    setTimeout(function(){
-      $slides.slick('slickGoTo',targetIndex)
-      $slides.removeClass('loophole-transition')
-    },200)
-    // 3
-    setTimeout(function(){
-      $slides.slick('slickSetOption','speed',previousSpeed)
-    },400)    
-*/
-
   })
+
+  // manage loophole back button hide
+  $('#project .slides').on('beforeChange',function(e,d){
+    var elem = $(".nav_loophole_back").get(0)
+    $(elem).toggleClass("visible", false)
+  }) 
+
+
+  // manage loophole back button appearance
+  $('#project .slides').on('afterChange',function(e,d){
+    var elem = $(".nav_loophole_back").get(0)
+    if (loopholePreviousIndex !== null && loopholePreviousIndex != d.currentSlide) {
+      $(elem).attr("targetslide",loopholePreviousIndex+1)
+      $(elem).toggleClass("visible", true)
+      loopholePreviousIndex = null;
+    }
+  }) 
+
+
+  // manage loophole back button press
+  $(".nav_loophole_back").click(function(event) {
+    var targetIndex = parseInt($(this).attr("targetslide"))
+    var $slides = $('.slides')
+    $slides.slick('slickGoTo',targetIndex-1)
+  })
+
 })
+
 
 // manage description open/close
 

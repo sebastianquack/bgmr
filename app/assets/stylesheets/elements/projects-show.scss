@@ -200,6 +200,50 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
     }
   }
 
+
+    .nav_loophole_back {
+      
+      position:absolute;
+      top:0;
+      left:0;
+
+      cursor: pointer;
+
+      display:block;
+      width: 3 * $d_gridheight;
+      height: 3 * $d_gridheight;
+      border-radius: 50%;
+      
+      color: $ca_loophole_text;
+      background-color: $ca_loophole_background;
+      border: solid 1px $tag-border-color;
+
+      line-height: 3 * $d_gridheight;
+      //box-sizing: border-box;
+
+      font-weight:bold;
+      text-align: center;
+      
+      outline: none;
+
+      z-index: 12;
+      margin-left: $d_gutterwidth_abs;
+      margin-top: 3 * $d_gridheight;
+
+      @include bp($b_8_and_lower) { display: none !important; }
+
+      &:not(.visible) {
+        display:none; 
+      }
+
+      &:after {
+        content: attr(targetslide);
+      }
+
+    }
+
+
+
   .slide__caption {
     
     .slide__caption__order {
