@@ -37,6 +37,9 @@
 
       img {
         height: 38 * $d_gridheight;
+        &.vertical:not(:first-child) {
+          height: 56 * $d_gridheight;
+        }
         float:right;
         margin-bottom: 4 * $d_gridheight;
         object-fit: contain;

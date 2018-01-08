@@ -16,12 +16,12 @@
 
   <div class="news_item_images">
     <% if news_images.length > 0 %>
-      <% news_images.each do |news_image| %>
+      <% news_images.each_with_index do |news_image| %>
         <% if !news_image.nil? %>
           <% if preview %>
             <%= link_to image_tag(news_image.image(:medium), :class => "desaturation_effect"), news_item_path(:id => news_item.slug) %>
           <% else %>
-            <%= image_tag news_image.image(:medium) %>
+            <%= image_tag news_image.image(:medium), class: news_image.image.aspect_ratio < 1 ? "vertical" : "horizontal" %>
           <% end %>
         <% end %>
       <% end %>
