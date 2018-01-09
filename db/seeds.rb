@@ -15,7 +15,7 @@ Page.create!(seed_id: 'news', title_de: "News", title_en: "News", slug_de: "news
 Page.create!(seed_id: 'publications', title_de: "Publikationen", title_en: "Publications", slug_de: "publikationen", slug_en: "publications")    if Page.where(seed_id: 'publications').empty?
 
 # add initial entry
-Staff.create!(name: "bgmr Landschaftsarchitekten", position: 1, contact: "Tel (030) 214 59 59-23\nFax (030) 214 59 59-59\ninfo@bgmr.de") if Staff.all.empty?
+#Staff.create!(name: "bgmr Landschaftsarchitekten", position: 1, contact: "Tel (030) 214 59 59-23\nFax (030) 214 59 59-59\ninfo@bgmr.de") if Staff.all.empty?
 
 # just do once, remember with seed_id
 Topic.create!(seed_id: '1', color: '#ffc800', weight: 0, title_de: "Schöne Orte", title_en: "Nice Places", slug_de: "schoene_orte", slug_en: "nice_places")    if Topic.where(seed_id: '1').empty?

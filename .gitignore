@@ -22,3 +22,6 @@
 
 # ignore precompiled assets
 public/assets/
+
+# vendor
+vendor/
