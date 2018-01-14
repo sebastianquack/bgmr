@@ -73,3 +73,5 @@ gem 'faker' # create fake data
 gem 'neat' # thoughtbot scss grid
 gem 'bourbon' # thoughtbot scss helpers
 gem 'bitters' # thoughtbot scss styles
+
+gem 'yaml_db' # db dabkup and restore

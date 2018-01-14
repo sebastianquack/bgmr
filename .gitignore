@@ -22,3 +22,6 @@
 
 # ignore precompiled assets
 public/assets/
+
+# gem yaml_db
+db/data.yml
