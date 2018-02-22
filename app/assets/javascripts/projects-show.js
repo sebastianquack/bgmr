@@ -58,7 +58,7 @@ function positionZoomableControl(img, left){
     .closest('.slick-current')
     .closest('.slides')
     .siblings('.zoomable_control')
-    .css('left', left)
+    .css('left', mapLeftOffset + left)
 }
 
 function positionLoopholeBackLink(img, left){
@@ -183,6 +183,11 @@ lastPanned = 0
 leafletMap = null
 imgViewer = null
 
+currentZoomLevel = null;
+minZoomLevel = null;
+maxZoomLevel = 10;
+mapLeftOffset = 0;
+
 $(document).on('turbolinks:load', function(){
 
   $('#project .slides').on('init reInit afterChange',function(event){
@@ -190,11 +195,11 @@ $(document).on('turbolinks:load', function(){
     setTimeout(function(){
       $(".slick-current .slide.zoomable").each(function(i,elem){
 
-        var maxScale = getMaxScale(elem)
+        /*var maxScale = getMaxScale(elem)
         $(elem).attr("data-max-zoom",maxScale);
         $(elem).attr("data-current-zoom",1);
         $(elem).attr("data-current-level", 0);
-        $(elem).attr('data-max-level', 3);
+        $(elem).attr('data-max-level', 3);*/
         /*var img = $(elem).find(".slide__image img").get(0)
         var actual_width = $(img).attr("data-actual-offset-width")
         var actual_left = $(img).attr("data-actual-offset-left")
@@ -205,9 +210,7 @@ $(document).on('turbolinks:load', function(){
           $(elem).css("overflow", "hidden")
         }*/
         manageZoomButtonStates();
-        imgViewer = $($(elem).find("img")).imgViewer2();
-        leafletMap = imgViewer.imgViewer2("getMap");
-
+        
         /*({
           panOnlyWhenZoomed: true,
           linearZoom: false,
@@ -296,21 +299,44 @@ $(document).on('turbolinks:load', function(){
   // zoom controls
 
   $('.zoom_button_plus').click(function(event){
-    var elem = $(".slick-current .slide.zoomable").get(0);
+    /*var elem = $(".slick-current .slide.zoomable").get(0);
     var level = parseInt($(elem).attr('data-current-level'));
     var maxLevels = parseInt($(elem).attr('data-max-level'));
     var newLevel = level + ( level < maxLevels ? 1 : 0 );
     // console.log(level, maxLevels, newLevel)
-    doSoftZoom(newLevel, maxLevels)
+    doSoftZoom(newLevel, maxLevels)*/
+
+    var timeout = 0;
+
+    if(currentZoomLevel == minZoomLevel) {
+      // hide image and loopholes
+      enterZoomMode($(".slick-current .slide").get(0));
+      timeout = 200;
+
+    } 
+
+    currentZoomLevel++;
+    setTimeout(function() {
+      leafletMap.setZoom(currentZoomLevel);  
+    }, timeout);
+    
   })
   
   $('.zoom_button_minus').click(function(event){
-    var elem = $(".slick-current .slide.zoomable").get(0);
+    /*var elem = $(".slick-current .slide.zoomable").get(0);
     var level = parseInt($(elem).attr('data-current-level'));
     var maxLevels = parseInt($(elem).attr('data-max-level'));
     var newLevel = level + ( level > 0 ? -1 : 0 );
     // console.log(level, maxLevels, newLevel)
-    doSoftZoom(newLevel, maxLevels)
+    doSoftZoom(newLevel, maxLevels)*/
+
+    currentZoomLevel--;
+    if(currentZoomLevel <= minZoomLevel) {
+      currentZoomLevel = minZoomLevel;
+      // show image and loopholes
+      setTimeout(leaveZoomMode, 200);
+    }
+    leafletMap.setZoom(currentZoomLevel);
   })
 
   // preload high resolution image after 6 seconds
@@ -379,20 +405,43 @@ function roughly(number) {
 }
 
 function enterZoomMode(slide) {
+
   if (zoomMode == true) return
   zoomMode = true
+
+  var $imageElem = $($(".slick-current .slide.zoomable").find(".slide__image img").get(0));
+  
+  mapLeftOffset = $imageElem.attr("data-actual-offset-left");
+
+  $imageElem.css("width", $imageElem.attr("data-actual-offset-width"))
+    .css("margin", "auto")
+    .css("display", "block")
+    .css("position", "relative");
+
+
+  imgViewer = $imageElem.imgViewer2();
+  leafletMap = imgViewer.imgViewer2("getMap");
+  currentZoomLevel = leafletMap.getZoom();
+  console.log("initialized leaflet with zoom level " + currentZoomLevel);
+  minZoomLevel = currentZoomLevel;
+
   var slides = $('.slides')
   $(slides).addClass('zoomed')
   $(slides).slick('slickSetOption','swipe',false)
   //console.log($(slides), "zoomMode on")
-  insertZoomImage(slide, true)
+  //insertZoomImage(slide, true)
+
 }
 
 function leaveZoomMode() {
   if (zoomMode == false) return
+
+    console.log("leaving zoom mode");
+  imgViewer.imgViewer2("destroy");
+  
   var slides = $('.slides')
   var zoomElem = $('.slide.zoomable')
-  $(zoomElem).panzoom("reset",{animate: true});
+  //$(zoomElem).panzoom("reset",{animate: true});
   setTimeout( function() {
     insertZoomImage(zoomElem, true)
     $(slides).removeClass('zoomed');
@@ -465,7 +514,7 @@ $(document).on('turbolinks:load', function(){
   $('#project .slides').slick(slickOptions)
 
   $(window).resize(function(event,d){
-    leaveZoomMode();
+    //leaveZoomMode();
     if (window.innerWidth > breakpoint_8 && $('#project .slides').slick('getSlick').unslicked)
       $('#project .slides').slick(slickOptions)    
   })
