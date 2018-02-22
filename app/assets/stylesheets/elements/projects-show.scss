@@ -154,6 +154,7 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
       left:0;
       height:inherit;
       width: 100%;
+      z-index: 500;
 
       @include bp($b_8_and_lower) { display: none; }
 
@@ -226,7 +227,7 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
       
       outline: none;
 
-      z-index: 12;
+      z-index: 500;
       margin-left: $d_gutterwidth_abs;
       margin-top: 3 * $d_gridheight;
 
@@ -287,7 +288,7 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
     margin-bottom: 1 * $d_gridheight;
 
     position:relative;
-    z-index: 15;
+    z-index: 515;
 
     width:100%;
 
@@ -445,8 +446,11 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
     }
   }
 
-
 }
+
+  .leaflet-control-container {
+    display: none;
+  }
 
 #project {
 
@@ -457,7 +461,7 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
   .zoomable_control {
     position: absolute;
     left: 0;
-    z-index: 12;
+    z-index: 500;
     margin-left: $d_gutterwidth_abs;
     bottom: 2 * $d_gridheight - 18px + $d_project_topic_dot_radius;
     opacity:1;
@@ -493,7 +497,7 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
     position: absolute;
     text-align: center;
     width: 100%;
-    z-index:10;
+    z-index:500;
     margin-top: 3 * $d_gridheight;
     pointer-events: none;
 
@@ -504,7 +508,7 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
     position: absolute;
     text-align: center;
     width: 100%;
-    z-index:10;
+    z-index:500;
     bottom: 2 * $d_gridheight;
     pointer-events: none;
 

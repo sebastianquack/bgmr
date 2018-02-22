@@ -14,14 +14,16 @@
 // vendor gem
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require turbolinks
 
 // vendor npm
 //= require slick-carousel/slick/slick.js
 //= require jquery-touch-events/src/jquery.mobile-events.js
+//= require leaflet/dist/leaflet.js
+//= require imgviewer2/dist/imgViewer2.min.js
 
 //= vendor manually
-//= require jquery.panzoom/jquery.panzoom.js
 
 // helpers
 //= require helpers

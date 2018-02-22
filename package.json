@@ -4,8 +4,9 @@
     "input-range-scss": "^1.4.1",
     "jquery-touch-events": "git+https://github.com/benmajor/jQuery-Touch-Events.git",
     "jquery.autogrow-textarea": "^0.4.1",
-    "jquery.panzoom": "^3.2.2",
-    "slick-carousel": "^1.6.0"
+    "slick-carousel": "^1.6.0",
+    "leaflet": "1.0.3",
+    "imgviewer2": "1.1.0"
   },
   "repository": {
     "type": "git",

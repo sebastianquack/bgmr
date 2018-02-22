@@ -180,73 +180,84 @@ $(document).on('turbolinks:before-cache', function(){
 
 zoomMode = false
 lastPanned = 0
+leafletMap = null
+imgViewer = null
 
 $(document).on('turbolinks:load', function(){
 
   $('#project .slides').on('init reInit afterChange',function(event){
     leaveZoomMode() // just in case
-    $(".slick-current .slide.zoomable").each(function(i,elem){
-      var maxScale = getMaxScale(elem)
-      $(elem).attr("data-max-zoom",maxScale);
-      $(elem).attr("data-current-zoom",1);
-      $(elem).attr("data-current-level", 0);
-      $(elem).attr('data-max-level', 3);
-      manageZoomButtonStates();
-      $(elem).panzoom({
-        panOnlyWhenZoomed: true,
-        linearZoom: false,
-        minScale: 1,
-        maxScale: maxScale,
-        contain: 'invert',
-        duration: 200,
-        transition: true,
-        easing: "ease-in-out",
-        onZoom: function(e,d) {
+    setTimeout(function(){
+      $(".slick-current .slide.zoomable").each(function(i,elem){
 
-          // manage loophole scale
-          var newScale = 1/d.scale
-          $(e.target).find(".slide__loophole").each(function (i,loophole) {
-            setTransformScale(loophole, newScale)
-          })
+        var maxScale = getMaxScale(elem)
+        $(elem).attr("data-max-zoom",maxScale);
+        $(elem).attr("data-current-zoom",1);
+        $(elem).attr("data-current-level", 0);
+        $(elem).attr('data-max-level', 3);
+        /*var img = $(elem).find(".slide__image img").get(0)
+        var actual_width = $(img).attr("data-actual-offset-width")
+        var actual_left = $(img).attr("data-actual-offset-left")
+        console.log(img, actual_width)
+        if (actual_width) {
+          $(elem).css("width", actual_width)
+          $(elem).css("left", actual_left)
+          $(elem).css("overflow", "hidden")
+        }*/
+        manageZoomButtonStates();
+        imgViewer = $($(elem).find("img")).imgViewer2();
+        leafletMap = imgViewer.imgViewer2("getMap");
 
-          // manage locking of x-axis movement before limit is reached (unfinished)
-          var img = $(e.target).find('.slide__image img')
-          var left_offset = img.attr('data-actual-offset-left')
-          var img_width = d.container.width - 2*parseInt(left_offset)
-          var scale_limit = d.container.width / img_width
+        /*({
+          panOnlyWhenZoomed: true,
+          linearZoom: false,
+          minScale: 1,
+          maxScale: maxScale,
+          contain: 'invert',
+          duration: 200,
+          transition: true,
+          easing: "ease-in-out",
+          onZoom: function(e,d) {
 
-          // manage zoomMode
-          if (d.scale <= 1) {
-            leaveZoomMode()
-          } else {
-            enterZoomMode($(".slick-current .slide").get(0))
+            // manage loophole scale
+            var newScale = 1/d.scale
+            $(e.target).find(".slide__loophole").each(function (i,loophole) {
+              setTransformScale(loophole, newScale)
+            })
+
+            // manage zoomMode
+            if (d.scale <= 1) {
+              leaveZoomMode()
+            } else {
+              enterZoomMode($(".slick-current .slide").get(0))
+            }
+
+            // manage data attributes
+            $(elem).attr('data-current-zoom',d.scale);
+
+            // manage buttons
+            manageZoomButtonStates()
+
+          },
+          onPan: function(e,d) {
+            lastPanned = Date.now()
+            //console.log(d)
+            
+          },
+          onReset: function(e,d) {
+            $(e.target).attr("data-current-zoom",1);
+            var maxScale = getMaxScale(e.target)
+            $(e.target).attr("data-max-zoom",maxScale);
+            $(e.target).panzoom("option", "maxScale", maxScale);   
+            $(elem).attr("data-current-level", 0);
+            manageZoomButtonStates()       
+            $(e.target).find(".slide__loophole").each(function (i,loophole) {
+              setTransformScale(loophole, 1)
+            })
           }
-
-          // manage data attributes
-          $(elem).attr('data-current-zoom',d.scale);
-
-          // manage buttons
-          manageZoomButtonStates()
-
-        },
-        onPan: function(e,d) {
-          lastPanned = Date.now()
-          //console.log(d)
-          
-        },
-        onReset: function(e,d) {
-          $(e.target).attr("data-current-zoom",1);
-          var maxScale = getMaxScale(e.target)
-          $(e.target).attr("data-max-zoom",maxScale);
-          $(e.target).panzoom("option", "maxScale", maxScale);   
-          $(elem).attr("data-current-level", 0);
-          manageZoomButtonStates()       
-          $(e.target).find(".slide__loophole").each(function (i,loophole) {
-            setTransformScale(loophole, 1)
-          })
-        }
+        });*/
       });
-    });
+    },1000)
   })
 
   $(".slide.zoomable").hover(function(e){
@@ -319,16 +330,48 @@ $(document).on('turbolinks:load', function(){
 
 })
 
+
+
 function doSoftZoom(level, maxLevels) {
   var elem = $(".slick-current .slide.zoomable").get(0);
   var maxScale = parseFloat($(elem).attr('data-max-zoom'));
-  var distortionFactor = 0.3; // smaller => larger steps at the beginning
+  
+  console.log("going to zoom level " + level);
+
+  /*var distortionFactor = 0.3; // smaller => larger steps at the beginning
   var weightedLevel =  level * (Math.pow(level, distortionFactor) / Math.pow(maxLevels, distortionFactor));
   var newScale = (maxScale-1)/maxLevels * weightedLevel;
   $(elem).addClass("force-transition")
-  $(elem).panzoom("zoom", newScale+1);
+  //$(elem).panzoom("zoom", newScale+1, {focal: {clientX:1400, clientY:1200}});*/
+  
+  console.log("leaflet has zoom level: " + leafletMap.getZoom() + " scaleZoom: " + leafletMap.getScaleZoom());
+
+  leafletMap.setZoom(level);
+
+  
   $(elem).attr("data-current-level", level);
-  $(elem).one("transitionend", function() {$(elem).removeClass("force-transition")} )
+  //$(elem).one("transitionend", function() {$(elem).removeClass("force-transition")} )
+
+  // manage loophole scale
+  var newScale = level;
+
+  /*$(elem).find(".slide__loophole").each(function (i,loophole) {
+    setTransformScale(loophole, newScale)
+  })
+
+  // manage zoomMode
+  if (d.scale <= 1) {
+    leaveZoomMode()
+  } else {
+    enterZoomMode($(".slick-current .slide").get(0))
+  }
+
+  // manage data attributes
+  $(elem).attr('data-current-zoom',d.scale);
+
+  // manage buttons
+  manageZoomButtonStates()*/
+            
 }  
 
 function roughly(number) {
