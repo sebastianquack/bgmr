@@ -4,7 +4,7 @@ echo "note: must run in bgmr main directory"
 sleep 3
 
 echo "creating remote database dump..."
-ssh bgmr@spica.uberspace.de 'cd bgmr_live; bundle exec rake db:data:dump; ls -l db/data.yml'
+ssh bgmr@spica.uberspace.de 'source .bash_profile; cd bgmr_live; bundle exec rake db:data:dump; ls -l db/data.yml'
 
 echo "getting database..."
 rm -f db/data.yml
