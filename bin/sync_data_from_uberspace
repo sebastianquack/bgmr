@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo "note: must run in bgmr main directory"
+sleep 3
+
+echo "creating remote database dump..."
+ssh bgmr@spica.uberspace.de 'cd bgmr_live; bundle exec rake db:data:dump; ls -l db/data.yml'
+
+echo "getting database..."
+rm -f db/data.yml
+scp bgmr@spica.uberspace.de:bgmr_live/db/data.yml ./db/
+
+echo "importing database..."
+bundle exec rake db:data:load
+
+echo "syncing media..."
+rsync -rzht --progress bgmr@spica.uberspace.de:bgmr_live/public/system ./public/
+
+echo "done"
