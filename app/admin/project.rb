@@ -2,14 +2,17 @@ ActiveAdmin.register Project do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
+config.sort_order = 'position_asc'
+reorderable
 menu :priority => 1
+
 controller do
   def find_resource
     scoped_collection.friendly.find(params[:id])
   end
 end
 
-permit_params :main_image, :title_de, :title_en, :description_de, :description_en, :slug_de, :slug_en, :draft, :featured, area_ids:[], tag_ids:[], topic_ids:[],
+permit_params :main_image, :title_de, :title_en, :description_de, :description_en, :slug_de, :slug_en, :draft, :featured, :position, area_ids:[], tag_ids:[], topic_ids:[],
     :slides_attributes => [:id, :order, :caption_de, :caption_en, :image, :zoomable, :_destroy, :slide_links_attributes => [:id, :to_slide_id, :pos_x, :pos_y, :_destroy]]
 
 #
@@ -21,7 +24,7 @@ permit_params :main_image, :title_de, :title_en, :description_de, :description_e
 #   permitted
 # end
 
-index do
+index as: :reorderable_table do
     selectable_column
     column :main_image do |project|
       image_tag project.main_image(:thumb)

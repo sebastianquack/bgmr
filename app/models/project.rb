@@ -3,6 +3,8 @@ class Project < ActiveRecord::Base
 
   friendly_id :title, :use => [:slugged, :simple_i18n]
 
+  acts_as_list
+
  	has_attached_file :main_image, styles: { 
     medium: "800x800>", frontw2500: "2500x2500>", frontw2000: "2000x2000>", frontw1500: "1500x1500>", frontw1000: "1000x1000>", frontw500: "500x500>", list2x: "690x690>", list: "345x345>", thumb: "100x100>" }, default_url: "/missing.png",
 		:convert_options => {
@@ -53,5 +55,13 @@ class Project < ActiveRecord::Base
       end
     end
   end
+
+  before_update :reorder_without_updated_at
+
+  def reorder_without_updated_at
+    if self.position_changed?
+      self.updated_at = self.updated_at_was
+    end
+  end  
   
 end
