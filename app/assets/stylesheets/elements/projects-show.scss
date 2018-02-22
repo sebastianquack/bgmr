@@ -167,7 +167,7 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
 
       height:$d_project_loophole_dot_radius;
       width:$d_project_loophole_dot_radius;
-      border: $d_gridheight solid rgba(0,0,0,0.4);
+      border: $d_gridheight solid rgba(0,0,0,0.15);
 
       transform: translateX(-50%) translateY(-50%) scale(1); // center it on the coordinates. scale may get modified by js
       transform-origin: center;
