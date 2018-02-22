@@ -214,6 +214,8 @@
 
 .projects_list {
   @include grid-container;
+  margin-bottom: 4 * $d_gridheight;
+  
   .projects_list_entry {
 
     margin-top: 2 * $d_gridheight;
