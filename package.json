@@ -5,6 +5,7 @@
     "jquery-touch-events": "git+https://github.com/benmajor/jQuery-Touch-Events.git",
     "jquery.autogrow-textarea": "^0.4.1",
     "jquery.panzoom": "^3.2.2",
+    "object-fit-images": "^3.2.3",
     "slick-carousel": "^1.6.0"
   },
   "repository": {

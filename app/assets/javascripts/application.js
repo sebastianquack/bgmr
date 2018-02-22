@@ -19,6 +19,7 @@
 // vendor npm
 //= require slick-carousel/slick/slick.js
 //= require jquery-touch-events/src/jquery.mobile-events.js
+//= require object-fit-images/dist/ofi.js
 
 //= vendor manually
 //= require jquery.panzoom/jquery.panzoom.js
@@ -41,3 +42,12 @@
 //= require welcome
 //= require header
 //= require staffs
+
+
+$(document).on('turbolinks:load', function(){
+	objectFitImages(null, {watchMQ: true})
+})
+
+setInterval(function(){
+	objectFitImages();
+},5000)

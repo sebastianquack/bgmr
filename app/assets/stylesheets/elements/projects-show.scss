@@ -103,6 +103,7 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
 
         object-fit: contain;
         object-position: center;
+        font-family: 'object-fit: contain; object-position: center;';
         @include visual_bg;
 
         &.zoomed-image {
