@@ -17,7 +17,7 @@
 
     > * {
       width: col_width_abs(4,-2);
-      text-align: left;
+      text-align: center;
       margin-left:auto;
       margin-right:auto;
       @include visual_bg;
@@ -36,25 +36,29 @@
     @include bp($b_8-12) { @include grid-column($columns_count/2);  &:nth-child(2n+1) { clear:both; }}
     @include bp($b_12-16) { @include grid-column($columns_count/3);  &:nth-child(3n+1) { clear:both; }}
     @include bp($b_16-20) { @include grid-column($columns_count/4);  &:nth-child(4n+1) { clear:both; }}
-    @include bp($b_20-24) { @include grid-column($columns_count/5);  &:nth-child(5n+1) { clear:both; }}
-    @include bp($b_24_and_up) { @include grid-column($columns_count/6); &:nth-child(6n+1) { clear:both; }}
+    @include bp($b_20-24) { @include grid-column($columns_count/4);  &:nth-child(4n+1) { clear:both; }}
+    @include bp($b_24_and_up) { @include grid-column($columns_count/5); &:nth-child(5n+1) { clear:both; }}
 
     .staff_image {
       height: 28 * $d_gridheight;
+      @include bp($b_20-24) { height: 34 * $d_gridheight; }
+      @include bp($b_24_and_up) { height: 40 * $d_gridheight; }      
       display: block;
-      margin-bottom: 2 * $d_gridheight;      
+      margin-bottom: 2 * $d_gridheight;
     }
 
     img {
       display: block;
       width: calc( 100% - #{ $d_gutterwidth_abs } );
       height: 28 * $d_gridheight;
-      width: col_width_abs(5,0);     
-      object-fit: cover;
-      object-position: center center;
-      font-family: 'object-fit: cover; object-position: center;';
-      // padding-left: 0.5 * $d_gutterwidth_abs;
-      // padding-right: 0.5 * $d_gutterwidth_abs;
+      @include bp($b_20-24) { height: 34 * $d_gridheight; }
+      @include bp($b_24_and_up) { height: 40 * $d_gridheight; }
+      object-fit: contain;
+      object-position: center bottom;
+      font-family: 'object-fit: contain; object-position: center bottom;';
+      margin-bottom: 2 * $d_gridheight;
+      padding-left: 0.5 * $d_gutterwidth_abs;
+      padding-right: 0.5 * $d_gutterwidth_abs;
     }
 
     .staff_info {
