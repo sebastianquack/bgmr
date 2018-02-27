@@ -230,13 +230,15 @@
     @include bp($b_8-12) { @include grid-column($columns_count/2); }
     @include bp($b_12-16) { @include grid-column($columns_count/3); }
     @include bp($b_16-20) { @include grid-column($columns_count/4); }
-    @include bp($b_20-24) { @include grid-column($columns_count/5); }
-    @include bp($b_24_and_up) { @include grid-column($columns_count/6); }
+    @include bp($b_20-24) { @include grid-column($columns_count/4); }
+    @include bp($b_24_and_up) { @include grid-column($columns_count/5); }
 
     img {
       display: block;
       width: calc( 100% - #{ $d_gutterwidth_abs } );
       height: 28 * $d_gridheight;
+      @include bp($b_20-24) { height: 34 * $d_gridheight; }
+      @include bp($b_24_and_up) { height: 40 * $d_gridheight; }
       object-fit: contain;
       object-position: center bottom;
       font-family: 'object-fit: contain; object-position: center bottom;';
@@ -248,6 +250,11 @@
     .project_title {
       height: 2 * $base-line-height;
       overflow: hidden;
+      @include bp($b_20_and_up) { 
+        font-size: 16px; 
+        height: 2 * $larger-line-height;
+        line-height: $larger-line-height;
+      }
 
       @include visual_bg;      
     }

@@ -9,6 +9,8 @@ $base-font-size: 14px;
 $base-line-height: $d_gridheight * 3;
 $heading-line-height: $d_gridheight * 3;
 
+$larger-line-height: 16/14 * $d_gridheight * 3;
+
 $baseline_adjust: -2px; // make it fit to the grid inside the baseline
 
 $lineheight: $base-line-height;
