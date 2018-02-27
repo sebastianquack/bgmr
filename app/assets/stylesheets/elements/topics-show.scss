@@ -30,19 +30,26 @@
   }
 
   .topic__description {
-    max-width: col_width_abs(12,1);
+    max-width: col_width_abs(12,-1);
+    @include bp($b_20_and_up) { max-width: col_width_abs(16,-1); }
     padding: 0 $d_gutterwidth_abs;
     @include bp($b_8_and_up) { column-count: 2; }
     text-align: left;
     margin:auto;
+
+    @include visual_bg
   }
 
   .topic__image {
     display: block;
     width: calc( 100% - #{ 2*$d_gutterwidth_abs } );
+    @include bp($b_20_and_up) { max-width: col_width_abs(16,1); }
     max-width: col_width_abs(12,1);
     padding: 0 $d_gutterwidth_abs;
     margin:auto;
+    @if $debug_show_visual_bg {
+      filter: brightness(0.9);
+    }
   }
 
   .topic__headline, .topic__description, .topic__image {
