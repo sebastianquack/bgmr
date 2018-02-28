@@ -121,6 +121,13 @@ function checkPosition(newPos, positions) {
   if (positions.length == 0) {
     return true;
   }
+
+  Math.hypot = Math.hypot || function() {
+    var y = 0, i = arguments.length;
+    while (i--) y += arguments[i] * arguments[i];
+    return Math.sqrt(y);
+  };
+  
   for (var i = positions.length-1; i >= 0; i--) {
     var other_x = positions[i].x
     var other_y = positions[i].y
