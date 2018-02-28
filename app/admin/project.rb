@@ -40,7 +40,7 @@ index as: :reorderable_table do
     end
     column :draft
     column :featured
-    column :internal
+    #column :internal
     column :updated_at
     actions
 end
