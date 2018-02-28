@@ -4,7 +4,6 @@
 //= require blueimp-file-upload/js/jquery.fileupload.js
 //= require common_functions
 //= require activeadmin_reorderable
-//= require jquery.autogrow-textarea/jquery.autogrow-textarea.js
 
 $(document).on("ready",function() {
   $('.js-upload').on('change', function(){ previewImage(this) });
@@ -15,9 +14,6 @@ $(document).on("ready",function() {
   })
 
   $(".slide-move-button").click(initSlideMoveEvent);
-  
-  // autogrow
-  $(".autogrow").autogrow()
 });
 
 $(document).on('has_many_add:after', '.has_many_container', function(e, fieldset, container) {

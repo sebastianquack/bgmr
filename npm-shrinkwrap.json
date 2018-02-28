@@ -1,0 +1,57 @@
+{
+  "dependencies": {
+    "blueimp-canvas-to-blob": {
+      "version": "3.5.0",
+      "from": "blueimp-canvas-to-blob@3.5.0",
+      "resolved": "https://registry.npmjs.org/blueimp-canvas-to-blob/-/blueimp-canvas-to-blob-3.5.0.tgz",
+      "optional": true
+    },
+    "blueimp-file-upload": {
+      "version": "9.18.0",
+      "from": "blueimp-file-upload@>=9.18.0 <9.19.0",
+      "resolved": "https://registry.npmjs.org/blueimp-file-upload/-/blueimp-file-upload-9.18.0.tgz"
+    },
+    "blueimp-load-image": {
+      "version": "2.12.2",
+      "from": "blueimp-load-image@2.12.2",
+      "resolved": "https://registry.npmjs.org/blueimp-load-image/-/blueimp-load-image-2.12.2.tgz",
+      "optional": true
+    },
+    "blueimp-tmpl": {
+      "version": "3.6.0",
+      "from": "blueimp-tmpl@3.6.0",
+      "resolved": "https://registry.npmjs.org/blueimp-tmpl/-/blueimp-tmpl-3.6.0.tgz",
+      "optional": true
+    },
+    "input-range-scss": {
+      "version": "1.4.1",
+      "from": "input-range-scss@>=1.4.1 <1.5.0",
+      "resolved": "https://registry.npmjs.org/input-range-scss/-/input-range-scss-1.4.1.tgz"
+    },
+    "jquery": {
+      "version": "3.3.1",
+      "from": "jquery@>=1.7.2",
+      "resolved": "https://registry.npmjs.org/jquery/-/jquery-3.3.1.tgz"
+    },
+    "jquery-touch-events": {
+      "version": "1.0.9",
+      "from": "git+https://github.com/benmajor/jQuery-Touch-Events.git",
+      "resolved": "git+https://github.com/benmajor/jQuery-Touch-Events.git#84581f90c7068fd5a399ab111ee2a02d670e80ca"
+    },
+    "jquery.panzoom": {
+      "version": "3.2.2",
+      "from": "jquery.panzoom@>=3.2.2 <3.3.0",
+      "resolved": "https://registry.npmjs.org/jquery.panzoom/-/jquery.panzoom-3.2.2.tgz"
+    },
+    "object-fit-images": {
+      "version": "3.2.3",
+      "from": "object-fit-images@>=3.2.3 <3.3.0",
+      "resolved": "https://registry.npmjs.org/object-fit-images/-/object-fit-images-3.2.3.tgz"
+    },
+    "slick-carousel": {
+      "version": "1.6.0",
+      "from": "slick-carousel@1.6.0",
+      "resolved": "https://registry.npmjs.org/slick-carousel/-/slick-carousel-1.6.0.tgz"
+    }
+  }
+}
