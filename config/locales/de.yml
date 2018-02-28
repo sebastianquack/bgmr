@@ -57,6 +57,7 @@ de:
   move_up: "nach oben ↑"
   move_down: "nach unten ↓"
   read_more: "mehr"
+  project_pdf: "Projektmappe"
   activerecord: 
       models: 
         project: 

@@ -401,6 +401,11 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
           margin-top: 1em;
         }
 
+        .project__pdf {
+          margin-top: 5 * $d_gridheight;
+          display: inline-block;
+        }
+
         @include visual_bg;
       }
 
