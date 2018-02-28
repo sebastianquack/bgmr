@@ -2,6 +2,38 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.company {
+  .company_text {
+
+  max-width: col_width_abs(12,-1);
+  @include bp($b_20_and_up) { max-width: col_width_abs(16,-1); }
+  text-align: left;
+  margin:auto;
+  margin-bottom: 6 * $d_gridheight;
+
+  @include visual_bg;
+
+    padding: 0 $d_gutterwidth_abs;
+    @include bp($b_8_and_up) { column-count: 2; }
+  }
+
+  .company_image {
+    display: block;
+    padding: 0;
+    margin:auto;
+    width: calc( 100% - #{ 2*$d_gutterwidth_abs } );
+    @include bp($b_20_and_up) { max-width: col_width_abs(16,1); }
+    max-width: col_width_abs(12,1);    
+    margin-bottom: 3 * $d_gridheight;
+    img {
+      width:100%;
+    }
+    @if $debug_show_visual_bg {
+      filter: brightness(0.9);
+    }
+  }
+}
+
 .staffs_list {
   @include grid-container;
 

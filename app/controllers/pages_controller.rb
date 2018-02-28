@@ -6,7 +6,7 @@ class PagesController < ApplicationController
 
     if @page.seed_id && @page.seed_id == "about"
       @staffs = Staff.all.to_a
-      @company = @staffs[0]
+      @company = @staffs.shift
       render "staffs/index"
     end
 

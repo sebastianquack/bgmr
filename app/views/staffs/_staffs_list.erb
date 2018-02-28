@@ -1,3 +1,31 @@
+
+<div class="company" title="<%= @company.name %>">
+  <div class="company_image image_swapper">
+    <%= image_tag @company.primary_image.url(:large), alt: @company.text %>
+    <%= image_tag @company.secondary_image.url(:large), alt: @company.text %>
+  </div>
+  <div class="company_info">
+    <!--h3 class="staff_name"><%= @company.name %></h3-->
+      <% if @company.text && !@company.text.strip.empty? %>
+        <p class="company_text">
+          <%= @company.text %>
+        </p>
+      <% end %>      
+      <!--ul class="staff_contact">
+        <li>
+          <%= tel_to @company.phone if @company.phone %>
+        </li>
+        <li>
+          <%= @company.fax if @company.fax %>
+        </li>
+        <li>
+          <%= mail_to @company.email if @company.email %>
+        </li>
+      </ul-->
+  </div>
+</div>
+
+
 <ul class="staffs_list">
   <% staffs.each_with_index do |staff, index| %>
     <li class="staffs_list_entry staff" title="<%= staff.name %>">
