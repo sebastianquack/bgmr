@@ -36,13 +36,10 @@ config.filters = false
 show do
     attributes_table do
     	row :title_de do |topic|
-    		topic.title_de
+    		topic.title_de.html_safe
     	end 
-     	row :title_en do |topic|
-     		topic.title_en
-     	end
       row :title_en do |topic|
-        topic.title_en
+        topic.title_en.html_safe
       end   
       row :description_de do |topic|
        span topic.description_de.html_safe
@@ -66,7 +63,7 @@ end
 form do |f|
   f.semantic_errors *f.object.errors.keys
   f.inputs t(:title) do
-    f.input :title_de
+    f.input :title_de, :hint => 'Benutzen Sie <b>&amp;shy;</b>, um einen Hinweis auf Silbentrennung zu geben, falls in den Kreisen nicht richtig getrennt wird. Bsp: Bildungs<b>&amp;shy;</b>landschaften'.html_safe
     f.input :title_en 
   end
   f.inputs t(:slugs) do

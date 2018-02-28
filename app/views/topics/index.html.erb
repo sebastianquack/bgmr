@@ -2,7 +2,7 @@
   <% @topics.each do |topic| %>
     <li class="topic_container" data-projects="<%= topic.projects.length %>" data-weight-category="<%= topic.nice_weight_category_random(@random_seed) %>">
       <a class="topic" lang="<%= I18n.locale %>" href="<%= topic_path(:id => topic.slug) %>" style="background-color:<%= topic.color %>; border-color:<%= topic.color %>; color:<%= topic.color %>">
-        <%= topic.title %>
+        <%= topic.title.html_safe %>
       </a>
     </li>
   <% end %>

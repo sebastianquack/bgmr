@@ -77,7 +77,7 @@ body[data-section="topics"] {
     padding:$d_topics_topic_dot_padding;
     display: table-cell;
     vertical-align: middle;
-    @include must-break;
+    //@include must-break;
     letter-spacing: 0.1ex;
 
     transition: transform 0.2s;

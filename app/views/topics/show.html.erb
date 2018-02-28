@@ -2,7 +2,7 @@
 
   <h1 class="topic__headline">
     <span class="topic" style="background-color:<%= @topic.color %>">
-      <%= @topic.title %>
+      <%= @topic.title.html_safe %>
     </span>
   </h1>
 
