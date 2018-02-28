@@ -411,14 +411,23 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
 
     }  
 
+    .project__title__controls {
+      padding-left: 1em;
+      padding-right: 1em;
+      img {
+        height: 0.75em;
+        position: relative;
+        top: 0.1em;
+      }
+    }
+
     &.open {
       .project__description {
         //max-height: 96 * $d_gridheight;
         //padding-bottom: 4 * $d_gridheight;
       }
-      .project__title__controls {
-        padding-left: 1em;
-        color: #aaa;
+      .project__title__controls .up {
+        display:none;
       }
       .project__info__content {
         padding-bottom: $base-line-height;
@@ -426,8 +435,8 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
     }
 
     &:not(.open) {
-      .project__title__controls {
-        display: none;
+      .project__title__controls .down {
+        display:none;
       }
       .project__description {
         @include bp($b_8_and_up) {

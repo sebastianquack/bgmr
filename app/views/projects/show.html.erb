@@ -96,7 +96,10 @@
       <div class="project__headline">
         <div class="project__headline_1">
           <h2 class="project__title"><%= @project.title %></h2>
-          <span class="project__title__controls"><%= t('hide_text')%></span>
+          <span class="project__title__controls">
+            <abbr class="up"><%= image_tag image_path("hoch.png")%></abbr>
+            <abbr class="down"><%= image_tag image_path("runter.png")%></abbr>
+          </span>
         </div>
         <aside class="project__caption slide__caption project__headline_2"></aside>
       </div>
