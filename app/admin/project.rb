@@ -12,7 +12,7 @@ controller do
   end
 end
 
-permit_params :main_image, :title_de, :title_en, :description_de, :description_en, :slug_de, :slug_en, :draft, :featured, :internal, :position, area_ids:[], tag_ids:[], topic_ids:[],
+permit_params :main_image, :title_de, :title_en, :description_de, :description_en, :slug_de, :slug_en, :draft, :featured, :internal, :position, :pdf, :pdf_delete, area_ids:[], tag_ids:[], topic_ids:[],
     :slides_attributes => [:id, :order, :caption_de, :caption_en, :image, :zoomable, :_destroy, :slide_links_attributes => [:id, :to_slide_id, :pos_x, :pos_y, :_destroy]]
 
 #
@@ -66,6 +66,9 @@ show do
       row :description_en do |project|
         span project.description_en.html_safe
       end
+      row t(:project_pdf) do |p|
+        link_to "Download", p.pdf.url(:original, false)  if p.pdf.exists?
+      end            
       row :slug_de do |project|
         if project.draft 
           span t(:deactivated), :class => "empty"
@@ -121,7 +124,18 @@ form :html => { :enctype => "multipart/form-data" } do |f|
     f.input :main_image, :input_html => { :class => "js-upload" }, hint: f.object.main_image? ? image_tag(f.object.main_image.url(:medium)) : content_tag(:span, t(:image_upload_info))
   end    
 
-  logger.debug "slideshow form"
+  f.inputs t(:project_pdf), :class => "inputs image" do         
+    f.input :pdf, :input_html => { :class => "js-upload" }, hint: f.object.pdf.exists? ? image_tag(f.object.pdf.url(:thumb)) : content_tag(:span, t(:pdf_upload_info))
+    if f.object.pdf.exists?
+      f.input :pdf_delete, 
+        as: :boolean, 
+        :wrapper_html => { class: 'indent'}, 
+        :label => 'PDF löschen', 
+        :checked_value => 1, 
+        :unchecked_value=> 0
+    end
+  end      
+
   f.inputs t(:slideshow), :class=>"inputs slides_inputs" do
     #logger.debug f.object.inspect
     f.has_many :slides, heading: false, class: "slide", :new_record => true, :allow_destroy => true do |f_s|
@@ -150,7 +164,7 @@ form :html => { :enctype => "multipart/form-data" } do |f|
                                   end.to_s)  
 
     end
-  end
+  end 
 
   f.inputs t(:topics) do
     f.input :topics, :label => false, :as => :check_boxes

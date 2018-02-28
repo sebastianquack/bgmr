@@ -102,6 +102,11 @@
       </div>
       <div data-turbolinks-permanent class="project__description">
         <%= @project.description.html_safe if @project.description %>
+        <% if @project.pdf.exists? %>
+          <%= link_to @project.pdf.url(:original), :target => "_blank", :class => "project__pdf" do %>
+            <b><%= t(:project_pdf) %></b> (PDF)
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
