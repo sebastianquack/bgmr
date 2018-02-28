@@ -1,9 +1,15 @@
-<div id="welcome">
-  <% if @project.nil? %>
-    <%= image_tag 'welcome.jpg' %>
-  <% else %>
-  <a href="<%= project_path(@project) %>" title="<%= @project.title %>">
-    <img class="desaturation_effect" src="<%= @project.main_image.url(:frontw1000) %>" srcset="<%= @project.main_image.url(:frontw2500) %> 2500w, <%= @project.main_image.url(:frontw2000) %> 2000w, <%= @project.main_image.url(:frontw1000) %> 1000w, <%= @project.main_image.url(:frontw500) %> 500w">
-  </a>
-  <% end %>
+
+ <% if @projects.nil? %>
+  	<div id="welcome">
+    	<%= image_tag 'welcome.jpg' %>
+	</div>
+ <% else %>
+ 	<div id="welcome" class="welcome__slides">
+	  	<% @projects.each do |project| %>
+		  <a class="welcome__slide" href="<%= project_path(project) %>" title="<%= project.title %>">
+		    <img class="desaturation_effect" src="<%= project.main_image.url(:frontw1000) %>" srcset="<%= project.main_image.url(:frontw2500) %> 2500w, <%= project.main_image.url(:frontw2000) %> 2000w, <%= project.main_image.url(:frontw1000) %> 1000w, <%= project.main_image.url(:frontw500) %> 500w">
+		  </a>
+		<% end %>
+	  <% end %>
+	</div>
 </div>

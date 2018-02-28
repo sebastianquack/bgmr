@@ -15,7 +15,18 @@ body[data-section="welcome"] {
 
   height: calc( 100% - #{ $d_header_margin_top + $d_header_height + 3*$d_gridheight } ) !important; // overwrite calc-enabled browsers
 
+  .welcome__slide {
+    display: block;
+    height: 100%;
+    @include visual_bg;
+  }
+
+  .slick-track, .slick-list {
+    height: 100%;
+  }
+
   img {
+    display: block;
     width: 100%;
     object-fit: cover;
     object-position: center center;

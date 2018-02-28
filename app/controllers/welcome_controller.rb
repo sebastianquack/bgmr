@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
   def index
-    @project = Project.featured.sample
+    @projects = Project.featured.shuffle
   end
 end
