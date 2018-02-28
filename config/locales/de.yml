@@ -129,6 +129,7 @@ de:
         publication:
           title: "Titel"
           file: "Datei"
+          image: "Bild"
           draft: "Entwurf"
         news_item: 
           title: "Titel"
