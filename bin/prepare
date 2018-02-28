@@ -1,0 +1,15 @@
+        echo "installing packages..."
+        bundle install
+        npm install
+        echo "setting up db..."
+        bundle exec rake db:create
+        echo "migrating db..."
+        bundle exec rake db:migrate
+        echo "precompiling assets..."
+        bundle exec rake assets:precompile
+        # sudo restart puma-manager
+        # sudo service nginx restart
+        # end deploy tasks
+        echo "Regenerating images..."
+        bundle exec rake paperclip:refresh:missing_styles
+        echo "Restarting service..."
