@@ -10,7 +10,7 @@ $(document).on('turbolinks:load', function(){
   		adaptiveHeight: false,
   		arrows: false,
   		fade: true,
-  		autoplaySpeed: 3000,
+  		autoplaySpeed: 17000,
   		speed: 3000,
   		pauseOnHover: false,
   		pauseOnFocus: false,
