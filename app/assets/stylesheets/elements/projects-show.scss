@@ -397,6 +397,10 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
           margin-right: $d_gutterwidth_abs;
         }
 
+        > *:first-child {
+          margin-top: 1em;
+        }
+
         @include visual_bg;
       }
 

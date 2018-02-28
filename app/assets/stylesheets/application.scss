@@ -29,14 +29,17 @@
 @import 'slick-carousel/slick/slick.scss';
 @import 'input-range-scss/inputrange';
 
-/* bourbon base */
-@import "base/base";
-
 /* helpers */
 @import "helpers/*";
 
-/* elements */
+/* layout */
 @import "elements/layout";
+
+/* bourbon base */
+@import "base/base";
+
+
+/* elements */
 @import "elements/header";
 @import "elements/projects-index";
 @import "elements/projects-show";

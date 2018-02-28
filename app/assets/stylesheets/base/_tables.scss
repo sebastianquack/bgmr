@@ -1,24 +1,38 @@
 table {
   border-collapse: collapse;
-  margin: $small-spacing 0;
-  table-layout: fixed;
+  margin: 0;
+  table-layout: auto;
   width: 100%;
 }
 
-th {
-  border-bottom: 1px solid shade($base-border-color, 25%);
-  font-weight: 600;
-  padding: $small-spacing 0;
-  text-align: left;
+table, th, td {
+  border:none;
+  padding:0;
 }
 
-td {
-  border-bottom: $base-border;
-  padding: $small-spacing 0;
+table {
+  width: 100% !important;
+  margin-top: 2em;
+  //line-height: 1.5;          
+  th, tr td:first-child {
+    font-weight: bold;
+  }
+  tr td:first-child {
+    padding-right: 4em;
+  }
+}
+
+@include bp($b_8_and_lower) { 
+  table, tr, td, th {
+    display: block;
+  }
+  tr:not(:first-child) {
+    margin-top: 1em;
+  }
 }
 
 tr,
 td,
 th {
-  vertical-align: middle;
+  vertical-align: top;
 }

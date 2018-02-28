@@ -3,7 +3,7 @@ CKEDITOR.editorConfig = function(config) {
   config.width = "79%"
   config.toolbar = [
     { name: 'format', items: ['Bold', 'Italic', 'Link', 'Unlink'] },
-    { name: 'insert', items: [ 'Image','HorizontalRule']},
+    { name: 'insert', items: [ 'Image','HorizontalRule','Table']},
     { name: 'undo', items: ['Undo', 'Redo'] },
     { name: 'document', items: [ 'Source' ] }
   ]
