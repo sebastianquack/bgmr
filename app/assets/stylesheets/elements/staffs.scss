@@ -152,3 +152,7 @@
     @include visual_bg;
   }
 }
+
+.staffs_list + .projects_list {
+  margin-top: 6 * $d_gridheight;
+}

@@ -12,7 +12,7 @@ controller do
   end
 end
 
-permit_params :main_image, :title_de, :title_en, :description_de, :description_en, :slug_de, :slug_en, :draft, :featured, :position, area_ids:[], tag_ids:[], topic_ids:[],
+permit_params :main_image, :title_de, :title_en, :description_de, :description_en, :slug_de, :slug_en, :draft, :featured, :internal, :position, area_ids:[], tag_ids:[], topic_ids:[],
     :slides_attributes => [:id, :order, :caption_de, :caption_en, :image, :zoomable, :_destroy, :slide_links_attributes => [:id, :to_slide_id, :pos_x, :pos_y, :_destroy]]
 
 #
@@ -40,6 +40,7 @@ index as: :reorderable_table do
     end
     column :draft
     column :featured
+    column :internal
     column :updated_at
     actions
 end
@@ -50,6 +51,7 @@ filter :description_de
 filter :description_en
 filter :draft
 filter :featured
+filter :internal
 
 show do
     attributes_table do
@@ -94,6 +96,7 @@ show do
       end
       row :draft
       row :featured
+      row :internal
 
     end
   end
@@ -169,6 +172,7 @@ form :html => { :enctype => "multipart/form-data" } do |f|
   f.inputs t(:special) do
     f.input :draft
     f.input :featured
+    f.input :internal
   end
 
   f.actions

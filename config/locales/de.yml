@@ -103,6 +103,7 @@ de:
           slug: "Link"
           draft: "Entwurf"
           featured: "Auf Startseite"
+          internal: "Über-uns"
           updated_at: "Letzte Änderung"
           description: "Beschreibung"
         page:

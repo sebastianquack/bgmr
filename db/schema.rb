@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180222200700) do
+ActiveRecord::Schema.define(version: 20180228130708) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -130,21 +130,22 @@ ActiveRecord::Schema.define(version: 20180222200700) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string   "slug_en",                 null: false
+    t.string   "slug_en",                                 null: false
     t.boolean  "draft"
-    t.string   "title_de",                null: false
-    t.string   "title_en",                null: false
+    t.string   "title_de",                                null: false
+    t.string   "title_en",                                null: false
     t.text     "description_de"
     t.text     "description_en"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.string   "slug_de",                 null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "slug_de",                                 null: false
     t.string   "main_image_file_name"
     t.string   "main_image_content_type"
     t.integer  "main_image_file_size"
     t.datetime "main_image_updated_at"
     t.boolean  "featured"
     t.integer  "position"
+    t.boolean  "internal",                default: false
   end
 
   create_table "publications", force: :cascade do |t|
