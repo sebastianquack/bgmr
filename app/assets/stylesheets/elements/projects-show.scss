@@ -299,7 +299,7 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
         bottom:0;
         padding-top: inherit;
       }
-      
+
       background-color: white;
       
       @include visual_bg;
@@ -316,6 +316,11 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
         padding-right: 3 * $d_gutterwidth_abs+ 2 * $d_gridwidth_abs;
       }
 
+      @include bp($b_20_and_up) {
+        &, h2 {font-size: 16px};
+        line-height: $larger-line-height;
+      }
+      
       transition: padding-bottom 0.2s;
 
       .project__title, .project__title__controls {
