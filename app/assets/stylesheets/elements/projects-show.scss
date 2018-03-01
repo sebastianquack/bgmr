@@ -67,6 +67,8 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
     }
 
     &.cursorLeft {
+      cursor: url(/assets/links.cur), w-resize;
+      cursor: url(/assets/links.cur) 1 16, w-resize;
       cursor: url(/assets/links.png) 1 16, w-resize;
       cursor: -webkit-image-set(
         url('/assets/links.png') 1x,
@@ -75,6 +77,8 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
     }
 
     &.cursorRight {
+      cursor: url(/assets/rechts.cur), e-resize;
+      cursor: url(/assets/rechts.cur) 20 16, e-resize;
       cursor: url(/assets/rechts.png) 20 16, e-resize;
       cursor: -webkit-image-set(
         url('/assets/rechts.png') 1x,

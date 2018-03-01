@@ -24,6 +24,9 @@
 //= vendor manually
 //= require jquery.panzoom/jquery.panzoom.js
 
+//  warn IE
+//= require warnIE
+
 // helpers
 //= require helpers
 
