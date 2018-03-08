@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+
+echo "note: must run in bgmr main directory"
+sleep 3
+
+echo "bgmr2: creating remote database dump..."
+ssh bgmr2@ankaa.uberspace.de 'source .bash_profile; cd bgmr; bundle exec rake db:data:dump; ls -l db/data.yml'
+
+echo "bgmr2: getting database..."
+rm -f db/data.yml
+scp bgmr2@ankaa.uberspace.de:bgmr/db/data.yml ./db/
+
+echo "importing database..."
+bundle exec rake db:data:load
+
+echo "done"

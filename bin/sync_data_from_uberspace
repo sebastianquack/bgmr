@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 echo "note: must run in bgmr main directory"
 sleep 3
