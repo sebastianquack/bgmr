@@ -451,6 +451,9 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
   .leaflet-control-container {
     display: none;
   }
+  .leaflet-container {
+    background-color: transparent;
+  }
 
 #project {
 

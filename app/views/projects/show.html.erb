@@ -31,7 +31,11 @@
               <div class="slide__image">
                 <% prefix = slide.zoomable ? "plan_" : "" %>
                 <% postpone = i == 0 ? "" : "data-" %>
-                <img <%=postpone%>src="<%= slide.image.url(prefix+"w1000") %>" <%=postpone%>srcset="<%= slide.image.url(prefix+"w2000") %> 2000w, <%= slide.image.url(prefix+"w1000") %> 1000w, <%= slide.image.url(prefix+"w500") %> 500w" data-zoom-src="<%= slide.image.url(:zoom) %>">
+                <% if slide.zoomable && slide.large_enough_for_zoom %>
+                 <img <%=postpone%>src="<%= slide.image.url(:zoom) %>" <%=postpone%>srcset="<%= slide.image.url(:zoom) %>" data-zoom-src="<%= slide.image.url(:zoom) %>">
+                <% else %>
+                  <img <%=postpone%>src="<%= slide.image.url(prefix+"w1000") %>" <%=postpone%>srcset="<%= slide.image.url(prefix+"w2000") %> 2000w, <%= slide.image.url(prefix+"w1000") %> 1000w, <%= slide.image.url(prefix+"w500") %> 500w" data-zoom-src="<%= slide.image.url(:zoom) %>">
+                <% end %>
               </div>
               <div class="slide__loopholes slide_links">
                 <% slide.slide_links.each do |loop| %>
