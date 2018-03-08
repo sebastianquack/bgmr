@@ -21,7 +21,7 @@
 //= require slick-carousel/slick/slick.js
 //= require jquery-touch-events/src/jquery.mobile-events.js
 //= require leaflet/dist/leaflet.js
-//= require imgviewer2/dist/imgViewer2.min.js
+//= require imgviewer2/src/imgViewer2.js
 
 //= vendor manually
 

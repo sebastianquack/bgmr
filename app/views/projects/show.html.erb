@@ -39,7 +39,7 @@
               </div>
               <div class="slide__loopholes slide_links">
                 <% slide.slide_links.each do |loop| %>
-                  <div class="slide__loophole slide_link" style="left:<%= loop.pos_x %>%; top:<%= loop.pos_y %>%">
+                  <div class="slide__loophole slide_link" style="left:<%= loop.pos_x.to_i %>%; top:<%= loop.pos_y.to_i %>%">
                     <a data-target-order="<%= loop.to_slide.order if loop.to_slide %>">
                       <span>
                         <%= loop.to_slide.order if loop.to_slide %>

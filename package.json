@@ -6,7 +6,7 @@
     "jquery.autogrow-textarea": "^0.4.1",
     "slick-carousel": "^1.6.0",
     "leaflet": "1.0.3",
-    "imgviewer2": "1.1.0"
+    "imgviewer2": "git+https://github.com/retani/imgViewer2.git"
   },
   "repository": {
     "type": "git",
