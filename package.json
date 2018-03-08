@@ -3,9 +3,10 @@
     "blueimp-file-upload": "~9.18.0",
     "input-range-scss": "~1.4.1",
     "jquery-touch-events": "git+https://github.com/benmajor/jQuery-Touch-Events.git",
-    "jquery.panzoom": "~3.2.2",
     "object-fit-images": "~3.2.3",
-    "slick-carousel": "1.6.0"
+    "slick-carousel": "1.6.0",
+    "leaflet": "1.0.3",
+    "imgviewer2": "git+https://github.com/retani/imgViewer2.git"
   },
   "repository": {
     "type": "git",

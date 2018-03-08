@@ -693,6 +693,7 @@
 		 *  For instance, to flip vertically, you could set -1 as the dValue.
 		 */
 		zoom: function(scale, opts) {
+			console.log(opts)
 			// Shuffle arguments
 			if (typeof scale === 'object') {
 				opts = scale;
@@ -701,6 +702,10 @@
 				opts = {};
 			}
 			var options = $.extend({}, this.options, opts);
+
+			options.disablePan = false
+			console.log(options)
+			
 			// Check if disabled
 			if (options.disableZoom) { return; }
 			var animate = false;
@@ -729,6 +734,7 @@
 			// Calculate focal point based on scale
 			var focal = options.focal;
 			if (focal && !options.disablePan) {
+				console.log(focal)
 				// Adapted from code by Florian Günther
 				// https://github.com/florianguenther/zui53
 				this.resetDimensions();

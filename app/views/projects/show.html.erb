@@ -31,11 +31,15 @@
               <div class="slide__image">
                 <% prefix = "" %>
                 <% postpone = i == 0 ? "" : "data-" %>
-                <img <%=postpone%>src="<%= slide.image.url(prefix+"w1000") %>" <%=postpone%>srcset="<%= slide.image.url(prefix+"w2000") %> 2000w, <%= slide.image.url(prefix+"w1000") %> 1000w, <%= slide.image.url(prefix+"w500") %> 500w" data-zoom-src="<%= slide.image.url(:zoom) %>">
+                <% if slide.zoomable && slide.large_enough_for_zoom %>
+                 <img <%=postpone%>src="<%= slide.image.url(:zoom) %>" <%=postpone%>srcset="<%= slide.image.url(:zoom) %>" data-zoom-src="<%= slide.image.url(:zoom) %>">
+                <% else %>
+                  <img <%=postpone%>src="<%= slide.image.url(prefix+"w1000") %>" <%=postpone%>srcset="<%= slide.image.url(prefix+"w2000") %> 2000w, <%= slide.image.url(prefix+"w1000") %> 1000w, <%= slide.image.url(prefix+"w500") %> 500w" data-zoom-src="<%= slide.image.url(:zoom) %>">
+                <% end %>
               </div>
               <div class="slide__loopholes slide_links">
                 <% slide.slide_links.each do |loop| %>
-                  <div class="slide__loophole slide_link" style="left:<%= loop.pos_x %>%; top:<%= loop.pos_y %>%">
+                  <div class="slide__loophole slide_link" style="left:<%= loop.pos_x.to_i %>%; top:<%= loop.pos_y.to_i %>%">
                     <a data-target-order="<%= loop.to_slide.order if loop.to_slide %>">
                       <span>
                         <%= loop.to_slide.order if loop.to_slide %>
@@ -115,3 +119,5 @@
   </div>
 
 </article>
+
+

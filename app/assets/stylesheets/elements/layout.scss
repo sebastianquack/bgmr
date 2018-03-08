@@ -56,6 +56,7 @@ body {
   @if ($debug_show_grid) {
     @include grid-visual;
   }
+  
 }
 
 #page_header {

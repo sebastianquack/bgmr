@@ -59,6 +59,7 @@ function positionSlidelinks(img) {
   }
 
   $(img).attr('data-actual-offset-left',obj.left)
+  $(img).attr('data-actual-offset-width',obj.width)
 
   //console.log(obj)
 

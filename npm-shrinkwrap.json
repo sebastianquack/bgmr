@@ -23,6 +23,11 @@
       "resolved": "https://registry.npmjs.org/blueimp-tmpl/-/blueimp-tmpl-3.6.0.tgz",
       "optional": true
     },
+    "imgviewer2": {
+      "version": "1.1.1",
+      "from": "git+https://github.com/retani/imgViewer2.git",
+      "resolved": "git+https://github.com/retani/imgViewer2.git#d0b239a595879e7e22958281fecea8a79541235c"
+    },
     "input-range-scss": {
       "version": "1.4.1",
       "from": "input-range-scss@>=1.4.1 <1.5.0",
@@ -38,10 +43,10 @@
       "from": "git+https://github.com/benmajor/jQuery-Touch-Events.git",
       "resolved": "git+https://github.com/benmajor/jQuery-Touch-Events.git#84581f90c7068fd5a399ab111ee2a02d670e80ca"
     },
-    "jquery.panzoom": {
-      "version": "3.2.2",
-      "from": "jquery.panzoom@>=3.2.2 <3.3.0",
-      "resolved": "https://registry.npmjs.org/jquery.panzoom/-/jquery.panzoom-3.2.2.tgz"
+    "leaflet": {
+      "version": "1.0.3",
+      "from": "leaflet@1.0.3",
+      "resolved": "https://registry.npmjs.org/leaflet/-/leaflet-1.0.3.tgz"
     },
     "object-fit-images": {
       "version": "3.2.3",

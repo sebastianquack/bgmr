@@ -14,15 +14,17 @@
 // vendor gem
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require turbolinks
 
 // vendor npm
 //= require slick-carousel/slick/slick.js
 //= require jquery-touch-events/src/jquery.mobile-events.js
 //= require object-fit-images/dist/ofi.js
+//= require leaflet/dist/leaflet.js
+//= require imgviewer2/src/imgViewer2.js
 
 //= vendor manually
-//= require jquery.panzoom/jquery.panzoom.js
 
 //  warn IE
 //= require warnIE
