@@ -2,12 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 body[data-section="welcome"] {
   &, & #frame, & #main {
     height:100%;
-    overflow:hidden;
+    @include bp($b_12_and_up) { 
+      overflow:hidden;
+    }
   }
 }
+
 
 #welcome {
   margin-left: $d_gutterwidth_abs;
