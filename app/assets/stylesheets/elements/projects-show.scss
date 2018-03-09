@@ -574,12 +574,18 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
       cursor:pointer;
     }
 
-    .topic.active a {
-      display:inline-block;
+
+
+    .topic:not(:hover) a, .topic.gone a {
+      opacity:0;
+      top: -100vh;
+      transition: opacity 0.3s 0.2s, top 0s 0.5s, z-index 0s 0.5s;
     }
 
-    .topic:not(.active) a {
-      display:none;
+    .topic:hover:not(.gone) a {
+      opacity: 1;
+      z-index:100;
+      transition: opacity 0.1s;
     }
 
     .topic a {

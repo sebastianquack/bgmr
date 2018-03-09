@@ -1,5 +1,6 @@
 // toggle topics display
 
+/*
 $(document).on('turbolinks:load', function(){
 
   $('#project .project__topics .topic').click(function(event){
@@ -22,3 +23,17 @@ $(document).on('turbolinks:load', function(){
 
 })
 
+*/
+
+$(document).on('turbolinks:load', function(){
+
+  // fix for sticky hover on touch devices
+  $('#project .project__topics .topic').on("touchstart", function(event){
+    var $elem = $(event.target)
+    $elem.removeClass("gone")
+    setTimeout(function(){
+      $elem.addClass("gone")
+    },2500)
+  })
+
+})
