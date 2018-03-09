@@ -12,7 +12,9 @@ mapLeftOffset = 0;
 
 $(document).on('turbolinks:load', function(){
 
-  //leaveZoomMode();
+  $(window).on("orientationchange", function() {
+    leaveZoomMode();
+  })
 
   $('#project .slides').on('init reInit afterChange',function(event){
     leaveZoomMode() // just in case

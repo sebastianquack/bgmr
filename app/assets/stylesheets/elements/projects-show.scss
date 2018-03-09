@@ -165,24 +165,28 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
   .nav_loophole_back {
     
     position:absolute;
-    top:0;
+    top:2px;
     left:0;
 
     cursor: pointer;
 
     display:block;
     width: 3 * $d_gridheight;
-    height: 3 * $d_gridheight;
-    border-radius: 50%;
+    //height: 3 * $d_gridheight;
     
     color: $ca_loophole_text;
     background-color: $ca_loophole_background;
     border: solid 1px $tag-border-color;
 
-    line-height: 3 * $d_gridheight;
+    background-image: url(/assets/links.png), url(/assets/links.png);
+    background-repeat: no-repeat, no-repeat;
+    background-size: 1.2ex, 1.2ex;
+    background-position: 20%, 80%;
+
+    //line-height: 3 * $d_gridheight;
     //box-sizing: border-box;
 
-    font-weight:bold;
+    //font-weight:bold;
     text-align: center;
     
     outline: none;
@@ -195,10 +199,6 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
 
     &:not(.visible) {
       display:none; 
-    }
-
-    &:after {
-      content: attr(targetslide);
     }
 
   }
