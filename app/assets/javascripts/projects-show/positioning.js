@@ -36,9 +36,9 @@ $(document).on('turbolinks:load', function(){
 
   
   $('#project .slides').on('init reInit afterChange',function(e){
-    var loopholes = $(e.target).find('.slide.zoomable .slide__loopholes')
+    var loopholes = $(e.target).find('.slide .slide__loopholes')
     loopholes.removeClass('positioned')    
-    var active_loophole = $(e.target).find('.slick-current .slide.zoomable .slide__loopholes')
+    var active_loophole = $(e.target).find('.slick-current .slide .slide__loopholes')
     active_loophole.addClass('positioned')
   }) 
 
