@@ -194,6 +194,7 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
     z-index: 500;
     margin-left: $d_gutterwidth_abs;
     margin-top: 3 * $d_gridheight;
+    margin-right: 0.6 * $d_gutterwidth_abs; // 0.6em
 
     @include bp($b_8_and_lower) { display: none !important; }
 

@@ -54,5 +54,11 @@ function positionZoomableControl(img, left){
 }
 
 function positionLoopholeBackLink(img, left){
-  $('.nav_loophole_back').css('left', left)
+  $nav = $('.nav_loophole_back');
+  // well, it might be that the tags are in the way...
+  var tag_left = $(".tag").position().left;
+  if (tag_left < parseInt(left)) {
+    left = tag_left - $nav.outerWidth() - parseInt($nav.css("marginLeft")) - parseInt($nav.css("marginRight"));
+  }
+  $nav.css('left', left)
 }
