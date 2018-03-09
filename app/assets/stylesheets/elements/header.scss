@@ -7,7 +7,7 @@
   position:fixed;
   width:100%;
   background-color: white;
-  z-index:20;
+  z-index:600;
 
   padding-top: $d_header_margin_top;
   height: $d_header_height /* - 2*$d_gridheight */;
@@ -173,7 +173,7 @@
       display:flex;
       justify-content: center;
       flex-direction: column;
-      z-index: 20;
+      z-index: 2000;
 
       font-size: 1.5rem;
       line-height: 3rem;

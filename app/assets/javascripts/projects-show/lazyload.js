@@ -2,7 +2,7 @@
 // progressively load images
 
 $(document).on('turbolinks:load', function(){
-  setTimeout(loadNext, 2000)
+  setTimeout(loadNext, 1000)
 });
 
 function loadNext() {
@@ -12,5 +12,5 @@ function loadNext() {
   img.setAttribute('src', img.getAttribute('data-src'));
   img.removeAttribute('data-src');
   $(img).on("load", loadNext)
-  setTimeout(loadNext, 3000)
+  setTimeout(loadNext, 1500)
 }
