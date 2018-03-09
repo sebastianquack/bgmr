@@ -116,12 +116,6 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
       }
     }
 
-    &:not(.loaded) {
-      .slide__loopholes {
-        display:none;
-      }
-    }
-
     &.plan .slide__image img {
       // transform: translateZ(0) scale(1.0, 1.0); // just a strange hack to make safari not blurry
       // filter: brightness(95%);
@@ -227,6 +221,23 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
 
     @include visual_bg;
   }
+}
+
+#project {
+  :not(.slick-current), .slide:not(.loaded) {
+    .slide__loopholes:not(.positioned) {
+      .slide__loophole {
+        opacity:0;
+        transition: none;
+      }
+    }
+  }
+
+  @for $i from 0 through 33 {
+    .slide__loophole:nth-child(#{$i}) {
+      transition: opacity 0.75s #{1 + $i/15}s;
+    }
+  }  
 }
 
 .slide__loophole {
