@@ -133,15 +133,28 @@ $(document).on('turbolinks:load', function(){
     doSoftZoom(newLevel, maxLevels)*/
 
     var timeout = 0;
-console.log(currentZoomLevel, minZoomLevel)
+    
+    console.log(currentZoomLevel, minZoomLevel)
+
     if(currentZoomLevel == minZoomLevel) {
       // hide image and loopholes
       enterZoomMode($(".slick-current .slide").get(0));
       timeout = 200;
+    } 
 
+    if (currentZoomLevel > 0) {
+      return // max zoom level reached
     } 
 
     currentZoomLevel++;
+    console.log("new zoom level: " + currentZoomLevel)
+
+    if (currentZoomLevel > 0) {
+      setZoomButtonState("zoom_out")
+    } else {
+      setZoomButtonState("zoom_both")
+    }
+
     setTimeout(function() {
       leafletMap.setZoom(currentZoomLevel);  
     }, timeout);
@@ -155,6 +168,8 @@ console.log(currentZoomLevel, minZoomLevel)
     var newLevel = level + ( level > 0 ? -1 : 0 );
     // console.log(level, maxLevels, newLevel)
     doSoftZoom(newLevel, maxLevels)*/
+
+    setZoomButtonState("zoom_both")
 
     currentZoomLevel--;
     if(currentZoomLevel <= minZoomLevel) {
@@ -320,6 +335,7 @@ console.log("entering zoom mode on slide ", slide)
   currentZoomLevel = leafletMap.getZoom();
   console.log("initialized leaflet with zoom level " + currentZoomLevel);
   minZoomLevel = currentZoomLevel;
+  setZoomButtonState("zoom_in")
 
   var slides = $('.slides')
   $(slides).addClass('zoomed')
@@ -380,6 +396,24 @@ function getMaxScale(elem) {
   var factor_y = $(elem).attr("data-height") / $(elem).innerHeight()
   var maxScale = Math.min(factor_x, factor_y)
   return maxScale;
+}
+
+function setZoomButtonState(state) { // "zoom_in" "zoom_out" "zoom_both"
+  var plus = $('.zoom_button_plus');
+  var minus = $('.zoom_button_minus');
+
+  console.log("zoom buttons: " + state)
+
+  if (state == "zoom_in") {
+    $(plus).attr("disabled", false);
+    $(minus).attr("disabled", true);
+  } else if (state == "zoom_out") {
+    $(plus).attr("disabled", true);
+    $(minus).attr("disabled", false);
+  } else {
+    $(plus).attr("disabled", false);
+    $(minus).attr("disabled", false);    
+  }
 }
 
 function manageZoomButtonStates() {
