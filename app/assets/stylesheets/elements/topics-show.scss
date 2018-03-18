@@ -26,7 +26,6 @@
     display: table-cell;
     vertical-align: middle;
     padding:$d_topics_topic_dot_padding;
-    @include must-break;    
   }
 
   .topic__description {
