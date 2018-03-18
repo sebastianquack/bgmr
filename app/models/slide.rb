@@ -21,7 +21,8 @@ class Slide < ActiveRecord::Base
 			#:plan_w2000 => "-quality 90 -strip -define modulate:colorspace=HSB -modulate 95",
 			#:plan_w1000 => "-quality 90 -strip -define modulate:colorspace=HSB -modulate 95",
 			#:plan_w500  => "-quality 95 -strip -define modulate:colorspace=HSB -modulate 95",
-			:zoom       => "-quality 85 -strip -define modulate:colorspace=HSB -interlace Plane -background transparent -modulate 95"
+			#:zoom       => "-quality 85 -strip -define modulate:colorspace=HSB -interlace Plane -background transparent -modulate 95"
+			:zoom       => "-quality 80 -strip -interlace Plane -background transparent"
 		}
 
     validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
