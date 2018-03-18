@@ -302,9 +302,10 @@ console.log("entering zoom mode on slide ", slide)
           });          
           var marker = L.marker(loc, {icon: icon}).addTo(map);
           marker.on("click", function(event) {
-            leaveZoomMode(function(event){
-              setTimeout(function(event){
-                navigateLoophole(event)
+            var evt = event
+            leaveZoomMode(function(){
+              setTimeout(function(){
+                navigateLoophole(order)
               },1)
             })
           })

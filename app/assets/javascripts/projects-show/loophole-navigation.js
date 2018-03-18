@@ -2,10 +2,10 @@
 // manage loophole navigation
 loopholePreviousIndex = null
 
-navigateLoophole = function(event){
+navigateLoophole = function(order){
 
   var $slides = $('.slides')
-  var targetIndex = parseInt($(this).attr('data-target-order')) - 1
+  var targetIndex = parseInt(order) - 1
   var currentIndex = $slides.slick('slickCurrentSlide')
 
   loopholePreviousIndex = currentIndex
@@ -15,7 +15,13 @@ navigateLoophole = function(event){
 }
 
 $(document).on('turbolinks:load', function(){
-  $('#project .slide_link a').click(navigateLoophole)
+
+  // manage loophole click
+  $('#project .slide_link a').click(
+    function(event) {
+      var order = $(this).attr('data-target-order')
+      navigateLoophole(order)
+    })
 
   // manage loophole back button hide
   $('#project .slides').on('beforeChange',function(e,d){
