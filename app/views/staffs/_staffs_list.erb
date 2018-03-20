@@ -29,9 +29,11 @@
 <ul class="staffs_list">
   <% staffs.each_with_index do |staff, index| %>
     <li class="staffs_list_entry staff" title="<%= staff.name %>">
-      <div class="staff_image image_swapper desaturation_effect">
+      <div class="staff_image <% if staff.secondary_image.exists? %>image_swapper<% end %> desaturation_effect">
         <img src="<%= staff.primary_image.url(:list)%>" srcset="<%= staff.primary_image.url(:list2x)%> 2x, <%= staff.primary_image.url(:list)%> 1x">
+        <% if staff.secondary_image.exists? %>
         <img src="<%= staff.secondary_image.url(:list)%>" srcset="<%= staff.secondary_image.url(:list2x)%> 2x, <%= staff.secondary_image.url(:list)%> 1x">
+        <% end %>
       </div>
       <div class="staff_info">
         <h3 class="staff_name"><%= staff.name %></h3>
