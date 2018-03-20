@@ -49,6 +49,8 @@
 
     > * {
       width: col_width_abs(4,-2);
+      @include bp($b_20-24) { width: col_width_abs(5,-2) }
+      @include bp($b_24_and_up) { width: col_width_abs(6,-2) }
       text-align: center;
       margin-left:auto;
       margin-right:auto;
@@ -69,7 +71,7 @@
     @include bp($b_12-16) { @include grid-column($columns_count/3);  &:nth-child(3n+1) { clear:both; }}
     @include bp($b_16-20) { @include grid-column($columns_count/4);  &:nth-child(4n+1) { clear:both; }}
     @include bp($b_20-24) { @include grid-column($columns_count/4);  &:nth-child(4n+1) { clear:both; }}
-    @include bp($b_24_and_up) { @include grid-column($columns_count/5); &:nth-child(5n+1) { clear:both; }}
+    @include bp($b_24_and_up) { @include grid-column($columns_count/4); &:nth-child(4n+1) { clear:both; }}
 
     .staff_image {
       height: 28 * $d_gridheight;
