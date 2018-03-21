@@ -2,8 +2,10 @@ ActiveAdmin.register Area do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
+config.sort_order = 'position_asc'
+reorderable
 menu :priority => 4
-permit_params :title_de, :title_en
+permit_params :title_de, :title_en, :position
 #
 # or
 #
@@ -13,7 +15,7 @@ permit_params :title_de, :title_en
 #   permitted
 # end
 
-index do
+index as: :reorderable_table do
     selectable_column
     column :title_de
     column :title_en

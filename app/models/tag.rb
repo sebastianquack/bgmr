@@ -9,6 +9,14 @@ class Tag < ActiveRecord::Base
 
 	validates :title, presence: true
 
-  default_scope { order(Area.current_locale_column(:title)) }  
+	acts_as_list
+
+  default_scope { order(:position) }  
+
+  def reorder_without_updated_at
+    if self.position_changed?
+      self.updated_at = self.updated_at_was
+    end
+  end    
 
 end
