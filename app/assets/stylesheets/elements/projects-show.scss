@@ -148,6 +148,8 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
     }
 
     .slide__loopholes {
+      .IE & { display: none }
+      
       position: absolute;
       top:0;
       left:0;
@@ -503,6 +505,8 @@ $loophole_shadow_color: rgba(66,66,66,0.25);
   }
 
   .zoomable_control {
+    .IE & { display: none }
+
     position: absolute;
     left: 0;
     z-index: 500;
