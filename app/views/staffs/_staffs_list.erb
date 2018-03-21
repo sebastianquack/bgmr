@@ -1,27 +1,15 @@
 
-<div class="company" title="<%= @company.name %>">
+<div class="company">
   <div class="company_image image_swapper">
-    <%= image_tag @company.primary_image.url(:large), alt: @company.text %>
-    <%= image_tag @company.secondary_image.url(:large), alt: @company.text %>
+    <%= image_tag @staffs.first.primary_image.url(:large) %>
+    <%= image_tag @staffs.first.secondary_image.url(:large) %>
   </div>
   <div class="company_info">
-    <!--h3 class="staff_name"><%= @company.name %></h3-->
-      <% if @company.text && !@company.text.strip.empty? %>
-        <p class="company_text">
-          <%= @company.text %>
-        </p>
-      <% end %>      
-      <!--ul class="staff_contact">
-        <li>
-          <%= tel_to @company.phone if @company.phone %>
-        </li>
-        <li>
-          <%= @company.fax if @company.fax %>
-        </li>
-        <li>
-          <%= mail_to @company.email if @company.email %>
-        </li>
-      </ul-->
+    <% if @page.content && !@page.content.strip.empty? %>
+      <div class="company_text">
+        <%= @page.content.html_safe %>
+      </div>
+    <% end %>      
   </div>
 </div>
 

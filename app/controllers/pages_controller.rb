@@ -6,7 +6,6 @@ class PagesController < ApplicationController
 
     if @page.seed_id && @page.seed_id == "about"
       @staffs = Staff.all.to_a
-      @company = @staffs.shift
       @projects = Project.where(internal: true)
       render "staffs/index"
     end

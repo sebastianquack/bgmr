@@ -9,7 +9,7 @@ AdminUser.create!(id: 1, email: 'admin@example.com', password: 'password', passw
 
 # just do once, remember with seed_id
 # these pages are hard coded into the menu and should not be able to delete
-Page.create!(seed_id: 'about', title_de: "Über uns", title_en: "About Us", slug_de: "ueber_uns", slug_en: "about_us") if Page.where(seed_id: 'about').empty?
+Page.create!(seed_id: 'about', title_de: "Über uns", title_en: "About Us", slug_de: "ueber_uns", slug_en: "about_us", has_content: true) if Page.where(seed_id: 'about').empty?
 Page.create!(seed_id: 'imprint', title_de: "Impressum", title_en: "Imprint", slug_de: "impressum", slug_en: "imprint", has_content: true)    if Page.where(seed_id: 'imprint').empty?
 Page.create!(seed_id: 'news', title_de: "News", title_en: "News", slug_de: "news", slug_en: "news")    if Page.where(seed_id: 'news').empty?
 Page.create!(seed_id: 'publications', title_de: "Publikationen", title_en: "Publications", slug_de: "publikationen", slug_en: "publications")    if Page.where(seed_id: 'publications').empty?
