@@ -1,13 +1,15 @@
-class NewsImage < ActiveRecord::Base
+class PageImage < ActiveRecord::Base
+	belongs_to :page
 
 	has_attached_file :image, styles: { 
-		large: "1000x1000>", 
+	 	w2000: "2000x2000>", 
+	 	w1000: "1000x1000>", 
+	 	w500: "500x500>", 
+	 	large: "1200x1200>", 
 		medium: "600x600>", 
 		thumb: "100x100>" 
 	  }, default_url: "/assets/:style/missing.png"
-  	
+	  
   	validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
-
-  	belongs_to :news_item
 
 end
