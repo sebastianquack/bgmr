@@ -1,6 +1,6 @@
 class AddHasImagesToPage < ActiveRecord::Migration
   def change
-    add_column :pages, :has_images, :boolean, :default => false
+    add_column :pages, :has_images, :boolean
   
     reversible do |dir|
       dir.up do
