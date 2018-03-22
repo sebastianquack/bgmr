@@ -1,5 +1,6 @@
 $(document).on('turbolinks:load', initStaffsTrigger)
 $(document).on('turbolinks:load', initStaffsRows)
+$(document).on('turbolinks:load', initCompanySlider)
 $(window).on('resize', initStaffsRows)
 
 function initStaffsRows(){
@@ -73,4 +74,66 @@ function getRows(items) {
     }
   })
   return list  
+}
+
+function initCompanySlider(){
+  var $company_slides = $('#staffs .company_image')
+
+  $company_slides.on('init', initCompanySliderCursor);
+
+  $company_slides.slick({
+    autoplay: true,
+    adaptiveHeight: true,
+    arrows: false,
+    fade: true,
+    autoplaySpeed: 7000,
+    speed: 1500,
+    waitForAnimate: false,
+    pauseOnHover: false,
+    pauseOnFocus: false,
+    infinite: true,
+    lazyLoad:  'progressive',
+  })
+}
+
+function initCompanySliderCursor(event, slick){
+
+  // set slide direction left or right depending on cursor position
+
+  currentCursorDirection = false // reset
+
+  $this = $(this)
+
+  $this.mousemove(function(event){
+    //console.log(event.pageX, window.innerWidth)
+    if (event.pageX > window.innerWidth/2) { // if pointer is in the right half of the window
+      var cursorDirection = 'right'
+    }
+    else {
+      var cursorDirection = 'left'
+    }
+    if (cursorDirection != currentCursorDirection) {
+      if (cursorDirection == "left") {
+        $this.toggleClass('cursorLeft',true)
+        $this.toggleClass('cursorRight',false)
+      }
+      else {
+        $this.toggleClass('cursorLeft',false)
+        $this.toggleClass('cursorRight',true)        
+      }
+      currentCursorDirection = cursorDirection
+    }
+  }) 
+
+  // handle click  
+
+  $this.on('click', function(){
+    var $slides = $(this)
+    if (currentCursorDirection == "left") {
+      $this.slick('slickPrev')
+    }
+    else {
+      $this.slick('slickNext')
+    }
+  })
 }

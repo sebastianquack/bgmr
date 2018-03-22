@@ -1,5 +1,6 @@
 <div id="staffs">
 
+  <%= render partial: "staffs/staffs_header", locals: { page: @page } %>
   <%= render partial: "staffs/staffs_list", locals: { staffs: @staffs } %>
   <%= render partial: "projects/projects_list", locals: { projects: @projects } %>
 

@@ -1,0 +1,14 @@
+<div class="company">
+  <div class="company_image">
+      <% page.page_images.each do |img| %>
+        <img class="" data-lazy="<%= img.image.url(:w1000) %>" data-srcset="<%= img.image.url(:w2000) %> 2000w, <%= img.image.url(:w1000) %> 1000w, <%= img.image.url(:w500) %> 500w">
+    <% end %>
+  </div>
+  <div class="company_info">
+    <% if page.content && !page.content.strip.empty? %>
+      <div class="company_text">
+        <%= page.content.html_safe %>
+      </div>
+    <% end %>      
+  </div>
+</div>
