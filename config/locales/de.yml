@@ -96,6 +96,9 @@ de:
         news_image:
           one: "Bild"
           other: "Bilder"
+        page_image:
+          one: "Bild"
+          other: "Bilder"          
       attributes:
         project:
           title: "Titel"
@@ -115,6 +118,7 @@ de:
           draft: "Entwurf"
           updated_at: "Letzte Änderung"
           has_content: "Textinhalt"
+          has_images: "Bilder" 
         area:
           title: "Titel"
         tag:
@@ -173,7 +177,7 @@ de:
                 blank: "darf nicht leer sein"
               slug:
                 blank: "darf nicht leer sein"
-                invalid: "darf keine Sonderzeichen enthalten"
+                invalid: "darf keine Sonderzeichen enthalten" 
           topic:
             attributes:
               title:

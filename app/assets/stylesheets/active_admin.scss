@@ -220,6 +220,13 @@ fieldset.slide {
     background-color: white;
   }
 
+  &.page_image img {
+    border:none;
+    object-position: center left;
+    background-color: transparent;
+    max-height:45vh;
+  }
+
   .slide_links .button.has_many_add {
     transform: translateY(-50%) translateX(15px);
   }
@@ -415,3 +422,22 @@ form fieldset ol > li label {
     }
   }
 }
+
+
+table.reorderable-subtable {
+  table-layout: auto;
+  thead th {
+    padding: 8px 12px 6px 12px;
+  }  
+  td.reorder-handle-col {
+    max-width: 5em;
+  }
+
+  &.reorderable-subtable-2col {
+    width: auto;
+    td {
+      width: 50%;
+    }
+  }
+}
+
