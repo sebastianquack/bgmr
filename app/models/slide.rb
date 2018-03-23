@@ -14,15 +14,15 @@ class Slide < ActiveRecord::Base
 		 	thumb: "100x100>" 
 		 }, default_url: "/assets/:style/missing.png",
 		 :convert_options => {
-			:large      => "-quality 90",
-			:w2000      => "-quality 90",
-			:w1000      => "-quality 90",
-			:w500       => "-quality 95",
+			:large      => "-quality 90 -strip",
+			:w2000      => "-quality 85 -strip",
+			:w1000      => "-quality 90 -strip",
+			:w500       => "-quality 95 -strip",
+			:zoom       => "-quality 80 -strip -interlace Plane -background transparent"
 			#:plan_w2000 => "-quality 90 -strip -define modulate:colorspace=HSB -modulate 95",
 			#:plan_w1000 => "-quality 90 -strip -define modulate:colorspace=HSB -modulate 95",
 			#:plan_w500  => "-quality 95 -strip -define modulate:colorspace=HSB -modulate 95",
 			#:zoom       => "-quality 85 -strip -define modulate:colorspace=HSB -interlace Plane -background transparent -modulate 95"
-			:zoom       => "-quality 80 -strip -interlace Plane -background transparent"
 		}
 
     validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
