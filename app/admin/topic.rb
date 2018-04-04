@@ -23,8 +23,12 @@ index do
     column :image do |topic|
       image_tag topic.image(:thumb)
     end    
-    column :title_de
-    column :title_en
+    column :title_de do |topic|
+      topic.title_de.html_safe
+    end
+    column :title_en do |topic|
+      topic.title_en.html_safe
+    end
     column t(:asociated_projects) do |topic|
     	topic.projects.map { |p| (link_to p.title, admin_project_path(p)) }.join(', ').html_safe
     end
