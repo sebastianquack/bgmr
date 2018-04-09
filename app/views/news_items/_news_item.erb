@@ -6,8 +6,7 @@
   
   <div class="news_item_info">
     <h3 class="news_item_title"><%= news_item.title %></h3>
-    
-    <% if preview %>
+    <% if preview && news_item.preview %>
       <div class="news_item_preview"><%= news_item.preview.html_safe %> <a class="read_more" href="<%= news_item_path(:id => news_item.slug) %>">> <%= t(:read_more) %></a></div>
     <% else %>
       <div class="news_item_content"><%= news_item.content.html_safe %></div>
