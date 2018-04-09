@@ -70,7 +70,7 @@ function updateProjectsFilter() {
     .map(function() {return $(this).val()})
     .get();
 
-    console.log(tagsList)
+    //console.log(tagsList)
 
   var area = $('#project_selection__areas input:checked').val()
 
@@ -92,7 +92,7 @@ function updateProjectsFilter() {
   var showElems = $('.project'+searchSelectorTitle+', .project'+searchSelectorDescription).filter($('.project'+tagsSelector+areaSelector))
   var hideElems = $('.project').not(showElems)
 
-  console.log("show " + showElems.length + ", hide " + hideElems.length)
+  //console.log("show " + showElems.length + ", hide " + hideElems.length)
 
   // filter
   if (allSelectors == "") {

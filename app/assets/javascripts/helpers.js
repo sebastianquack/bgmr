@@ -24,7 +24,7 @@ function auto_set_height(elem) {
   var $elem = $(elem)
   var actualHeight = $elem.height();
   var scrollHeight = elem.scrollHeight;
-  console.log(actualHeight, scrollHeight)
+  //console.log(actualHeight, scrollHeight)
   if (actualHeight < 0.5 * scrollHeight) {
     $elem.css('height', scrollHeight)  
     $elem.one('transitionend', function(){
@@ -38,7 +38,7 @@ function auto_set_height(elem) {
 }
 
 function toggle_expandable(elem, options) {
-  console.log(elem)
+  //console.log(elem)
   var rootElem = $(elem).closest(options.root).get(0)
   var autoHeightElem = $(rootElem).find(options.autoHeight).get(0)
   auto_set_height(autoHeightElem);

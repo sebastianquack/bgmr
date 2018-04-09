@@ -7,7 +7,7 @@ $(document).on('turbolinks:load', function(){
 
 $(window).on('resize', function(event) {
   if (window_width == $(window).width() && window_height == $(window).height()) {
-    console.log("not changed")  
+    //console.log("not changed")  
     event.stopPropagation()
     event.stopImmediatePropagation()
   } else {

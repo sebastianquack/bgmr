@@ -74,7 +74,7 @@ function parentUntilPositioned(elem) {
     parent = $(elem).parent()
     position = $(parent).css('position')
     parents.push(parent)
-    console.log(parent.tagName, position)
+    //console.log(parent.tagName, position)
   }
   while ( parent != undefined && ['absolute','relative','fixed'].indexOf(position) < 0 )
 }

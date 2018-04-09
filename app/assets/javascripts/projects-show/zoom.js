@@ -67,7 +67,7 @@ $(document).on('turbolinks:load', function(){
 
     var timeout = 0;
     
-    console.log("zoom in ",currentZoomLevel, minZoomLevel)
+    //console.log("zoom in ",currentZoomLevel, minZoomLevel)
 
     if(currentZoomLevel == minZoomLevel) {
       // hide image and loopholes
@@ -80,7 +80,7 @@ $(document).on('turbolinks:load', function(){
     } 
 
     newZoomLevel = currentZoomLevel + zoomStep;
-    console.log("new zoom level: " + newZoomLevel)
+    //console.log("new zoom level: " + newZoomLevel)
 
     if (currentZoomLevel > 0) {
       setZoomButtonState("zoom_out")
@@ -140,7 +140,7 @@ function enterZoomMode(slide) {
   if (zoomMode == true) return
   zoomMode = true
 
-console.log("entering zoom mode on slide ", slide)
+  //console.log("entering zoom mode on slide ", slide)
 
   var $imageElem = $($(".slick-current .slide.zoomable").find(".slide__image img").get(0));
   $imageElem.css("visibility", "hidden")
@@ -172,12 +172,12 @@ console.log("entering zoom mode on slide ", slide)
           map.setMaxBounds(bounds)
 
           currentZoomLevel = leafletMap.getZoom();
-          console.log("current zoom level: ", currentZoomLevel)
+          //console.log("current zoom level: ", currentZoomLevel)
         });
 
         leafletMap = map;
         currentZoomLevel = leafletMap.getZoom();
-        console.log("initialized leaflet with zoom level " + currentZoomLevel);
+        //console.log("initialized leaflet with zoom level " + currentZoomLevel);
         minZoomLevel = currentZoomLevel;
         setZoomButtonState("zoom_in")
 
@@ -205,7 +205,7 @@ console.log("entering zoom mode on slide ", slide)
           })
         })
 
-        console.log(this.getView())
+        //console.log(this.getView())
 
       }
     });
@@ -213,7 +213,7 @@ console.log("entering zoom mode on slide ", slide)
   // set maximum zoom
   zoomMax = Math.pow(Math.abs(currentZoomLevel),2)
   zoomStep = Math.abs(currentZoomLevel)/3
-  console.log("zoomMax: ", zoomMax, " zoomStep: ", zoomStep)
+  //console.log("zoomMax: ", zoomMax, " zoomStep: ", zoomStep)
   //var x = imgViewer.imgViewer2("leafletZoom", zoomMax);
   //console.log(x)
   //console.log(imgViewer.imgViewer2("getZoom"))
@@ -225,7 +225,7 @@ console.log("entering zoom mode on slide ", slide)
 function leaveZoomMode(callback) {
   if (zoomMode == false) return
 
-  console.log("leaving zoom mode");
+  //console.log("leaving zoom mode");
 
   setTimeout( function() {
      var $imageElem = $($(".slick-current .slide.zoomable").find(".slide__image img").get(0));
@@ -280,7 +280,7 @@ function setZoomButtonState(state) { // "zoom_in" "zoom_out" "zoom_both"
   var plus = $('.zoom_button_plus');
   var minus = $('.zoom_button_minus');
 
-  console.log("zoom buttons: " + state)
+  //console.log("zoom buttons: " + state)
 
   if (state == "zoom_in") {
     $(plus).attr("disabled", false);

@@ -11,7 +11,7 @@ $(document).on('turbolinks:load', function(){
   })
   
   $(window).on('resize', function(event){
-    console.log("resize")
+    //console.log("resize")
     $('#project .slide__image img').each(function(i,img){
       var im = img
       window.setTimeout(function(){
