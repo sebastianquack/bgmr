@@ -6,6 +6,6 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.friendly.find(params[:id])
-    @projects = @topic.projects.all()
+    @projects = @topic.projects.published
   end
 end
