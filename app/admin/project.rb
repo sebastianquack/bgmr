@@ -84,7 +84,7 @@ show do
         end
       end
       row t(:topics) do |project| 
-        project.topics.map { |a| (link_to a.title, admin_topic_path(a)) }.join(', ').html_safe
+        project.topics.map { |a| (link_to a.title.html_safe, admin_topic_path(a)) }.join(', ').html_safe
       end
       row t(:areas) do |project| 
         project.areas.map { |a| (link_to a.title, admin_area_path(a)) }.join(', ').html_safe
@@ -166,7 +166,7 @@ form :html => { :enctype => "multipart/form-data" } do |f|
     end
   end 
 
-  f.inputs t(:topics) do
+  f.inputs t(:topics) do 
     f.input :topics, :label => false, :as => :check_boxes
   end
     
