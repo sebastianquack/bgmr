@@ -1,16 +1,26 @@
 {
+  "scripts": {
+    "clean-node_modules": "modclean -r -P -a 'docs'"
+  },
   "dependencies": {
     "blueimp-file-upload": "~9.18.0",
+    "imgviewer2": "git+https://github.com/retani/imgViewer2.git",
     "input-range-scss": "~1.4.1",
     "jquery-touch-events": "git+https://github.com/benmajor/jQuery-Touch-Events.git",
-    "object-fit-images": "~3.2.3",
-    "slick-carousel": "1.6.0",
     "leaflet": "1.0.3",
-    "imgviewer2": "git+https://github.com/retani/imgViewer2.git"
+    "modclean": "^3.0.0-beta.1",
+    "object-fit-images": "~3.2.3",
+    "slick-carousel": "1.6.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/sebastianquack/bgmr.git"
   },
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "pre-commit": "^1.2.2"
+  },
+  "pre-commit": [
+    "clean-node_modules"
+  ]
 }

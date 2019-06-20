@@ -18,7 +18,9 @@
 
 # Ignore paperclip attachments
 /public/system
-/node_modules
+
+# NOTE: node_modules need to be checked it to ease deployment to sinumx !
+# /node_modules
 
 # ignore precompiled assets
 public/assets/
