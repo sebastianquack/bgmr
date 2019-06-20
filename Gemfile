@@ -52,6 +52,10 @@ group :development do
   gem 'spring'
 end
 
+group :production do
+  gem 'therubyracer', "0.12.3"
+end
+
 gem 'activeadmin', '1.0.0.pre5'
 gem 'devise'
 gem 'devise-i18n'
@@ -62,7 +66,7 @@ gem 'friendly_id', '~> 5.0.0'
 gem 'route_translator'# translate routes 
 gem 'ransack' # multi-column search
 
-gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'paperclip', '~> 5.1.0'
 gem 'paperclip-meta'
 
 gem 'acts_as_list'

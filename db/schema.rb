@@ -142,8 +142,28 @@ ActiveRecord::Schema.define(version: 20180322235951) do
     t.datetime "updated_at", null: false
   end
 
-# Could not dump table "projects" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "projects", force: :cascade do |t|
+    t.string   "slug_en",                                 null: false
+    t.boolean  "draft"
+    t.string   "title_de",                                null: false
+    t.string   "title_en",                                null: false
+    t.text     "description_de"
+    t.text     "description_en"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "slug_de",                                 null: false
+    t.string   "main_image_file_name"
+    t.string   "main_image_content_type"
+    t.integer  "main_image_file_size"
+    t.datetime "main_image_updated_at"
+    t.boolean  "featured"
+    t.integer  "position"
+    t.boolean  "internal",                default: false
+    t.string   "pdf_file_name"
+    t.string   "pdf_content_type"
+    t.integer  "pdf_file_size"
+    t.datetime "pdf_updated_at"
+  end
 
   create_table "publications", force: :cascade do |t|
     t.string   "title"
