@@ -52,9 +52,7 @@ group :development do
   gem 'spring'
 end
 
-group :production do
-  gem 'therubyracer', "0.12.3"
-end
+gem 'therubyracer', "0.12.3"
 
 gem 'activeadmin', '1.0.0.pre5'
 gem 'devise'
