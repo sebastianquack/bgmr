@@ -2,50 +2,41 @@
 
 ````
 bundle install
-npm install
 rails s
 ````
 
-# bgmr web hosting bei Uberspace
+# bgmr web hosting bei sinumX
 
-## Kontodaten
+- Website liegt in bgmr_web/
+- Datenbank sqlite liegt in bgmr_web/db/ (!)
+- Logs: bgmr_web/logs
 
-uberspace.de
+## deployment
 
-Name: bgmr
+1. Bei porath.net (plesk) als bgmr einloggen
+2. Git pull
+    * Im Menü Sektion "Git" aufrufen
+    * "Updates mithilfe von Pull abrufen"
+    * Seite neu laden, um letzten Commit zu sehen
+3. Dateien kopieren
+    * "Vom Repository bereitstellen" -> Dateien werden nach bgmr_web/ kopiert (Datenbank wird nicht überschrieben)
+4. "bundle install"
+    * Im Menü Sektion "Ruby" aufrufen
+    * "Paketinstallation" anklicken
+5. Rake tasks ausführen
+    * "Rake-Aufgabe ausführen" anklicken
+    * Verfügbare Tasks (Auswahl)
+        * db:migrate
+        * paperclip:refresh:missing_styles
+6. Rails restart
+    * "App neu starten" anklicken
 
-## Serverdaten
+siehe auch bin/prepare
 
-Server: spica.uberspace.de
-IPv4: 185.26.156.17
-IPv6: 2a00:d0c0:200:0:b9:1a:9c11:351
+## installation notes
 
-Webspace: bgrm.spica.uberspace.de
-
-`ssh bgrm@spica.uberspace.de`
-
-Details: [https://uberspace.de/dashboard/datasheet]()
-
-### directories
-
-~/bgmr_live: rails running live version -> version-controlled content will be overwritten by git post-receive hook
-~/bgmr.git: bare git repository -> push updates bgmr_live and restarts server
-dummy-images: images for fake projects for testing (see seeds.rb)
-
-### git server
-
-to enable push:
-- add your ssh public key to the webspace
-- `git remote add live ssh://bgmr@spica.uberspace.de/home/bgmr/bgmr.git/`
-
-### rails server
-
-restart: `svc -du ~/service/bgmr-web`
-
-port: 62480
-
-see ~/html/.htaccess & ~/service/bgmr-web
-
-### postgres
-
-postgress is set up according to uberspace manual, but not in use, sqlite is used instead
+* Repository wird von Github geholt
+* Rake-Task "rake secret" muss ausgeführt werden, das Secret kommt in die ENV-Variable SECRET_KEY_BASE
+* Da kein NPM verfügbar ist, muss node_modules eingecheckt werden
+* Aus dem gleichen Grund wurde das Gem "therubyracer" installiert, welches eine Ausführingsumgebung für javascript zur Verfügung stellt, um die Assets zu bearbeiten
+* Backups werden in Plask vom "Backup-Manager" erstellt
