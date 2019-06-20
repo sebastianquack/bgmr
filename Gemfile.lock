@@ -136,6 +136,7 @@ GEM
     kgio (2.11.0)
     libv8 (3.16.14.19)
     libv8 (3.16.14.19-x86_64-darwin-16)
+    libv8 (3.16.14.19-x86_64-linux)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -264,6 +265,7 @@ GEM
 PLATFORMS
   ruby
   x86_64-darwin-16
+  x86_64-linux
 
 DEPENDENCIES
   activeadmin (= 1.0.0.pre5)
