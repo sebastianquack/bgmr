@@ -26,8 +26,9 @@ rails s
 5. Rake tasks ausführen
     * "Rake-Aufgabe ausführen" anklicken
     * Verfügbare Tasks (Auswahl)
-        * db:migrate
-        * paperclip:refresh:missing_styles
+        * assets:precompile (wenn css oder js geändert)
+        * db:migrate (wenn Datenbank geändert)
+        * paperclip:refresh:missing_styles (Wenn es neue Paperclip styles gibt)
 6. Rails restart
     * "App neu starten" anklicken
 
